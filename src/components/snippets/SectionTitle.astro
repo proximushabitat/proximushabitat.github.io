@@ -1,0 +1,29 @@
+---
+const { thin, thick, linkUrl } = Astro.props;
+---
+
+<div class="mt-6 space-y-2">
+	<div
+		class="h-0.5 bg-secondary"
+		data-aos="fade-up"
+		data-aos-duration="1000"
+		>
+	</div>
+	<div class="flex flex-row space-between">
+		<h3
+		class="text-secondary text-base font-medium grow"
+		data-aos="fade-up"
+		data-aos-duration="1500"
+		>
+		<span>{thin}</span><span> </span>
+		<span class="font-bold">{thick}</span>
+		</h3>
+		{linkUrl && <a class="font-bold text-secondary" href={linkUrl}>
+			see all &nbsp; ↗
+		</a>}
+	</div>
+	<div 
+		class="h-1.5 bg-secondary"
+		>
+	</div>
+</div>

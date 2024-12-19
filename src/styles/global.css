@@ -1,0 +1,16 @@
+@import "tailwindcss";
+@theme {
+  --color-primary: #fafafa;
+  --color-secondary: #0000ff;
+}
+/* CSS */
+:root {
+  font-family: Inter, sans-serif;
+  font-variant-numeric: tabular-nums;
+}
+@supports (font-variation-settings: normal) {
+  /* Use variable font if supported */
+  :root {
+    font-family: InterVariable, sans-serif;
+  }
+}

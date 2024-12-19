@@ -1,0 +1,58 @@
+---
+import SectionTitle from "@components/snippets/SectionTitle.astro"
+// Define testimonials/opinions data
+const things = [
+  {
+    headline: "Amrit Nagi Founder of Tailwind Toolbox",
+    author: "hhh hhh",
+    date: "01.01.2025",
+    excerpt:
+      "I've been following Mike's career for a while now and it's amazing just how quickly the quality and variety of his work has developed and evolved! He's always learning or working on something new and constantly refining his work to be the best! His attention to detail, 'can do' attitude and work ethic is refreshing and he will definitely help you succeed!",
+    link: "www.hhh.com",
+  },
+  {
+    headline: "Gabriel Perales Software Engineer at Cabify",
+    date: "01.01.2025",
+    excerpt:
+      "Mike has helped me with many designs, and I couldn't follow his working speed when we worked together. His designs are slick, and he delivers a lot of value; he is constantly iterating his designs and making improvements.",
+    link: "www.hhh.com",
+  },
+  {
+    headline: "Volkan Kaya Founder of Versoly.com",
+    excerpt:
+      "Mike is a rare breed of designer & developer that understands business needs. He leveraged his previous experience to build out a few landing pages very quickly for Versoly.",
+    link: "www.hhh.com",
+  },
+  {
+    headline: "Mike Blogger at Raspada",
+    author: "hhh hhh",
+    excerpt:
+      "I have had the absolute pleasure of working with Mike in the past when building my blog Raspada with its Backend UI or to building a private application for a leading hearing care company. Mike’s knowledge and attention to detail is second to none, and he really understands and listens to his clients (me).",
+    link: "www.hhh.com",
+  },
+];
+---
+
+<section class="bg-primary">
+  <div class="px-8 2xl:max-w-7xl mx-auto py-6">
+    <SectionTitle thin="human" thick="opinions" />
+    <div class="grid grid-cols-1 lg:grid-cols-4 text-secondary gap-6 pt-2 mt-2">
+      {
+        things.map((thing) => (
+         <div class="h-full flex flex-col">
+            <h3 class="italic text-2xl block font-bold">
+              {thing.headline}
+            </h3>
+            {(thing.date || thing.author) && <div class="text-sm mt-2 font-light italic"><span>{thing.date}</span> <span>{thing.author}</span></div>}
+            <p class="text-sm leading-relaxed mt-6 grow">
+              {thing.excerpt}
+            </p>
+            <div class="mt-2">
+              <a class="mt-3 text-base font-semibold" href={thing.link}>continue reading &nbsp; ↗</a>
+            </div>
+         </div>
+        ))
+      }
+    </div>
+  </div>
+</section>

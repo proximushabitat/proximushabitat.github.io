@@ -1,0 +1,80 @@
+---
+import { Image } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+//filessystem
+import fs from 'node:fs/promises';
+import { parse as parseYaml } from "yaml";
+
+//get path from props and maybe width to scale the picture
+var { path, width, height, lang, index } = Astro.props;
+
+//console.log("pathB");
+//console.log(path);
+
+//GET YAML WITH DATA
+//go to folders above
+path = "../../" + path;
+//all data files are named data
+const pathData = path+"data.yaml";
+//generate url
+const urlData = new URL(pathData, import.meta.url);
+//load yaml file
+const fileData = await fs.readFile(urlData, 'utf-8');
+//load data from yaml file
+const data = parseYaml(fileData);
+//console.log("image data");
+//console.log(data.generic_alt);
+
+//GET IMAGE
+//generate path of image
+const pathImg = path+"img."+data.filetype;
+//generate url of image
+const urlImg = new URL(pathImg, import.meta.url);
+//glob the images
+const whatToGlob = path + "*.{jpeg,jpg,png,gif}";
+const images = import.meta.glob<{ default: ImageMetadata }>("../../assets/for_content/img/**/*.{jpeg,jpg,png,gif,tiff,webp}");
+---
+
+<!-- no width, no height -->
+{(!width && !height) &&
+<Image 
+	src={images[pathImg]()} 
+	alt={data.generic_alt[lang] || " "}
+	data-slider-image
+    data-index={index}
+	class="absolute medium-zoomable top-0 left-0 w-full h-full object-cover rounded-xl"
+/>}
+
+<!-- width, but no height -->
+{(width && !height) &&
+<Image 
+	src={images[pathImg]()} 
+	alt={data.generic_alt[lang] || " "}
+	width={width}
+	data-slider-image
+    data-index={index}
+	class="absolute medium-zoomable top-0 left-0 w-full h-full object-cover rounded-xl"
+/>}
+
+<!-- height, but no width -->
+{(!width && height) &&
+<Image 
+	src={images[pathImg]()} 
+	alt={data.generic_alt[lang] || " "}
+	height={height}
+	data-slider-image
+    data-index={index}
+	class="absolute medium-zoomable top-0 left-0 w-full h-full object-cover rounded-xl"
+/>}
+
+<!-- height and width -->
+{(width && height) &&
+<Image 
+	src={images[pathImg]()} 
+	alt={data.generic_alt[lang] || " "}
+	height={height}
+	width={width}
+	data-slider-image
+    data-index={index}
+	class="absolute medium-zoomable top-0 left-0 w-full h-full object-cover rounded-xl"
+/>}

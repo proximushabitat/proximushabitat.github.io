@@ -15,6 +15,13 @@ export function getStaticPaths () {
   ];
 }
 
+import { getCollection } from 'astro:content';
+
+  const pages = await getCollection('test');
+
+  console.log("pages");
+  console.log(pages);
+
 ---
 
 

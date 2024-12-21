@@ -1,8 +1,14 @@
+// @ts-check
 import { defineConfig } from 'astro/config';
-import tailwindcss from '@tailwindcss/vite';
 
-import sitemap from "@astrojs/sitemap";
+import tailwind from '@astrojs/tailwind';
+
+import mdx from '@astrojs/mdx';
+
+// https://astro.build/config
 export default defineConfig({
+  integrations: [tailwind(), mdx()],
+  output: 'static',
   i18n: {
     defaultLocale: "de",
     locales: ["de", "fr", "en"],
@@ -10,11 +16,5 @@ export default defineConfig({
         prefixDefaultLocale: true,
     },
   },
-   vite: {
-    plugins: [tailwindcss()],
-  },
-  // add yur domain name here
-  site: 'https://proximushabitat.github.io',
   compressHTML: true,
-  integrations: [sitemap()]
 });

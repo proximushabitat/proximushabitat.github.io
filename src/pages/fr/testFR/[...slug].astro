@@ -6,8 +6,8 @@ import { getTranslations } from '@snippets/handleCollections';
 export async function getStaticPaths() {
   const pages = await getCollection('test');
 
-  //console.log("pages");
-  //console.log(pages);
+  ////console.log("pages");
+  ////console.log(pages);
 
   const paths = pages.map(page => {
 	const splitSlug = page.filePath.split('/');

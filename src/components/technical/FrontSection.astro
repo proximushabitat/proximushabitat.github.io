@@ -23,21 +23,21 @@ const t = useTranslations(lang);
 
 const { collection, howMany, component, showDate, sectionTitle } = Astro.props;
 
-console.log("collection");
-console.log(collection);
+//console.log("collection");
+//console.log(collection);
 
 const itemsAllLang = await getCollection('test');
-console.log("itemsAllLang");
-console.log(itemsAllLang);
+//console.log("itemsAllLang");
+//console.log(itemsAllLang);
 
 const items = getOneLang(itemsAllLang, lang);
-console.log("items");
-console.log(items);
-
-//console.log("newsAI");
+//console.log("items");
 //console.log(items);
-//console.log("newsAI.trans");
-//console.log(items[0].translations[0].block);
+
+////console.log("newsAI");
+////console.log(items);
+////console.log("newsAI.trans");
+////console.log(items[0].translations[0].block);
 
 
 ---

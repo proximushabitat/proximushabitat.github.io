@@ -73,8 +73,20 @@ async function itemAddData() {
     //////console.log(pathArray);
     pathArray[pathArray.length - 1] = "data.yaml";
     const parentFolder = pathArray[pathArray.length - 2]
-    items[i]['caption'] = capAlt[parentFolder].caption;
-    items[i]['alt'] = capAlt[parentFolder].alt;
+    if(capAlt[parentFolder].caption){
+      console.log("hasCaption: "+capAlt[parentFolder].caption);
+      items[i]['caption'] = capAlt[parentFolder].caption;
+    }else{
+      console.log("hasNoCaption: "+capAlt[parentFolder].caption);
+    }
+    if(capAlt[parentFolder].alt){
+      console.log("hasAlt: "+capAlt[parentFolder].alt);
+      items[i]['alt'] = capAlt[parentFolder].alt;
+    }else{
+      console.log("hasNoAlt: "+capAlt[parentFolder].alt);
+    }
+    //items[i]['caption'] = capAlt[parentFolder].caption;
+    //items[i]['alt'] = capAlt[parentFolder].alt;
     var pathData = pathArray.join('/');
     pathData = "../../"+pathData;
     //////console.log("pathData");

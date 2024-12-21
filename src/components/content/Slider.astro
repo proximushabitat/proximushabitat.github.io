@@ -51,7 +51,11 @@ console.log("items");
 console.log(items);
 
 async function itemAddData() {
+  console.log("itemsWITHIN");
+  console.log(items);
   items = itemsOriginal;
+  console.log("itemsWITHIN2");
+  console.log(items);
   for(let i=0; i < items.length; i++){
     console.log("i: "+i)
     console.log("item");
@@ -59,10 +63,10 @@ async function itemAddData() {
     //GET YAML WITH DATA
     //go to folders above
     console.log("path1: "+items[i].path);
-    items[i].path = "../../" + items[i].path;
-    console.log("path2: "+items[i].path);
+    items[i].pathExt = "../../" + items[i].path;
+    console.log("path2: "+items[i].pathExt);
     //all data files are named data
-    const pathData = items[i].path+"data.yaml";
+    const pathData = items[i].pathExt+"data.yaml";
     //generate url
     const urlData = new URL(pathData, import.meta.url);
     //load yaml file
@@ -70,13 +74,13 @@ async function itemAddData() {
     //load data from yaml file
     const data = parseYaml(fileData);
     items[i].data = data;
-    console.log("data1: "+items[i].path);
+    console.log("data1: "+items[i].pathExt);
     //console.log("image data");
     //console.log(data.generic_alt);
 
     //GET IMAGE
     //generate path of image
-    const pathImg = items[i].path+"img."+items[i].data.filetype;
+    const pathImg = items[i].pathExt+"img."+items[i].data.filetype;
     items[i].pathImg = pathImg;
     //generate url of image
     const urlImg = new URL(pathImg, import.meta.url);
@@ -105,13 +109,13 @@ async function itemAddData() {
 
 const images = import.meta.glob<{ default: ImageMetadata }>("../../assets/for_content/img/**/*.{jpeg,jpg,png,gif,tiff,webp}");
 
-console.log("images");
-console.log(images);
+//console.log("images");
+//console.log(images);
 
 await itemAddData();
 
-console.log("items2");
-console.log(items);
+//console.log("items2");
+//console.log(items);
 
 
 ---
@@ -135,7 +139,6 @@ console.log(items);
       class="absolute top-0 left-0 w-full h-full object-cover opacity-0 transition-opacity duration-500 ease-in-out invisible"
       data-slider-container
     >
-      {console.log(thisImage)}{console.log(" --> thisImage.pathImg")}
 
       <Image
         src={images[thisImage.pathImg]()}

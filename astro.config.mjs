@@ -21,5 +21,6 @@ export default defineConfig({
     // Example: Generate `page.html` instead of `page/index.html` during build.
     //format: 'preserve'
     redirects: true,
-  }
+  },
+  site: 'https://proximushabitat.github.io',
 });

@@ -1,0 +1,81 @@
+---
+import { getCollection, render } from 'astro:content';
+
+import { getTranslations } from '@snippets/handleCollections';
+
+import BaseLayout from "@layouts/BaseLayout.astro";
+import BarsTop3 from "@components/general/BarsTop3.astro";
+import Intro from "@components/general/Intro.astro";
+import Numbered from "@components/general/Numbered.astro";
+import ArticlesNude from "@components/general/ArticlesNude.astro";
+import ArticlesImaged from "@components/general/ArticlesImaged.astro";
+import BarsBottom3 from "@components/general/BarsBottom3.astro";
+import divTitle from "@components/snippets/divTitle.astro";
+
+const { lang, slug, page, pages } = Astro.props;
+
+console.log("");
+console.log("TEST:ASTRO");
+console.log("page");
+console.log(page);
+console.log("slug");
+console.log(slug);
+console.log("lang");
+console.log(lang);
+console.log("pages");
+console.log(pages);
+
+//console.log("page.filePath");
+//console.log(page.filePath);
+//console.log("");
+
+//console.log("page.filePath?.split('/')[page.filePath?.split('/').length - 1]");
+//console.log(page.filePath?.split('/')[page.filePath?.split('/').length - 1]);
+//const translations = pages.filter(onePage => onePage.filePath?.split('/')[onePage.filePath?.split('/').length - 1] == page.filePath?.split('/')[page.filePath?.split('/').length - 1])
+const translations = getTranslations(page, pages);
+
+//console.log(" ");
+//console.log("pages");
+//console.log(pages);
+//console.log(" ");
+console.log("translations");
+console.log(translations);
+
+const peops = await getCollection('people');
+//console.log("people");
+//console.log(peops);
+
+//console.log("");
+
+const formattedDate = page.data.date_published.toLocaleString(lang);
+
+const { Content } = await render(page);
+---
+
+
+<BaseLayout>
+  <BarsTop3 />
+
+  <article class="bg-primary flex flex-col justify-center place-self-center text-justify">
+    <div class="px-8 2xl:max-w-7xl mx-auto py-8">
+      <div class="space-y-2 max-w-4xl">
+        <!-- div Title and Decorative Elements -->
+        <h1>
+          {page.data.headline}
+        </h1>
+        <h2>
+          {page.data.drophead}
+        </h2>
+      </div>
+      <div class="max-w-4xl">
+        {page.data.lead}
+      </div>
+      <div class="max-w-3xl mx-auto">
+        <Content />
+      </div>
+    </div>
+  </article>
+
+  <BarsBottom3 />
+</BaseLayout>
+

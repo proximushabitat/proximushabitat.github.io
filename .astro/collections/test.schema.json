@@ -7,6 +7,15 @@
         "is_draft": {
           "type": "boolean"
         },
+        "not_on_front": {
+          "type": "boolean"
+        },
+        "not_on_section": {
+          "type": "boolean"
+        },
+        "no_own_page": {
+          "type": "boolean"
+        },
         "lang_ready": {
           "type": "boolean"
         },

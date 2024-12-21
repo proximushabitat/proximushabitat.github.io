@@ -19,7 +19,7 @@ export default {
 					light: "#F4F1DE",
 					dark: colors.slate[900],
 				},
-				focus: colors.emerald[300],
+				focus: "#ffff00",/*colors.emerald[300],*/
 			},
 			animation: {
 				inNOut: 'inNOut 5s ease-in-out',

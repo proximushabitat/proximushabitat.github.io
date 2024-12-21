@@ -14,7 +14,8 @@
       "@layouts/*": ["src/layouts/*"],
       "@style/*": ["/src/style/*"],
       "@lib/*": ["/src/lib/*"],
-      "@i18n/*": ["/src/i18n/*"]
+      "@i18n/*": ["/src/i18n/*"],
+      "@snippets/*": ["/src/snippets/*"]
     },
   },
 }

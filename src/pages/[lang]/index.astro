@@ -8,6 +8,7 @@ import Articles from "@components/landing/Articles.astro";
 import FeaturedWork from "@components/landing/FeaturedWork.astro";
 import BarsTop5 from "@components/general/BarsTop5.astro";
 import BarsBottom5 from "@components/general/BarsBottom5.astro";
+import FrontSection from "@components/technical/FrontSection.astro";
 
 export function getStaticPaths () {
  return [
@@ -34,8 +35,8 @@ import { getCollection } from 'astro:content';
   <Testimonials />
   <Articles />
 
-  <!-- <FrontSection collection="news" howMany="4" component="Numbered" sectionTitle="true" />
-  <FrontSection collection="news" howMany="4" component="ArticlesNude" sectionTitle="true" />
+  <FrontSection collection="test" howMany="4" component="Numbered" sectionTitle="true" />
+  <!-- <FrontSection collection="news" howMany="4" component="ArticlesNude" sectionTitle="true" />
   <FrontSection collection="news" howMany="4" component="ArticlesImaged" showDate="true" sectionTitle="true" />-->
   <BarsBottom5 />
 </BaseLayout>

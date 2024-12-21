@@ -1,0 +1,47 @@
+---
+//components
+import BaseLayout from "@layouts/BaseLayout.astro";
+import BarsTop5 from "@components/general/BarsTop5.astro";
+import Intro from "@components/general/Intro.astro";
+import Numbered from "@components/general/Numbered.astro";
+import ArticlesNude from "@components/general/ArticlesNude.astro";
+import ArticlesImaged from "@components/general/ArticlesImaged.astro";
+import BarsBottom5 from "@components/general/BarsBottom5.astro";
+
+//collections
+import { getCollection } from 'astro:content';
+import { getTranslations, getOneLang } from "@/snippets/handleCollections";
+
+//i18n
+import { getLangFromUrl, useTranslations } from '@i18n/utils';
+const lang = getLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+//directus
+//import directus from "@lib/directus";
+//import { readItems, readItem, enableTwoFactor } from "@directus/sdk";
+
+const { collection, howMany, component, showDate, sectionTitle } = Astro.props;
+
+console.log("collection");
+console.log(collection);
+
+const itemsAllLang = await getCollection('test');
+console.log("itemsAllLang");
+console.log(itemsAllLang);
+
+const items = getOneLang(itemsAllLang, lang);
+console.log("items");
+console.log(items);
+
+//console.log("newsAI");
+//console.log(items);
+//console.log("newsAI.trans");
+//console.log(items[0].translations[0].block);
+
+
+---
+
+{ component == "ArticlesImaged" && <ArticlesImaged items={items} collection={collection} showDate={showDate} sectionTitle={sectionTitle} /> }
+{ component == "ArticlesNude" && <ArticlesNude items={items} collection={collection} showDate={showDate} sectionTitle={sectionTitle} /> }
+{ component == "Numbered" && <Numbered items={items} collection={collection} showDate={showDate} sectionTitle={sectionTitle} /> }

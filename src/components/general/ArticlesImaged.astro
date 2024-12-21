@@ -11,10 +11,10 @@ const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 
 //small functions
-import { formatDate } from '@snippets/formatDate';
+import { formatDate } from '@snippets/numberGames';
 
 //assets
-import testImg from "../../assets/img/test3.webp";
+//import testImg from "../../assets/img/test3.webp";
 
 const { items, collection, showDate, sectionTitle } = Astro.props;
 
@@ -46,7 +46,7 @@ function calculateAosDuration(index) {
               <div class="h-full flex flex-col justify-between">
                 <div class="grow">
                   <div class="my-2 grid grid-cols-1 grid-rows-1 canvas">
-                    <div class="h-40 col-start-1 row-start-1 overflow-clip img" style={"background: url("+testImg.src+");background-size: cover;background-position: center;"}>
+                    <div class="h-40 col-start-1 row-start-1 overflow-clip img" style={"background: url("+"testImg.src"+");background-size: cover;background-position: center;"}>
                     </div>
                     <div class="h-40 col-start-1 row-start-1 z-10 over"></div>
                   </div>

@@ -1,6 +1,8 @@
 ---
 import { getCollection, render } from 'astro:content';
 
+import { getTranslations } from '@snippets/handleCollections';
+
 import BaseLayout from "@layouts/BaseLayout.astro";
 import BarsTop3 from "@components/general/BarsTop3.astro";
 import Intro from "@components/general/Intro.astro";
@@ -45,15 +47,15 @@ const { page, pages } = Astro.props;
 
 //console.log("page.filePath?.split('/')[page.filePath?.split('/').length - 1]");
 //console.log(page.filePath?.split('/')[page.filePath?.split('/').length - 1]);
-const translations = pages.filter(onePage => onePage.filePath?.split('/')[onePage.filePath?.split('/').length - 1] == page.filePath?.split('/')[page.filePath?.split('/').length - 1])
-
+//const translations = pages.filter(onePage => onePage.filePath?.split('/')[onePage.filePath?.split('/').length - 1] == page.filePath?.split('/')[page.filePath?.split('/').length - 1])
+const translations = getTranslations(page, pages);
 
 //console.log(" ");
 //console.log("pages");
 //console.log(pages);
 //console.log(" ");
-//console.log("translations");
-//console.log(translations);
+console.log("translations");
+console.log(translations);
 
 const peops = await getCollection('people');
 //console.log("people");

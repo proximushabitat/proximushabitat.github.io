@@ -14,6 +14,9 @@ const test = defineCollection({
 	loader: glob({ pattern: "**/*.{md,mdx}", base: 'src/collections/test' }),
 	schema: z.object({
 		is_draft: z.boolean(),
+		not_on_front: z.boolean().optional(),
+		not_on_section: z.boolean().optional(),
+		no_own_page: z.boolean().optional(),
 		lang_ready: z.boolean(),
 		is_og: z.boolean(),
 		is_upToDate: z.boolean(),

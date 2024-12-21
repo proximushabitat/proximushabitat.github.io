@@ -1,15 +1,15 @@
-type: "img" 									# only image as of now
-filetype: "webp" 							# ending without dot
-attribute: "strict"						# show attribution: strict, depends, never
-author: "author"							# name of author
-source_name: "wiki"						# name of source
-source_url: "www.wiki.org"		# url to source
-year: "2002"							
-generic_caption:							# caption to be used if no other is given
+type: "img"
+filetype: "webp"
+attribute: "strict"
+author: "author"
+source_name: "wiki"
+source_url: "www.wiki.org"
+year: "2002"
+generic_caption:
  de: "fährt auch"
  fr: "roule aussi"
  en: "drives also"
-generic_alt:									# alt text to be used if no other is given
+generic_alt:
  de: "fährt auch"
  fr: "roule aussi"
  en: "drives also"

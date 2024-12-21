@@ -15,7 +15,7 @@ const slug = getSlugNoLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 
 
-const { items, interval = 5000, aspect, capAlt, dataFile} = Astro.props;
+const { items, interval = 5000, aspect, capAlt} = Astro.props;
 //const STRAPI_BASE_URL = import.meta.env.STRAPI_BASE_URL || "http://localhost:1337";
 const sliderId = `slider-${Math.random().toString(36).substr(2, 9)}`;
 
@@ -29,21 +29,108 @@ const sliderId = `slider-${Math.random().toString(36).substr(2, 9)}`;
 var navButtons = "";
 var navIndicators = "";
 
-console.log("capAlt");
-console.log(capAlt);
+async function itemAddData() {
+  ////////console.log("itemsWITHIN");
+  ////////console.log(items);
+  items = itemsOriginal;
+  ////////console.log("itemsWITHIN2");
+  ////////console.log(items);
+  for(let i=0; i < items.length; i++){
+    ////////console.log(" ");
+    ////////console.log("i: "+i);
+    ////////console.log("item");
+    ////////console.log(items[i]);
+    //GET PATH
+    var pathArray = items[i]['src'].split('/');
+    const pathArrayStart = pathArray.indexOf('assets');
+    console.log("pathArray1");
+    console.log(pathArray);
+    pathArray = pathArray.splice(pathArrayStart, pathArray.length);
+    console.log("pathArray2");
+    console.log(pathArray);
+    const imageFile = pathArray[pathArray.length - 1];
+    const imageFileNoType = imageFile.split(".")[1];
+    //change the name of the file to data.yaml, in the same folder
+    pathArray[pathArray.length - 1] = "data.yaml";
+    const parentFolder = pathArray[pathArray.length - 2];
+    console.log("parentFolder");
+    console.log(parentFolder);
+    console.log("imageNoType");
+    console.log(imageFileNoType);
+    console.log("capAlt");
+    console.log(capAlt);
+    const thisCapAlt = capAlt[parentFolder];
+    console.log("thisCapAlt");
+    console.log(thisCapAlt);
+    if(capAlt[parentFolder]['caption']){
+      console.log("hasCaption: "+capAlt[parentFolder]['caption']);
+      items[i]['caption'] = capAlt[parentFolder]['caption'];
+    }else{
+      console.log("hasNoCaption: "+capAlt[parentFolder]['caption']);
+    }
+    if(capAlt[parentFolder].alt){
+      console.log("hasAlt: "+capAlt[parentFolder].alt);
+      items[i]['alt'] = capAlt[parentFolder].alt;
+    }else{
+      console.log("hasNoAlt: "+capAlt[parentFolder].alt);
+    }
+    //items[i]['caption'] = capAlt[parentFolder].caption;
+    //items[i]['alt'] = capAlt[parentFolder].alt;
+    var pathData = pathArray.join('/');
+    pathData = "../../"+pathData;
+    ////////console.log("pathData");
+    ////////console.log(pathData);
+    //GET YAML WITH DATA
+    //generate url
+    ////////console.log("yaml path");
+    ////////console.log(pathData);
+    const urlData = new URL(pathData, import.meta.url);
+    //load yaml file
+    ////////console.log("yaml url");
+    ////////console.log(urlData);
+    const fileData = await fs.readFile(urlData, 'utf8');
+    //load data from yaml file
+    const data = parseYaml(fileData);
+    items[i].data = data;
+    //////console.log("data1: "+items[i].data);
+    ////////console.log("image data");
+    ////////console.log(data.generic_alt);
+  }
 
-console.log("items1");
-console.log(items);
-for(let i = 0; i < items.length; i++ ){
-  items[i].data = dataFile[i];
+  /*items.forEach((item, index) => {
+    //////console.log("item");
+    //////console.log(item);
+    //GET YAML WITH DATA
+    //go to folders above
+    item.path = "../../" + item.path;
+    //all data files are named data
+    const pathData = item.path+"data.yaml";
+    //generate url
+    const urlData = new URL(pathData, import.meta.url);
+    //load yaml file
+    const fileData = await fs.readFile(urlData, 'utf-8');
+    //load data from yaml file
+    const data = parseYaml(fileData);
+    ////////console.log("image data");
+    ////////console.log(data.generic_alt);
+  });*/
 }
+
+for(let i = 0; i < items.length; i++ ){
+  items[i]['caption'] = capAlt[i]['caption']
+}
+
+
+//const images = import.meta.glob<{ default: ImageMetadata }>("../../assets/for_content/img/**/*.{jpeg,jpg,png,gif,tiff,webp}");
+
+////////console.log("images");
+////////console.log(images);
+
+//await itemAddData();
+
 console.log("items2");
 console.log(items);
-for(let i = 0; i < items.length; i++ ){
-  items[i].capAlt = capAlt[i];
-}
-console.log("items3");
-console.log(items);
+
 
 ---
 
@@ -69,7 +156,7 @@ console.log(items);
 
       <Image
         src={thisImage}
-        alt={thisImage.capAlt.alt || thisImage.data.generic_alt[lang] || ""}
+        alt={thisImage.alt || thisImage.data.generic_alt[lang] || ""}
         class="absolute medium-zoomable top-0 left-0 w-full h-full object-cover"
         data-slider-image
         data-index={index}
@@ -108,9 +195,9 @@ console.log(items);
     </div>
     <!-- caption -->
     <div class="caption grid text-sm w-full z-10 h-fit transition-all duration-50 ease-in-out p-3" caption-outer-container>
-      <div class="grid grid-cols-1 grid-rows-1 bg-complementary-opposite-yellow transition-all duration-500 ease-in-out h-fit py-2" caption-inner-container>
+      <div class="grid grid-cols-1 grid-rows-1 bg-complementary-opposite-yellow transition-all duration-500 ease-in-out h-fit" caption-inner-container>
         {items.map((thisImage, index) => (
-          <div class="invisible transition-all ease-in-out duration-300 delay-0 opacity-0 mx-0 mb-0 order-1 px-4 h-0 max-h-8 [grid-area: 1/1/1/1] text-neutral-dark" data-index={index}>{thisImage.capAlt.caption || thisImage.data.generic_caption[lang] || " "}</div>
+          <div class="invisible transition-all ease-in-out duration-300 delay-0 opacity-0 mx-0 mb-0 order-1 px-4 h-0 max-h-8 [grid-area: 1/1/1/1] text-neutral-dark" data-index={index}>{/*thisImage.caption || thisImage.data.generic_caption[lang] || */" "}</div>
         ))}
       </div>
     </div>
@@ -120,7 +207,7 @@ console.log(items);
 <div class="captionMobile text-sm grid w-full z-10 h-fit transition-all duration-50 ease-in-out pb-3 -my-3" caption-outer-container-mobile>
   <div class="grid grid-cols-1 grid-rows-1 bg-complementary-opposite-yellow transition-all duration-500 ease-in-out h-fit" caption-inner-container-mobile>
     {items.map((thisImage, index) => (
-      <div class="invisible overflow-hidden transition-all ease-in-out duration-300 delay-0 opacity-0 mx-0 mb-0 order-1 px-4 h-0 max-h-8 [grid-area: 1/1/1/1] text-neutral-dark" data-index={index}>{thisImage.capAlt.caption || thisImage.data.generic_caption[lang] || " " }</div>
+      <div class="invisible overflow-hidden transition-all ease-in-out duration-300 delay-0 opacity-0 mx-0 mb-0 order-1 px-4 h-0 max-h-8 [grid-area: 1/1/1/1] text-neutral-dark" data-index={index}>{/*thisImage.caption || thisImage.data.generic_caption[lang] || */" " }</div>
     ))}
   </div>
 </div>

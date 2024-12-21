@@ -15,17 +15,18 @@ drophead: "DE-test1-DH"
 lead: "DE-test1-Lead"
 excerpt: "DE-test1-Excerpt"
 
-AAimg:
- caption: "cap1DE"
- alt: "alt1DE"
-ABimg:
- caption: "cap2DE"
+capAlt:
+- caption: "cap1DE"
+  alt: "alt1DE"
+- caption: "cap2DE"
 
 ---
 import Slider from "@components/content/Slider.astro"
 
 import AAimg from "@assets/for_content/img/public_transport/vehicles/tram/fischermaetteli/test001/test001.jpg"
+import AAdata from "@assets/for_content/img/public_transport/vehicles/tram/fischermaetteli/test001/data.json"
 import ABimg from "@assets/for_content/img/public_transport/vehicles/tram/fischermaetteli/test002/test002.webp"
+import ABdata from "@assets/for_content/img/public_transport/vehicles/tram/fischermaetteli/test002/data.json"
 
 export const thumb = AAimg
 
@@ -41,4 +42,4 @@ lsdfkjdsf sajlkdf sf d fsa f asdf adsfsdf asdf dsfas fadsf
 * hhh 
 * hhh
 
-<Slider items={[AAimg, ABimg]} capAlt={[frontmatter.AAimg, frontmatter.ABimg]} aspect="3/2" />
+<Slider items={[AAimg, ABimg]} capAlt={frontmatter.capAlt} dataFile={[AAdata, ABdata]} aspect="3/2" />

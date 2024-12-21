@@ -68,8 +68,12 @@ async function itemAddData() {
     //all data files are named data
     const pathData = items[i].pathExt+"data.yaml";
     //generate url
+    console.log("yaml path");
+    console.log(pathData);
     const urlData = new URL(pathData, import.meta.url);
     //load yaml file
+    console.log("yaml url");
+    console.log(urlData);
     const fileData = await fs.readFile(urlData, 'utf-8');
     //load data from yaml file
     const data = parseYaml(fileData);

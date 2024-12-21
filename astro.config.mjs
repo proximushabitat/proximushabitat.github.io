@@ -17,4 +17,9 @@ export default defineConfig({
     },
   },
   compressHTML: true,
+  build: {
+    // Example: Generate `page.html` instead of `page/index.html` during build.
+    //format: 'preserve'
+    redirects: true,
+  }
 });

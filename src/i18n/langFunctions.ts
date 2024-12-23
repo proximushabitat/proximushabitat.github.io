@@ -21,18 +21,18 @@ export function useTranslations(lang: keyof typeof dict) {
   return function t( cat: string | number, key: string) {
     const maybeArray = dict[cat][lang][key] || dict[cat][defaultLang][key];
     var justAWord;
-    //////console.log("");
-    //////console.log("cat, key");
-    //////console.log(cat+", "+key);
-    //////console.log("maybeArray");
-    //////console.log(maybeArray);
+    //////////console.log("");
+    //////////console.log("cat, key");
+    //////////console.log(cat+", "+key);
+    //////////console.log("maybeArray");
+    //////////console.log(maybeArray);
     if(Array.isArray(maybeArray)){
       justAWord = maybeArray[Math.floor(Math.random() * maybeArray.length)];
     } else {
       justAWord = maybeArray;
     }
-    //////console.log("justAWord");
-    //////console.log(justAWord);
+    //////////console.log("justAWord");
+    //////////console.log(justAWord);
     return justAWord;
   }
 }

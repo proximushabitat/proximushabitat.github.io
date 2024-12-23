@@ -1,0 +1,109 @@
+---
+import { getCollection, getEntry, render } from 'astro:content';
+
+const sourcesColl = await getCollection('sources');
+////console.log("sourcesColl");
+////console.log(sourcesColl);
+---
+
+<div class="referenceContainer hidden">
+	<div>
+		referenceContainer
+	</div>
+	<div>
+		<ul class="referenceList">
+		</ul>
+	</div>
+</div>
+<div class="hidden flex-row w-full  min-w-5 mb-2"></div>
+<div class="hidden"></div>
+<div class="hidden"></div>
+
+<script define:vars={{ sourcesColl }} is:inline>
+	////console.log("sourcesColl");
+	////console.log(sourcesColl);
+	const references = document.querySelectorAll(".reference");
+	const container = document.querySelector(".referenceContainer");
+	const list = document.querySelector(".referenceList");
+	////console.log("references");
+	////console.log(references);
+
+	if(references.length > 0){
+		container.classList.remove("hidden")
+	}else{
+		////console.log("no references");
+	}
+
+	var sourceIds = [];
+
+	for(let i = 0; i < references.length; i++){
+		const idRaw = references[i].attributes['data-ref-id'].nodeValue;
+		if(!sourceIds.includes(idRaw)){
+			sourceIds.push(idRaw);
+		}
+	}
+	
+	////console.log("sourceIds");
+	////console.log(sourceIds);
+
+	for(let i = 0; i < references.length; i++){
+		const idRaw = references[i].attributes['data-ref-id'].nodeValue;
+		references[i].innerHTML = sourceIds.indexOf(idRaw) + 1;
+	}
+
+	var listContent = "";
+	for(let i = 0; i < sourceIds.length; i++){
+		////console.log("sourceIds[i]");
+		////console.log(sourceIds[i]);
+		const thisSourceData = sourcesColl.filter(source => source.id == sourceIds[i]);
+		////console.log("thisSourceData");
+		////console.log(thisSourceData);
+		var thisSourceContent = "<li>";
+		thisSourceContent += "<div class='flex flex-row w-full mb-2'>"
+		thisSourceContent += "<div class='min-w-5'>"
+		thisSourceContent += i + 1;
+		thisSourceContent += ": ";
+		thisSourceContent += "</div>"
+		thisSourceContent += "<div class='w-full'>"
+		thisSourceContent += "<div class=''>"
+		if(thisSourceData[0].data.title){
+			thisSourceContent += thisSourceData[0].data.title;
+			thisSourceContent += ", ";
+		}
+		if(thisSourceData[0].data.author){
+			thisSourceContent += thisSourceData[0].data.author;
+			thisSourceContent += ", ";
+		}
+		if(thisSourceData[0].data.date){
+			thisSourceContent += thisSourceData[0].data.date;
+			thisSourceContent += ", ";
+		}
+		thisSourceContent += "</div>"
+		thisSourceContent += "<div class=''>"
+		if(thisSourceData[0].data.publication){
+			thisSourceContent += thisSourceData[0].data.publication;
+			thisSourceContent += ", ";
+		}
+		if(thisSourceData[0].data.url){
+			thisSourceContent += thisSourceData[0].data.url;
+			thisSourceContent += ", ";
+		}
+		if(thisSourceData[0].data.archived && thisSourceData[0].data.archiveUrl){
+			thisSourceContent += thisSourceData[0].data.archiveUrl;
+			thisSourceContent += ", ";
+		}
+		if(thisSourceData[0].data.archived && thisSourceData[0].data.archiveDate){
+			thisSourceContent += thisSourceData[0].data.archiveDate;
+			thisSourceContent += ", ";
+		}thisSourceContent += "</div>"
+		thisSourceContent += "</div>";
+		thisSourceContent += "</li>";
+		listContent += thisSourceContent;
+	}
+
+	////console.log("listContent");
+	////console.log(listContent);
+
+	list.innerHTML = listContent;
+
+</script>

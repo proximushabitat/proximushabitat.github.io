@@ -31,17 +31,28 @@ const test = defineCollection({
 		excerpt: z.string().optional(),
 		category: z.enum(['transportation', 'architecture', 'urbanism']).optional(),
 		related_test: z.array(reference('test')).optional(),
+		references: z.array(reference('sources')).optional(),
 	}),
+});
+
+// test sections
+const sections = defineCollection({
+	loader: glob({ pattern: "**/*.{md,mdx}", base: 'src/collections/sections' }),
 });
 
 // mönsche
 const people = defineCollection({
 	loader: file("src/collections/people.yaml", { parser: (peops) => parseYaml(peops) }),
-})
+});
+
+// quellä
+const sources = defineCollection({
+	loader: file("src/collections/sources.yaml", { parser: (sources) => parseYaml(sources) }),
+});
   
   
 
 // quelle
 
 // 4. Export a single `collections` object to register your collection(s)
-export const collections = { test, people };
+export const collections = { test, people, sources, sections };

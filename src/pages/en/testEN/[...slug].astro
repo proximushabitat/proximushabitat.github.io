@@ -1,17 +1,18 @@
 ---
-import Page from '@components/pages_complete/test.astro'
+import Page from '@components/pages_complete/test/slug.astro'
 import { getCollection, render } from 'astro:content';
-import { getTranslations } from '@snippets/handleCollections';
+import { getTranslations, getOneLang } from '@snippets/handleCollections';
 
 export async function getStaticPaths() {
   const pages = await getCollection('test');
 
-  ////console.log("pages");
-  ////console.log(pages);
+  ////////console.log("pages");
+  ////////console.log(pages);
 
-  const paths = pages.map(page => {
-	const splitSlug = page.filePath.split('/');
-	const lang = splitSlug[splitSlug.length - 2]
+  const pagesThisLang = getOneLang(pages, 'en');
+  const paths = pagesThisLang.map(page => {
+    const splitSlug = page.filePath.split('/');
+    const lang = splitSlug[splitSlug.length - 2]
     const slug = page.data.slug;
 
     return { params: { lang, slug: slug || undefined }, props: { page, pages } };

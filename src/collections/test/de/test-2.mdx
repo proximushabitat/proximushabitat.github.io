@@ -12,7 +12,15 @@ headline: "DE-test2-HL"
 drophead: "DE-test2-DH"
 lead: "DE-test2-Lead"
 excerpt: "DE-test2-Excerpt"
+
+capAlt:
+- caption: "cap1DE"
+  alt: "alt1DE"
 ---
+import Slider from "@components/content/Slider.astro" 
+
+import AAimg from "@assets/for_content/img/public_transport/vehicles/tram/fischermaetteli/test001/test001.jpg"
+import AAdata from "@assets/for_content/img/public_transport/vehicles/tram/fischermaetteli/test001/test001.json"
 
 # One number sign…
 
@@ -24,3 +32,5 @@ lsdfkjdsf sajlkdf sf d fsa f asdf adsfsdf asdf dsfas fadsf
 * hhh
 * hh2h 
 * hhh
+
+<Slider items={[AAimg]} capAlt={frontmatter.capAlt} dataFile={[AAdata]} aspect="3/2" />

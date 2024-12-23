@@ -9,13 +9,16 @@ import ArticlesImaged from "@components/general/ArticlesImaged.astro";
 import BarsBottom5 from "@components/general/BarsBottom5.astro";
 
 //collections
-import { getCollection } from 'astro:content';
-import { getTranslations, getOneLang } from "@/snippets/handleCollections";
+import { getCollection, getEntry } from 'astro:content';
+import { getTranslations, getOneLang, getSection } from "@/snippets/handleCollections";
 
 //i18n
 import { getLangFromUrl, useTranslations } from '@i18n/utils';
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
+
+//snippets
+import { sortBigFirst } from '@snippets/numberGames';
 
 //directus
 //import directus from "@lib/directus";
@@ -23,25 +26,34 @@ const t = useTranslations(lang);
 
 const { collection, howMany, component, showDate, sectionTitle } = Astro.props;
 
-//console.log("collection");
-//console.log(collection);
+//////console.log("collection");
+//////console.log(collection);
 
-const itemsAllLang = await getCollection('test');
-//console.log("itemsAllLang");
-//console.log(itemsAllLang);
+const itemsAllLang = await getCollection(collection);
+//////console.log("itemsAllLang");
+//////console.log(itemsAllLang);
 
-const items = getOneLang(itemsAllLang, lang);
-//console.log("items");
-//console.log(items);
+const itemsUnorderly = getOneLang(itemsAllLang, lang);
+//////console.log("items");
+//////console.log(items);
 
-////console.log("newsAI");
-////console.log(items);
-////console.log("newsAI.trans");
-////console.log(items[0].translations[0].block);
+const items = sortBigFirst(itemsUnorderly, "date_published")
+
+////////console.log("newsAI");
+////////console.log(items);
+////////console.log("newsAI.trans");
+////////console.log(items[0].translations[0].block);
+const sectionDataRaw = await getSection(collection);
+////console.log("sectionDataRaw");
+////console.log(sectionDataRaw);
+const sectionData = getOneLang(sectionDataRaw, lang)[0];
+////console.log("sectionData1");
+////console.log(sectionData);
+
 
 
 ---
 
-{ component == "ArticlesImaged" && <ArticlesImaged items={items} collection={collection} showDate={showDate} sectionTitle={sectionTitle} /> }
-{ component == "ArticlesNude" && <ArticlesNude items={items} collection={collection} showDate={showDate} sectionTitle={sectionTitle} /> }
-{ component == "Numbered" && <Numbered items={items} collection={collection} showDate={showDate} sectionTitle={sectionTitle} /> }
+{ component == "ArticlesImaged" && <ArticlesImaged items={items} collection={collection} sectionData={sectionData} showDate={showDate} sectionTitle={sectionTitle} /> }
+{ component == "ArticlesNude" && <ArticlesNude items={items} collection={collection} sectionData={sectionData} showDate={showDate} sectionTitle={sectionTitle} /> }
+{ component == "Numbered" && <Numbered items={items} collection={collection} sectionData={sectionData} showDate={showDate} sectionTitle={sectionTitle} /> }

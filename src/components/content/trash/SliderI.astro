@@ -1,8 +1,8 @@
 ---
 import { Image } from 'astro:assets';
 
-//////////console.log("uiWidthUL");
-//////////console.log(uiWidthUL);
+//////////////console.log("uiWidthUL");
+//////////////console.log(uiWidthUL);
 
 
 interface ImageData {
@@ -38,17 +38,17 @@ const sliderId = `slider-${Math.random().toString(36).substr(2, 9)}`;
 
 
 const indexArray = Array.from(Array(parseInt(index)).keys());
-//console.log("indexArray");
-//console.log(indexArray);
+//////console.log("indexArray");
+//////console.log(indexArray);
 
-//////////console.log("bgcolor");
-//////////console.log(bgcolor);
+//////////////console.log("bgcolor");
+//////////////console.log(bgcolor);
 
 
-////////////console.log("singleimage");
-////////////console.log(singleimage);
-////////////console.log("singleimage-l");
-////////////console.log(singleimage.length);
+////////////////console.log("singleimage");
+////////////////console.log(singleimage);
+////////////////console.log("singleimage-l");
+////////////////console.log(singleimage.length);
 
 //navigation only when there are more than 1 image
 var navButtons = "";
@@ -122,7 +122,7 @@ var navIndicators = "";
   //medium zoom is the zoom library.
   import mediumZoom from 'medium-zoom';
   //const bg = await "#"+document.getElementById("bgcolor").innerHTML;
-  //////////console.log("bg: "+bg);
+  //////////////console.log("bg: "+bg);
   const zoom = await mediumZoom('.medium-zoomable', {
     margin: 0,
     /*opacity: "0.5",*/
@@ -141,7 +141,7 @@ var navIndicators = "";
 
   zoom.on('open', event => {
     // track when the image is zoomed
-    ////////////console.log("open");
+    ////////////////console.log("open");
     prevButtonsAll.forEach(node => {
       node.classList.add('opacity-0');
       node.classList.add('invisible');
@@ -168,7 +168,7 @@ var navIndicators = "";
 
   zoom.on('closed', event => {
     // track when the image has finished closing
-    ////////////console.log("closed");
+    ////////////////console.log("closed");
     prevButtonsAll.forEach(node => {
       node.classList.remove('opacity-0');
       node.classList.remove('invisible');

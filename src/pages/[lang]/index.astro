@@ -22,8 +22,8 @@ import { getCollection } from 'astro:content';
 
   const pages = await getCollection('test');
 
-  //console.log("pages");
-  //console.log(pages);
+  //////console.log("pages");
+  //////console.log(pages);
 
 ---
 
@@ -31,12 +31,8 @@ import { getCollection } from 'astro:content';
   <BarsTop5 />
   <Intro />
 
-  <Projects />
-  <Testimonials />
-  <Articles />
-
-  <FrontSection collection="test" howMany="4" component="Numbered" sectionTitle="true" />
-  <!-- <FrontSection collection="news" howMany="4" component="ArticlesNude" sectionTitle="true" />
-  <FrontSection collection="news" howMany="4" component="ArticlesImaged" showDate="true" sectionTitle="true" />-->
+  <FrontSection collection="test" howMany="4" component="Numbered" showDate="true" sectionTitle="true" />
+  <FrontSection collection="test" howMany="4" component="ArticlesNude" showDate="true" sectionTitle="true" />
+  <FrontSection collection="test" howMany="4" component="ArticlesImaged" showDate="true" sectionTitle="true" />
   <BarsBottom5 />
 </BaseLayout>

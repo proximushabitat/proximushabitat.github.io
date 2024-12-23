@@ -1,11 +1,15 @@
 language switcher
-section page
-section collection
-sources collection
-sources integration
+section pages
+//section collection
+//sources collection
+//sources integration
+style articles
+//element apasse (start)
+is draft mit de optione mache
+//slider quelle
+link hover
 
 author?
 menü?
-
 
 schribe wo kollektion mache

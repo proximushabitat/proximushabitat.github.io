@@ -1,0 +1,21 @@
+{
+  "$ref": "#/definitions/sources",
+  "definitions": {
+    "sources": {
+      "type": "object",
+      "properties": {
+        "is_draft": {
+          "type": "boolean"
+        },
+        "$schema": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "is_draft"
+      ],
+      "additionalProperties": false
+    }
+  },
+  "$schema": "http://json-schema.org/draft-07/schema#"
+}

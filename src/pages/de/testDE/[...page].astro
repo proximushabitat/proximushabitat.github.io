@@ -1,0 +1,63 @@
+---
+
+//components
+import BaseLayout from "@layouts/BaseLayout.astro";
+import BarsTop4 from "@components/general/BarsTop4.astro";
+import Intro from "@components/general/Intro.astro";
+import Numbered from "@components/general/Numbered.astro";
+import ArticlesNude from "@components/general/ArticlesNude.astro";
+import ArticlesImaged from "@components/general/ArticlesImaged.astro";
+import BarsBottom4 from "@components/general/BarsBottom4.astro";
+
+//collections
+import { getCollection, getEntry } from 'astro:content';
+import { getTranslations, getOneLang, getSection } from "@/snippets/handleCollections";
+
+//i18n
+import { getLangFromUrl, useTranslations, getSlugNoLangFromUrl } from '@i18n/utils';
+const lang = getLangFromUrl(Astro.url);
+const slug = getSlugNoLangFromUrl(Astro.url);
+const t = useTranslations(lang);
+
+//snippets
+import { sortBigFirst } from '@snippets/numberGames';
+
+
+export async function getStaticPaths({ paginate }) {
+	const pages = await getCollection('test');
+
+	const pagesThisLang = getOneLang(pages, 'de');
+
+	const pagesOrdered = sortBigFirst(pagesThisLang, "date_published")
+
+	return paginate(pagesOrdered, {
+		pageSize: 2,
+	});
+}
+
+const { page } = Astro.props;
+
+console.log("page");
+console.log(page.data);
+console.log("page.");
+console.log(page.url.prev);
+
+const collection = 'test';
+
+//const itemsAllLang = await getCollection(collection);
+//const itemsUnorderly = getOneLang(itemsAllLang, lang);
+const items = page.data;
+const sectionDataRaw = await getSection(collection);
+const sectionData = getOneLang(sectionDataRaw, lang)[0];
+
+
+//////site klicke chönne, de grad no scrolle zu wome d'iträg gseht
+
+---
+
+<BaseLayout>
+	<BarsTop4 />
+	<Intro />
+	<ArticlesImaged items={items} collection={collection} sectionData={sectionData} showDate={'true'} />
+	<BarsBottom4 />
+  </BaseLayout>

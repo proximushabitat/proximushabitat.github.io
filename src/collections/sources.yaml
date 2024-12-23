@@ -1,0 +1,47 @@
+example1:
+ title: "example1-title"
+ author: "example1-author"
+ publication: "example1-publication"
+ date: "example1-date"
+ type: "website"
+ isbn: ""
+ url: "example1-url"
+ archived: true
+ archiveUrl: "example1-url-archive"
+ archiveDate: "example1-date-archive"
+
+example2:
+ title: "example2-title"
+ author: "example2-author"
+ publication: "example2-publication"
+ date: "example2-date"
+ type: "website"
+ isbn: ""
+ url: "example2-url"
+ archived: true
+ archiveUrl: "example2-url-archive"
+ archiveDate: "example2-date-archive"
+
+example3:
+ title: "example3-title"
+ author: "example3-author"
+ publication: "example3-publication"
+ date: "example3-date"
+ type: "website"
+ isbn: ""
+ url: "example3-url"
+ archived: true
+ archiveUrl: "example3-url-archive"
+ archiveDate: "example3-date-archive"
+
+example4:
+ title: "example4-title"
+ author: "example4-author"
+ publication: "example4-publication"
+ date: "example4-date"
+ type: "website"
+ isbn: ""
+ url: "example4-url"
+ archived: true
+ archiveUrl: "example4-url-archive"
+ archiveDate: "example4-date-archive"

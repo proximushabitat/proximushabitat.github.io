@@ -1,7 +1,7 @@
 {
-  "$ref": "#/definitions/test",
+  "$ref": "#/definitions/sections",
   "definitions": {
-    "test": {
+    "sections": {
       "type": "object",
       "properties": {
         "is_draft": {
@@ -10,16 +10,10 @@
         "not_on_front": {
           "type": "boolean"
         },
-        "not_on_section": {
-          "type": "boolean"
-        },
         "no_own_page": {
           "type": "boolean"
         },
         "lang_ready": {
-          "type": "boolean"
-        },
-        "is_og": {
           "type": "boolean"
         },
         "is_upToDate": {
@@ -216,7 +210,6 @@
       "required": [
         "is_draft",
         "lang_ready",
-        "is_og",
         "is_upToDate",
         "date_published",
         "headline"

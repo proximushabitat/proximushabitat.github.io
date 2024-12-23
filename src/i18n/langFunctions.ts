@@ -5,7 +5,11 @@
 import { dict, defaultLang, showDefaultLang, languages } from './dict';
 
 export function getLangFromUrl(url: URL) {
+  console.log("url");
+  console.log(url);
   const [, lang] = url.pathname.split('/');
+  console.log("lang");
+  console.log(lang);
 
   if (lang in languages) return lang as keyof typeof dict;
   return defaultLang;
@@ -21,18 +25,18 @@ export function useTranslations(lang: keyof typeof dict) {
   return function t( cat: string | number, key: string) {
     const maybeArray = dict[cat][lang][key] || dict[cat][defaultLang][key];
     var justAWord;
-    //////////console.log("");
-    //////////console.log("cat, key");
-    //////////console.log(cat+", "+key);
-    //////////console.log("maybeArray");
-    //////////console.log(maybeArray);
+    //////////////console.log("");
+    //////////////console.log("cat, key");
+    //////////////console.log(cat+", "+key);
+    //////////////console.log("maybeArray");
+    //////////////console.log(maybeArray);
     if(Array.isArray(maybeArray)){
       justAWord = maybeArray[Math.floor(Math.random() * maybeArray.length)];
     } else {
       justAWord = maybeArray;
     }
-    //////////console.log("justAWord");
-    //////////console.log(justAWord);
+    //////////////console.log("justAWord");
+    //////////////console.log(justAWord);
     return justAWord;
   }
 }

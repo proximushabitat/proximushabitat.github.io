@@ -13,7 +13,7 @@
         "no_own_page": {
           "type": "boolean"
         },
-        "lang_ready": {
+        "is_trans_ready": {
           "type": "boolean"
         },
         "is_upToDate": {
@@ -209,7 +209,7 @@
       },
       "required": [
         "is_draft",
-        "lang_ready",
+        "is_trans_ready",
         "is_upToDate",
         "date_published",
         "headline"

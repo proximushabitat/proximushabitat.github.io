@@ -1,13 +1,15 @@
 language switcher
-section pages
+//section pages
 //section collection
 //sources collection
 //sources integration
 style articles
 //element apasse (start)
-is draft mit de optione mache
+//is draft mit de optione mache
 //slider quelle
 link hover
+menu
+erklärige bi de sections
 
 author?
 menü?

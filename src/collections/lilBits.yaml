@@ -1,0 +1,14 @@
+noTranslation:
+ excuse: 
+  title:
+    de: "tschuldigung"
+    fr: "dsl"
+    en: "sry"
+  text:
+    de: "tschuldigung nomau"
+    fr: "dsl encore"
+    en: "sry again"
+  announceOthers:
+    de: "die gits"
+    fr: "ceux-ci"
+    en: "these ones"

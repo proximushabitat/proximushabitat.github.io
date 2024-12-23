@@ -17,7 +17,7 @@ const test = defineCollection({
 		not_on_front: z.boolean().optional(),
 		not_on_section: z.boolean().optional(),
 		no_own_page: z.boolean().optional(),
-		lang_ready: z.boolean(),
+		is_trans_ready: z.boolean(),
 		is_og: z.boolean(),
 		is_upToDate: z.boolean(),
 		date_published: z.date(),
@@ -49,10 +49,15 @@ const people = defineCollection({
 const sources = defineCollection({
 	loader: file("src/collections/sources.yaml", { parser: (sources) => parseYaml(sources) }),
 });
+
+// infostöckli
+const lilBits = defineCollection({
+	loader: file("src/collections/lilBits.yaml", { parser: (bitly) => parseYaml(bitly) }),
+});
   
   
 
 // quelle
 
 // 4. Export a single `collections` object to register your collection(s)
-export const collections = { test, people, sources, sections };
+export const collections = { test, people, sources, sections, lilBits };

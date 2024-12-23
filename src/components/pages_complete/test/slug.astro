@@ -1,7 +1,7 @@
 ---
-import { getCollection, render } from 'astro:content';
+import { getCollection, getEntry, render } from 'astro:content';
 
-import { getTranslations } from '@snippets/handleCollections';
+import { getTranslations, getItemLang, getPageUrl } from '@snippets/handleCollections';
 
 import BaseLayout from "@layouts/BaseLayout.astro";
 import BarsTop3 from "@components/general/BarsTop3.astro";
@@ -16,43 +16,49 @@ import ReferenceList from '@components/references/referenceList.astro';
 
 const { lang, slug, page, pages } = Astro.props;
 
-//////console.log("");
-//////console.log("TEST:ASTRO");
-//////console.log("page");
-//////console.log(page);
-//////console.log("slug");
-//////console.log(slug);
-//////console.log("lang");
-//////console.log(lang);
-//////console.log("pages");
-//////console.log(pages);
+//////////console.log("");
+//////////console.log("TEST:ASTRO");
+//////////console.log("page");
+//////////console.log(page);
+//////////console.log("slug");
+//////////console.log(slug);
+//////////console.log("lang");
+//////////console.log(lang);
+//////////console.log("pages");
+//////////console.log(pages);
 
-////////console.log("page.filePath");
-////////console.log(page.filePath);
-////////console.log("");
+////////////console.log("page.filePath");
+////////////console.log(page.filePath);
+////////////console.log("");
 
-////////console.log("page.filePath?.split('/')[page.filePath?.split('/').length - 1]");
-////////console.log(page.filePath?.split('/')[page.filePath?.split('/').length - 1]);
+////////////console.log("page.filePath?.split('/')[page.filePath?.split('/').length - 1]");
+////////////console.log(page.filePath?.split('/')[page.filePath?.split('/').length - 1]);
 //const translations = pages.filter(onePage => onePage.filePath?.split('/')[onePage.filePath?.split('/').length - 1] == page.filePath?.split('/')[page.filePath?.split('/').length - 1])
-const translations = getTranslations(page, pages);
+var translations = getTranslations(page, pages);
+translations = translations.filter(translation => translation.data.is_trans_ready == true);
 
-////////console.log(" ");
-////////console.log("pages");
-////////console.log(pages);
-////////console.log(" ");
-//////console.log("translations");
-//////console.log(translations);
+////////////console.log(" ");
+////////////console.log("pages");
+////////////console.log(pages);
+////////////console.log(" ");
+//////////console.log("translations");
+//////////console.log(translations);
 
 const peops = await getCollection('people');
-////////console.log("people");
-////////console.log(peops);
+const sections = await getCollection('sections');
 
-////////console.log("");
+const noTranslation = await getEntry('lilBits', 'noTranslation');
+console.log("noTranslation, lang "+lang);
+console.log(noTranslation.data.excuse.title[lang]);
+////////////console.log("people");
+////////////console.log(peops);
+
+////////////console.log("");
 
 const formattedDate = page.data.date_published.toLocaleString(lang);
 
-////console.log("page");
-////console.log(page);
+////////console.log("page");
+////////console.log(page);
 
 const { Content } = await render(page);
 
@@ -63,7 +69,7 @@ const { Content } = await render(page);
   <BarsTop3 />
 
   <article class="bg-primary flex flex-col justify-center place-self-center text-justify">
-    <div class="px-8 2xl:max-w-7xl mx-auto py-8">
+    <div class="px-8 2xl:max-w-7xl mx-auto py-8 w-full">
       <div class="space-y-2 max-w-4xl">
         <!-- div Title and Decorative Elements -->
         <h1>
@@ -77,7 +83,21 @@ const { Content } = await render(page);
         {page.data.lead}
       </div>
       <div class="max-w-3xl mx-auto">
-        <Content />
+
+        {page.data.is_trans_ready && <Content />}
+        {!page.data.is_trans_ready && 
+          <h3>{noTranslation.data.excuse.title[lang]}</h3>
+          <p>{noTranslation.data.excuse.text[lang]}</p>
+          <h4>{noTranslation.data.excuse.announceOthers[lang]}</h4>
+          <ul>
+            {translations.map((translation, index) => (
+                <li key={index}>
+                  <a href={getPageUrl(translation, sections)}>{getItemLang(translation)['full']}</a>
+                </li>
+              ))
+            }
+          </ul>
+        }
       </div>
     </div>
   </article>

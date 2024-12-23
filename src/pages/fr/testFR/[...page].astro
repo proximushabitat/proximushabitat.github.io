@@ -16,7 +16,12 @@ import { getTranslations, getOneLang, getSection } from "@/snippets/handleCollec
 
 //i18n
 import { getLangFromUrl, useTranslations, getSlugNoLangFromUrl } from '@i18n/langFunctions';
-const lang = getLangFromUrl(Astro.url);
+console.log("Astro.url");
+console.log(Astro.url);
+//const lang = getLangFromUrl(Astro.url);
+const lang = 'fr';
+console.log("lang");
+console.log(lang);
 const slug = getSlugNoLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 
@@ -27,7 +32,7 @@ import { sortBigFirst } from '@snippets/numberGames';
 export async function getStaticPaths({ paginate }) {
 	const pages = await getCollection('test');
 
-	const pagesThisLang = getOneLang(pages, 'de');
+	const pagesThisLang = getOneLang(pages, 'fr');
 
 	const pagesOrdered = sortBigFirst(pagesThisLang, "date_published")
 

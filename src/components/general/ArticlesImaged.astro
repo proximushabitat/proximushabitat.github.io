@@ -20,7 +20,9 @@ import { render } from 'astro:content';
 //assets
 import fallbackImg from "@assets/for_content/img/fallback/ph.svg";
 
-const { items, collection, showDate, sectionTitle, sectionData } = Astro.props;
+const { items: itemsRaw, collection, showDate, sectionTitle, sectionData } = Astro.props;
+
+var items = itemsRaw.filter(itemRaw => itemRaw.data.is_draft != true)
 
 // Function to calculate `data-aos-duration` based on index
 function calculateAosDuration(index) {
@@ -29,27 +31,27 @@ function calculateAosDuration(index) {
 
 for (let i = 0; i < items.length; i++){
   const { Thumb } = await render(items[i]);
-  //console.log("Thumb"); 
-  //console.log(Thumb);
+  //////console.log("Thumb"); 
+  //////console.log(Thumb);
 }
 
 const matches1 = import.meta.glob('../../../**/*.mdx', { eager: true });
 const posts1 = Object.values(matches1);
 for(let i = 0; i < posts1.length; i++){
-  //console.log("posts1[i].thumb");
-  //console.log(posts1[i]);
+  //////console.log("posts1[i].thumb");
+  //////console.log(posts1[i]);
 }
 
 for(let i = 0; i < items.length; i++){
   const singlePostForThumb = posts1.filter(post => 
     {
       const returnSmth = post.frontmatter.slug == items[i].data.slug;
-      //console.log("post1: "+post.frontmatter.slug+" itemI: "+items[i].data.slug+" return: "+returnSmth);
+      //////console.log("post1: "+post.frontmatter.slug+" itemI: "+items[i].data.slug+" return: "+returnSmth);
       return post.frontmatter.slug == items[i].data.slug;
     }
   );
-  //console.log("singlePostForThumb");
-  //console.log(singlePostForThumb[0].thumb);
+  //////console.log("singlePostForThumb");
+  //////console.log(singlePostForThumb[0].thumb);
   if(singlePostForThumb[0].thumb){
     items[i]['thumb'] = singlePostForThumb[0].thumb;
   }else{
@@ -57,13 +59,13 @@ for(let i = 0; i < items.length; i++){
   }
 }
 
-//console.log("items");
-//console.log(items);
+//////console.log("items");
+//////console.log(items);
 
 ---
 
 <section class="bg-primary">
-  <div class="px-8 2xl:max-w-7xl mx-auto py-32">
+  <div class="px-8 2xl:max-w-7xl mx-auto py-3">
     <div class="space-y-2">
       <!-- Section Title and Decorative Elements -->
       {sectionTitle == "true" && <SectionTitle thin={sectionData.data.name.thin} thick={sectionData.data.name.thick} linkUrl={sectionData.data.slug} linkText={sectionData.data.seeAll} />}
@@ -91,7 +93,7 @@ for(let i = 0; i < items.length; i++){
                   <h3 class="italic text-2xl block font-bold">{item.data.headline}</h3>
                   {((item.data.date_published || item.data.author) && showDate == "true") && <div class="text-sm mt-1 font-light italic"><span>{formatDate(item.data.date_published)}</span>  <span>{/*item.author*/}</span></div>} 
                   <p class="text-base mt-1.5 leading-relaxed">
-                    {item.data.excerpt}
+                    {item.data.is_trans_ready && item.data.excerpt}
                   </p>
                 </div>
                 <div class="mt-2">

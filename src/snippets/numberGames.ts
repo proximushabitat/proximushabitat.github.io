@@ -1,7 +1,7 @@
 export function formatDate(uglyDate: string) {
 	var prettyDate = "";
-	////console.log("uglyDate");
-	////console.log(uglyDate);
+	////////console.log("uglyDate");
+	////////console.log(uglyDate);
 	const day = uglyDate.getDay();
 	const month = uglyDate.getMonth();
 	const year = uglyDate.getDate();

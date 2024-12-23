@@ -26,29 +26,29 @@ import { sortBigFirst } from '@snippets/numberGames';
 
 const { collection, howMany, component, showDate, sectionTitle } = Astro.props;
 
-//////console.log("collection");
-//////console.log(collection);
+//////////console.log("collection");
+//////////console.log(collection);
 
 const itemsAllLang = await getCollection(collection);
-//////console.log("itemsAllLang");
-//////console.log(itemsAllLang);
+//////////console.log("itemsAllLang");
+//////////console.log(itemsAllLang);
 
 const itemsUnorderly = getOneLang(itemsAllLang, lang);
-//////console.log("items");
-//////console.log(items);
+//////////console.log("items");
+//////////console.log(items);
 
 const items = sortBigFirst(itemsUnorderly, "date_published")
 
-////////console.log("newsAI");
-////////console.log(items);
-////////console.log("newsAI.trans");
-////////console.log(items[0].translations[0].block);
+////////////console.log("newsAI");
+////////////console.log(items);
+////////////console.log("newsAI.trans");
+////////////console.log(items[0].translations[0].block);
 const sectionDataRaw = await getSection(collection);
-////console.log("sectionDataRaw");
-////console.log(sectionDataRaw);
+////////console.log("sectionDataRaw");
+////////console.log(sectionDataRaw);
 const sectionData = getOneLang(sectionDataRaw, lang)[0];
-////console.log("sectionData1");
-////console.log(sectionData);
+////////console.log("sectionData1");
+////////console.log(sectionData);
 
 
 

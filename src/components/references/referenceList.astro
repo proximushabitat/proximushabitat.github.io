@@ -2,8 +2,8 @@
 import { getCollection, getEntry, render } from 'astro:content';
 
 const sourcesColl = await getCollection('sources');
-////console.log("sourcesColl");
-////console.log(sourcesColl);
+////////console.log("sourcesColl");
+////////console.log(sourcesColl);
 ---
 
 <div class="referenceContainer hidden">
@@ -20,18 +20,18 @@ const sourcesColl = await getCollection('sources');
 <div class="hidden"></div>
 
 <script define:vars={{ sourcesColl }} is:inline>
-	////console.log("sourcesColl");
-	////console.log(sourcesColl);
+	////////console.log("sourcesColl");
+	////////console.log(sourcesColl);
 	const references = document.querySelectorAll(".reference");
 	const container = document.querySelector(".referenceContainer");
 	const list = document.querySelector(".referenceList");
-	////console.log("references");
-	////console.log(references);
+	////////console.log("references");
+	////////console.log(references);
 
 	if(references.length > 0){
 		container.classList.remove("hidden")
 	}else{
-		////console.log("no references");
+		////////console.log("no references");
 	}
 
 	var sourceIds = [];
@@ -43,8 +43,8 @@ const sourcesColl = await getCollection('sources');
 		}
 	}
 	
-	////console.log("sourceIds");
-	////console.log(sourceIds);
+	////////console.log("sourceIds");
+	////////console.log(sourceIds);
 
 	for(let i = 0; i < references.length; i++){
 		const idRaw = references[i].attributes['data-ref-id'].nodeValue;
@@ -53,11 +53,11 @@ const sourcesColl = await getCollection('sources');
 
 	var listContent = "";
 	for(let i = 0; i < sourceIds.length; i++){
-		////console.log("sourceIds[i]");
-		////console.log(sourceIds[i]);
+		////////console.log("sourceIds[i]");
+		////////console.log(sourceIds[i]);
 		const thisSourceData = sourcesColl.filter(source => source.id == sourceIds[i]);
-		////console.log("thisSourceData");
-		////console.log(thisSourceData);
+		////////console.log("thisSourceData");
+		////////console.log(thisSourceData);
 		var thisSourceContent = "<li>";
 		thisSourceContent += "<div class='flex flex-row w-full mb-2'>"
 		thisSourceContent += "<div class='min-w-5'>"
@@ -101,8 +101,8 @@ const sourcesColl = await getCollection('sources');
 		listContent += thisSourceContent;
 	}
 
-	////console.log("listContent");
-	////console.log(listContent);
+	////////console.log("listContent");
+	////////console.log(listContent);
 
 	list.innerHTML = listContent;
 

@@ -1,7 +1,8 @@
 ---
-const { thin, thick, linkUrl, linkText } = Astro.props;
+const { thin, thick, linkUrl, linkText, pageLinks, putAnchor } = Astro.props;
 ---
-
+{ (thin || thick || linkText || pageLinks ) && 
+<spanm id={putAnchor}></span>
 <div class="mt-6 space-y-2">
 	<div
 		class="h-0.5 bg-secondary"
@@ -15,15 +16,19 @@ const { thin, thick, linkUrl, linkText } = Astro.props;
 		data-aos="fade-up"
 		data-aos-duration="1500"
 		>
-		<span>{thin}</span><span> </span>
+		<span>{thin}</span><span>&nbsp;</span>
 		<span class="font-bold">{thick}</span>
 		</h3>
 		{linkUrl && <a class="font-bold text-secondary" href={linkUrl}>
 			{linkText} &nbsp; ↗
 		</a>}
+		{pageLinks && <div class="text-secondary">
+			<Fragment set:html={pageLinks} />
+		</div>}
 	</div>
 	<div 
 		class="h-1.5 bg-secondary"
 		>
 	</div>
 </div>
+}

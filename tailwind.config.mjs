@@ -1,5 +1,6 @@
 /** @type {import('tailwindcss').Config} */
 const colors = require('tailwindcss/colors');
+const plugin = require('tailwindcss/plugin')
 export default {
 	content: ['./src/**/*.{astro,html,js,jsx,md,mdx,svelte,ts,tsx,vue}'],
 	theme: {
@@ -40,5 +41,11 @@ export default {
 			},
 		},
 	},
-	plugins: [],
+	plugins: [
+		plugin(function({ addBase, config, theme }) {
+			addBase({
+			  'a:hover': { textDecoration: 'underline', dropShadow: theme('dropShadow.xl') /*config('theme.colors.complementary.opposite.yellow')*/ },
+			})
+		  })
+	],
 }

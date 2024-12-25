@@ -31,27 +31,27 @@ function calculateAosDuration(index) {
 
 for (let i = 0; i < items.length; i++){
   const { Thumb } = await render(items[i]);
-  //////console.log("Thumb"); 
-  //////console.log(Thumb);
+  ////////console.log("Thumb"); 
+  ////////console.log(Thumb);
 }
 
 const matches1 = import.meta.glob('../../../**/*.mdx', { eager: true });
 const posts1 = Object.values(matches1);
 for(let i = 0; i < posts1.length; i++){
-  //////console.log("posts1[i].thumb");
-  //////console.log(posts1[i]);
+  ////////console.log("posts1[i].thumb");
+  ////////console.log(posts1[i]);
 }
 
 for(let i = 0; i < items.length; i++){
   const singlePostForThumb = posts1.filter(post => 
     {
       const returnSmth = post.frontmatter.slug == items[i].data.slug;
-      //////console.log("post1: "+post.frontmatter.slug+" itemI: "+items[i].data.slug+" return: "+returnSmth);
+      ////////console.log("post1: "+post.frontmatter.slug+" itemI: "+items[i].data.slug+" return: "+returnSmth);
       return post.frontmatter.slug == items[i].data.slug;
     }
   );
-  //////console.log("singlePostForThumb");
-  //////console.log(singlePostForThumb[0].thumb);
+  ////////console.log("singlePostForThumb");
+  ////////console.log(singlePostForThumb[0].thumb);
   if(singlePostForThumb[0].thumb){
     items[i]['thumb'] = singlePostForThumb[0].thumb;
   }else{
@@ -59,8 +59,11 @@ for(let i = 0; i < items.length; i++){
   }
 }
 
-//////console.log("items");
-//////console.log(items);
+//console.log("sectionData.data");
+//console.log(sectionData.data.no_trans_excerpt);
+
+////////console.log("items");
+////////console.log(items);
 
 ---
 
@@ -94,6 +97,7 @@ for(let i = 0; i < items.length; i++){
                   {((item.data.date_published || item.data.author) && showDate == "true") && <div class="text-sm mt-1 font-light italic"><span>{formatDate(item.data.date_published)}</span>  <span>{/*item.author*/}</span></div>} 
                   <p class="text-base mt-1.5 leading-relaxed">
                     {item.data.is_trans_ready && item.data.excerpt}
+                    {!item.data.is_trans_ready && sectionData.data.no_trans_excerpt}
                   </p>
                 </div>
                 <div class="mt-2">

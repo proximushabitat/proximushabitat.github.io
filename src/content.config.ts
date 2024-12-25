@@ -38,6 +38,37 @@ const test = defineCollection({
 // test sections
 const sections = defineCollection({
 	loader: glob({ pattern: "**/*.{md,mdx}", base: 'src/collections/sections' }),
+	schema: z.object({
+		is_draft: z.boolean(),
+		not_on_front: z.boolean().optional(),
+		no_own_page: z.boolean().optional(),
+		menu_order: z.number(),	
+		menu_include: z.boolean(),
+		is_trans_ready: z.boolean(),
+		is_upToDate: z.boolean(),
+		date_published: z.date().optional(),
+		date_lastUpdate: z.date().optional(),
+		author: z.array(reference('people')).optional(),
+		title: z.string().optional(),
+		seeAll: z.string().optional(),
+		readIt: z.string().optional(),
+		name: z.object({
+			thin: z.string(),
+			thick: z.string(),
+		}),
+		items: z.object({
+			title: z.object({
+				thin: z.string(),
+				thick: z.string(),
+			}),
+			style: z.string().optional(),
+		}),
+		slug: z.string().optional(),
+	  	headline: z.string().optional(),
+	  	drophead: z.string().optional(),
+		lead: z.string().optional(),
+		excerpt: z.string().optional(),
+	}),
 });
 
 // mönsche
@@ -50,12 +81,10 @@ const sources = defineCollection({
 	loader: file("src/collections/sources.yaml", { parser: (sources) => parseYaml(sources) }),
 });
 
-// infostöckli
+// infostöckli, übersetzige
 const lilBits = defineCollection({
 	loader: file("src/collections/lilBits.yaml", { parser: (bitly) => parseYaml(bitly) }),
 });
-  
-  
 
 // quelle
 

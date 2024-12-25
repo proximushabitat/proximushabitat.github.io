@@ -6,8 +6,8 @@ import { getTranslations, getOneLang } from '@snippets/handleCollections';
 export async function getStaticPaths() {
   const pages = await getCollection('test');
 
-  ////////////console.log("pages");
-  ////////////console.log(pages);
+  //////////////console.log("pages");
+  //////////////console.log(pages);
 
   const pagesThisLang = getOneLang(pages, 'de');
   const paths = pagesThisLang.map(page => {
@@ -17,16 +17,16 @@ export async function getStaticPaths() {
 
   return paths;
 }
-console.log("Astro.params");
-console.log(Astro.params);
+//console.log("Astro.params");
+//console.log(Astro.params);
 const { slug } = Astro.params;
 const { page, pages } = Astro.props;
 const splitSlug = page.filePath.split('/');
-console.log("splitSlug");
-console.log(splitSlug[splitSlug.length - 2]);
+//console.log("splitSlug");
+//console.log(splitSlug[splitSlug.length - 2]);
 const lang = splitSlug[splitSlug.length - 2]
-console.log("lang: "+lang);
-console.log("slug: "+slug);
+//console.log("lang: "+lang);
+//console.log("slug: "+slug);
 
 
 ---

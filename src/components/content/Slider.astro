@@ -1,5 +1,5 @@
 ---
-////////////////console.log("SLIDER")
+//////////////////console.log("SLIDER")
 import { Image } from 'astro:assets';
 import type { ImageMetadata } from 'astro';
 import fs from 'node:fs/promises';
@@ -19,31 +19,31 @@ const { items, interval = 5000, aspect, capAlt, dataFile} = Astro.props;
 //const STRAPI_BASE_URL = import.meta.env.STRAPI_BASE_URL || "http://localhost:1337";
 const sliderId = `slider-${Math.random().toString(36).substr(2, 9)}`;
 
-//////////////console.log("capAlt");
-//////////////console.log(capAlt);
+////////////////console.log("capAlt");
+////////////////console.log(capAlt);
 
-////////////////console.log("itemsJustImportant");
-////////////////console.log(itemsOriginal);
+//////////////////console.log("itemsJustImportant");
+//////////////////console.log(itemsOriginal);
 //var items = ["hhh"];
 
 var navButtons = "";
 var navIndicators = "";
 
-//////////console.log("capAlt");
-//////////console.log(capAlt);
+////////////console.log("capAlt");
+////////////console.log(capAlt);
 
-//////////console.log("items1");
-//////////console.log(items);
+////////////console.log("items1");
+////////////console.log(items);
 for(let i = 0; i < items.length; i++ ){
   items[i].data = dataFile[i];
 }
-//////////console.log("items2");
-//////////console.log(items);
+////////////console.log("items2");
+////////////console.log(items);
 for(let i = 0; i < items.length; i++ ){
   items[i].capAlt = capAlt[i];
 }
-//////////console.log("items3");
-//////////console.log(items);
+////////////console.log("items3");
+////////////console.log(items);
 
 ---
 
@@ -131,7 +131,7 @@ for(let i = 0; i < items.length; i++ ){
   //medium zoom is the zoom library.
   import mediumZoom from 'medium-zoom';
   //const bg = await "#"+document.getElementById("bgcolor").innerHTML;
-  //////////////////////////console.log("bg: "+bg);
+  ////////////////////////////console.log("bg: "+bg);
   const zoom = await mediumZoom('[medium-zoomable]', {
     margin: 0,
     /*opacity: "0.5",*/
@@ -150,7 +150,7 @@ for(let i = 0; i < items.length; i++ ){
 
   zoom.on('open', event => {
     // track when the image is zoomed
-    //////////////////////////console.log("open");
+    ////////////////////////////console.log("open");
     prevButtonsAll.forEach(node => {
       node.classList.add('opacity-0');
       node.classList.add('invisible');
@@ -177,7 +177,7 @@ for(let i = 0; i < items.length; i++ ){
 
   zoom.on('closed', event => {
     // track when the image has finished closing
-    //////////////////////////console.log("closed");
+    ////////////////////////////console.log("closed");
     prevButtonsAll.forEach(node => {
       node.classList.remove('opacity-0');
       node.classList.remove('invisible');

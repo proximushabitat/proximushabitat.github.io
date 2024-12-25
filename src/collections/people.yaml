@@ -1,19 +1,19 @@
 johann-keller:
-  - name-first: "Johann"
-  - name-last: "Keller"
-  - title: ""
-  - role:
-    - generic: ""                           # generic title, is automatically translated
-    - de: ""                                # specific title
-  - member: "yes"                           # yes no former guest
-  - since: ""                               # year of joining
+  name_first: "Johann"
+  name_last: "Keller"
+  title: ""
+  role:
+    generic: ""                           # generic title, is automatically translated
+    de: ""                                # specific title
+  member: "yes"                           # yes no former guest
+  since: ""                               # year of joining
 
 beispiel:
-  - name-first: "may"
-  - name-last: "myster"
-  - title: ""
-  - role:
-    - generic: "founder"                    # generic title, is automatically translated
-    - de: "spezifischer gründer"            # specific title
-  - member: "yes"                           # yes no former guest
-  - since: ""                               # year of joining
+  name_first: "may"
+  name_last: "myster"
+  title: ""
+  role:
+    generic: "founder"                    # generic title, is automatically translated
+    de: "spezifischer gründer"            # specific title
+  member: "yes"                           # yes no former guest
+  since: ""                               # year of joining

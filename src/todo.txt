@@ -9,7 +9,9 @@ style articles
 //slider quelle
 link hover
 menu
-erklärige bi de sections
+trans fertig
+bi de sections der content inelade
+meta
 
 author?
 menü?

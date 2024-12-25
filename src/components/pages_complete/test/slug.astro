@@ -3,6 +3,8 @@ import { getCollection, getEntry, render } from 'astro:content';
 
 import { getTranslations, getItemLang, getPageUrl } from '@snippets/handleCollections';
 
+import { formatDate } from '@snippets/numberGames';
+
 import BaseLayout from "@layouts/BaseLayout.astro";
 import BarsTop3 from "@components/general/BarsTop3.astro";
 import Intro from "@components/general/Intro.astro";
@@ -16,51 +18,67 @@ import ReferenceList from '@components/references/referenceList.astro';
 
 const { lang, slug, page, pages } = Astro.props;
 
-//////////console.log("");
-//////////console.log("TEST:ASTRO");
-//////////console.log("page");
-//////////console.log(page);
-//////////console.log("slug");
-//////////console.log(slug);
-//////////console.log("lang");
-//////////console.log(lang);
-//////////console.log("pages");
-//////////console.log(pages);
-
-////////////console.log("page.filePath");
-////////////console.log(page.filePath);
 ////////////console.log("");
+////////////console.log("TEST:ASTRO");
+////////////console.log("page");
+////////////console.log(page);
+////////////console.log("slug");
+////////////console.log(slug);
+////////////console.log("lang");
+////////////console.log(lang);
+////////////console.log("pages");
+////////////console.log(pages);
 
-////////////console.log("page.filePath?.split('/')[page.filePath?.split('/').length - 1]");
-////////////console.log(page.filePath?.split('/')[page.filePath?.split('/').length - 1]);
+//////////////console.log("page.filePath");
+//////////////console.log(page.filePath);
+//////////////console.log("");
+
+//////////////console.log("page.filePath?.split('/')[page.filePath?.split('/').length - 1]");
+//////////////console.log(page.filePath?.split('/')[page.filePath?.split('/').length - 1]);
 //const translations = pages.filter(onePage => onePage.filePath?.split('/')[onePage.filePath?.split('/').length - 1] == page.filePath?.split('/')[page.filePath?.split('/').length - 1])
 var translations = getTranslations(page, pages);
 translations = translations.filter(translation => translation.data.is_trans_ready == true);
 
-////////////console.log(" ");
-////////////console.log("pages");
-////////////console.log(pages);
-////////////console.log(" ");
-//////////console.log("translations");
-//////////console.log(translations);
+//////////////console.log(" ");
+//////////////console.log("pages");
+//////////////console.log(pages);
+//////////////console.log(" ");
+////////////console.log("translations");
+////////////console.log(translations);
 
 const peops = await getCollection('people');
 const sections = await getCollection('sections');
 
 const noTranslation = await getEntry('lilBits', 'noTranslation');
-console.log("noTranslation, lang "+lang);
-console.log(noTranslation.data.excuse.title[lang]);
-////////////console.log("people");
-////////////console.log(peops);
+//console.log("noTranslation, lang "+lang);
+//console.log(noTranslation.data.excuse.title[lang]);
+//////////////console.log("people");
+//////////////console.log(peops);
 
-////////////console.log("");
+//////////////console.log("");
 
 const formattedDate = page.data.date_published.toLocaleString(lang);
 
-////////console.log("page");
-////////console.log(page);
+//////////console.log("page");
+//////////console.log(page);
 
 const { Content } = await render(page);
+
+console.log("page.data.author");
+console.log(page.data.author);
+
+var authorString = "";
+for(let i = 0; i < page.data.author.length; i++){
+  const thisAuth = peops.filter(person => person.id == page.data.author[i].id);
+  console.log("thisAuth");
+  console.log(thisAuth[0].data);
+  authorString += thisAuth[0].data.name_first + " " + thisAuth[0].data.name_last;
+  if(i < page.data.author.length - 1){
+    authorString += ", ";
+  }
+}
+console.log("authorString");
+console.log(authorString);
 
 ---
 
@@ -70,7 +88,7 @@ const { Content } = await render(page);
 
   <article class="bg-primary flex flex-col justify-center place-self-center text-justify">
     <div class="px-8 2xl:max-w-7xl mx-auto py-8 w-full">
-      <div class="space-y-2 max-w-4xl">
+      <div class="space-y-2 max-w-3xl mx-auto">
         <!-- div Title and Decorative Elements -->
         <h1>
           {page.data.headline}
@@ -79,11 +97,11 @@ const { Content } = await render(page);
           {page.data.drophead}
         </h2>
       </div>
-      <div class="max-w-4xl">
+      <div class="max-w-3xl mx-auto">
         {page.data.lead}
       </div>
       <div class="max-w-3xl mx-auto">
-
+        {formatDate(page.data.date_published)+" "+authorString}
         {page.data.is_trans_ready && <Content />}
         {!page.data.is_trans_ready && 
           <h3>{noTranslation.data.excuse.title[lang]}</h3>
@@ -92,7 +110,7 @@ const { Content } = await render(page);
           <ul>
             {translations.map((translation, index) => (
                 <li key={index}>
-                  <a href={getPageUrl(translation, sections)}>{getItemLang(translation)['full']}</a>
+                  <a class="font-bold" href={getPageUrl(translation, sections)}>{getItemLang(translation)['full']}  &nbsp; ↗</a>
                 </li>
               ))
             }

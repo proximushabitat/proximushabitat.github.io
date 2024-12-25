@@ -12,3 +12,13 @@ noTranslation:
     de: "die gits"
     fr: "ceux-ci"
     en: "these ones"
+
+nav: 
+  menu:
+    de: "Menü"
+    fr: "Menu"
+    en: "Menu"
+  ind:
+    de: "Start"
+    fr: "Acceuil"
+    en: "Home"

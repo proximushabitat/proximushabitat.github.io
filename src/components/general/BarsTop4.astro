@@ -1,5 +1,8 @@
 ---
 import LogoTop from '@components/logo/LogoTop.astro'
+import Menu from '@components/navigation/Menu.astro'
+
+const { lang } = Astro.props;
 ---
 
 <!------
@@ -25,6 +28,7 @@ import LogoTop from '@components/logo/LogoTop.astro'
         class="flex flex-col sm:flex-row gap-3 justify-between items-center"
         data-aos="fade-up"
         data-aos-duration="1500">
+        <Menu lang={lang}/>
         <!-- <div class="flex gap-3 items-center">
           <h3 class="text-secondary text-xs font-medium">
             <span>UI Designer</span>
@@ -99,7 +103,7 @@ import LogoTop from '@components/logo/LogoTop.astro'
         </div>-->
       </div>
       <div
-        class="h-1.5 bg-secondary"
+        class="h-1.5 bg-secondary hidden w-full md:flex"
         data-aos="fade-up"
         data-aos-duration="2000">
       </div>

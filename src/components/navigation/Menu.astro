@@ -1,0 +1,156 @@
+---
+
+import { getCollection, render } from 'astro:content';
+import { getLangFromUrl } from '@i18n/langFunctions';
+import { sortSmallFirst } from '@/snippets/numberGames';
+
+const lang = getLangFromUrl(Astro.url);
+console.log("lang");
+console.log(lang);
+
+
+const sectionsAllLang = await getCollection('sections');
+const lB = await getCollection('lilBits');
+
+console.log("lB");
+console.log(lB);
+
+const tNav = lB.filter(entry => {
+	console.log("entry");
+	console.log(entry.id);
+	return entry.id == "nav";
+})[0].data;
+
+
+const { slug, page, pages } = Astro.props;
+
+const sectionsThisLang = sectionsAllLang.filter(section => {
+	const sectionFilePath = section.filePath.split('/');
+	const sectionLang = sectionFilePath[sectionFilePath.length - 2];
+	console.log("sectionLang: "+sectionLang+" lang: "+lang);
+	return sectionLang == lang;
+});
+
+console.log("sectionsThisLang");
+console.log(sectionsThisLang);
+
+const sectionsInclude = sectionsThisLang.filter(section => section.data.menu_include == true);
+console.log("sectionsInclude");
+console.log(sectionsInclude);
+const sectionsOrdered = sortSmallFirst(sectionsInclude, "menu_order");
+
+console.log("sectionsOrdered");
+console.log(sectionsOrdered);
+
+//console.log("sectionsThisLang");
+//console.log(sectionsThisLang);
+
+console.log("Astro.url");
+console.log(Astro.url.host);
+
+var frag4Large = "<span><a href='/"+lang+"/'>"+tNav.ind[lang]+"</a></span>";
+
+for (let i = 0; i < sectionsThisLang.length; i++) {
+	frag4Large += "<span>";
+	frag4Large += "&nbsp;&nbsp;&nbsp;•&nbsp;&nbsp;&nbsp;"
+	frag4Large += "</span>";
+	frag4Large += "<span>";
+	frag4Large += "<a href=\"/"+lang+"/"+sectionsThisLang[i].data.slug+"\">";
+	frag4Large += sectionsThisLang[i].data.title;
+	frag4Large += "</a>";
+	frag4Large += "</span>";
+}
+
+var frag4Small = "<div class='w-fit'>";
+frag4Small += "&nbsp;&nbsp;&nbsp;•&nbsp;&nbsp;&nbsp;";
+frag4Small += "<span><a href='/"+lang+"/'>"+tNav.ind[lang]+"</a></span>";
+frag4Small += "&nbsp;&nbsp;&nbsp;•&nbsp;&nbsp;&nbsp;";
+frag4Small += "</div>";
+
+for (let i = 0; i < sectionsThisLang.length; i++) {
+	frag4Small += "<div class'w-fit'>";
+	frag4Small += "<span>";
+	frag4Small += "&nbsp;&nbsp;&nbsp;•&nbsp;&nbsp;&nbsp;";
+	frag4Small += "</span>";
+	frag4Small += "<span>";
+	frag4Small += "<a href=\"/"+lang+"/"+sectionsThisLang[i].data.slug+"\">";
+	frag4Small += sectionsThisLang[i].data.title;
+	frag4Small += "</a>";
+	frag4Small += "</span>";
+	frag4Small += "<span>";
+	frag4Small += "&nbsp;&nbsp;&nbsp;•&nbsp;&nbsp;&nbsp;";
+	frag4Small += "</span>";
+	frag4Small += "</div>";
+}
+
+var fragLang4Large = "";
+
+console.log("Astro.url");
+console.log(Astro.url.pathname);
+
+
+
+---
+
+<div class="hidden h-fit"></div>
+
+<div class="w-full hidden md:flex">
+	<div class="mx-auto w-fit">
+		<Fragment set:html={frag4Large} />
+	</div>
+</div>
+
+<div class="w-full flex flex-col md:hidden">
+	<div class="w-full flex flex-col">
+		<div class="mx-auto w-fit mb-2">
+			<span>&nbsp;&nbsp;&nbsp;•&nbsp;&nbsp;&nbsp;</span><a class="cursor-pointer" id="mobileMenuButton">{tNav.menu[lang]}</a><span>&nbsp;&nbsp;&nbsp;•&nbsp;&nbsp;&nbsp;</span>
+		</div>
+	</div>
+	<div
+		class="h-1.5 bg-secondary w-full"
+		data-aos="fade-up"
+		data-aos-duration="2000">
+	</div>
+	<div class="w-full flex flex-col">
+		<div id="mobileMenuContent" class="mx-auto transition-all w-fit flex flex-col overflow-hidden h-0 items-center space-y-4 my-0">
+			<Fragment set:html={frag4Small} />
+		</div>
+	</div>
+</div>
+
+<script>
+import type { swapBodyElement } from "astro/virtual-modules/transitions-swap-functions.js";
+
+	const mMB = document.getElementById("mobileMenuButton");
+	const mMC = document.getElementById("mobileMenuContent");
+	console.log("mMB");
+	console.log(mMB);
+	console.log("mMC");
+	console.log(mMC);
+	const body = document.querySelector("body");
+	var menuState = "closed";
+	mMB.addEventListener("click", function(){
+		console.log("clicked");
+		if(menuState == "closed"){
+			openMenu();
+			menuState = "open";
+		} else {
+			closeMenu();
+			menuState = "closed";
+		}
+	});
+	
+
+	function closeMenu(){
+		mMC.classList.add("h-0");
+		mMC.classList.remove("h-fit");
+		mMC.classList.add("my-0");
+		mMC.classList.remove("my-4");
+	}
+	function openMenu(){
+		mMC.classList.remove("h-0");
+		mMC.classList.add("h-fit");
+		mMC.classList.remove("my-0");
+		mMC.classList.add("my-4");
+	}
+</script>

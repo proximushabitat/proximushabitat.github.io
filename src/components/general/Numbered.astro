@@ -6,7 +6,7 @@ import { Image } from 'astro:assets';
 import SectionTitle from "@components/snippets/SectionTitle.astro";
 
 //i18n
-import { getLangFromUrl, useTranslations, showDate, sectionTitle, bothThin } from '@i18n/utils';
+import { getLangFromUrl, useTranslations, showDate, sectionTitle } from '@i18n/utils';
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 
@@ -19,7 +19,7 @@ import { getSection } from '@/snippets/handleCollections';
 //assets
 //import testImg from "../../assets/img/test3.webp";
 
-const { items, collection, showDate, sectionTitle, sectionData, howMany } = Astro.props;
+const { items, collection, showDate, sectionTitle, sectionData, howMany, bothThin } = Astro.props;
 
 // Function to calculate `data-aos-duration` based on index
 function calculateAosDuration(index) {

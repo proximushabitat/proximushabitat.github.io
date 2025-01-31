@@ -1,34 +1,53 @@
 ---
-const { thin, thick, linkUrl, linkText, pageLinks, putAnchor } = Astro.props;
+const { thin, thick, linkUrl, linkText, pageLinks, putAnchor, bothThin, hideFirst, tagLine } = Astro.props;
+
+//console.log("SECTIONTITLE");
+//console.log("bothThin: "+bothThin);
+if(bothThin){
+	//console.log("bothThin true");
+}else{
+	//console.log("bothThin false");
+}
 ---
 { (thin || thick || linkText || pageLinks ) && 
 <spanm id={putAnchor}></span>
 <div class="mt-6 space-y-2">
+
+	{!hideFirst && 
 	<div
 		class="h-0.5 bg-secondary"
 		data-aos="fade-up"
 		data-aos-duration="1000"
 		>
 	</div>
+	}
+	
 	<div class="flex flex-row space-between">
 		<h3
-		class="text-secondary text-base font-medium grow"
+		class="text-secondary text-base font-medium"
 		data-aos="fade-up"
 		data-aos-duration="1500"
 		>
-		<span>{thin}</span><span>&nbsp;</span>
+		<span class="">{thin}</span><span>&nbsp;</span>
 		<span class="font-bold">{thick}</span>
 		</h3>
-		{linkUrl && <a class="font-bold text-secondary" href={linkUrl}>
+		{tagLine && <span class="italic hidden md:flex flex-grow">&nbsp;-&nbsp;{tagLine}</span>}
+		{linkUrl && <span class="grow text-right"><a class="font-bold text-secondary text-right" href={linkUrl}>
 			{linkText} &nbsp; ↗
-		</a>}
+		</a></span>}
 		{pageLinks && <div class="text-secondary">
 			<Fragment set:html={pageLinks} />
 		</div>}
 	</div>
-	<div 
+	{tagLine && <span class="italic md:hidden">&nbsp;-&nbsp;{tagLine}</span>}
+	{bothThin && <div 
+		class="h-0.5 bg-secondary"
+		>
+	</div>}
+	{!bothThin && <div 
 		class="h-1.5 bg-secondary"
 		>
-	</div>
+	</div>}
+	
 </div>
 }

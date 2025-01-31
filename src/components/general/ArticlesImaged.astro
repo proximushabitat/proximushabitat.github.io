@@ -20,7 +20,7 @@ import { render } from 'astro:content';
 //assets
 import fallbackImg from "@assets/for_content/img/fallback/ph.svg";
 
-const { items: itemsRaw, collection, showDate, sectionTitle, sectionData } = Astro.props;
+const { items: itemsRaw, collection, showDate, sectionTitle, sectionData, bothThin } = Astro.props;
 
 var items = itemsRaw.filter(itemRaw => itemRaw.data.is_draft != true)
 
@@ -31,27 +31,27 @@ function calculateAosDuration(index) {
 
 for (let i = 0; i < items.length; i++){
   const { Thumb } = await render(items[i]);
-  ////////console.log("Thumb"); 
-  ////////console.log(Thumb);
+  ////////////console.log("Thumb"); 
+  ////////////console.log(Thumb);
 }
 
 const matches1 = import.meta.glob('../../../**/*.mdx', { eager: true });
 const posts1 = Object.values(matches1);
 for(let i = 0; i < posts1.length; i++){
-  ////////console.log("posts1[i].thumb");
-  ////////console.log(posts1[i]);
+  ////////////console.log("posts1[i].thumb");
+  ////////////console.log(posts1[i]);
 }
 
 for(let i = 0; i < items.length; i++){
   const singlePostForThumb = posts1.filter(post => 
     {
       const returnSmth = post.frontmatter.slug == items[i].data.slug;
-      ////////console.log("post1: "+post.frontmatter.slug+" itemI: "+items[i].data.slug+" return: "+returnSmth);
+      ////////////console.log("post1: "+post.frontmatter.slug+" itemI: "+items[i].data.slug+" return: "+returnSmth);
       return post.frontmatter.slug == items[i].data.slug;
     }
   );
-  ////////console.log("singlePostForThumb");
-  ////////console.log(singlePostForThumb[0].thumb);
+  ////////////console.log("singlePostForThumb");
+  ////////////console.log(singlePostForThumb[0].thumb);
   if(singlePostForThumb[0].thumb){
     items[i]['thumb'] = singlePostForThumb[0].thumb;
   }else{
@@ -59,11 +59,11 @@ for(let i = 0; i < items.length; i++){
   }
 }
 
-//console.log("sectionData.data");
-//console.log(sectionData.data.no_trans_excerpt);
+//////console.log("sectionData.data");
+//////console.log(sectionData.data.no_trans_excerpt);
 
-////////console.log("items");
-////////console.log(items);
+////////////console.log("items");
+////////////console.log(items);
 
 ---
 
@@ -71,9 +71,11 @@ for(let i = 0; i < items.length; i++){
   <div class="px-8 2xl:max-w-7xl mx-auto py-3">
     <div class="space-y-2">
       <!-- Section Title and Decorative Elements -->
-      {sectionTitle == "true" && <SectionTitle thin={sectionData.data.name.thin} thick={sectionData.data.name.thick} linkUrl={sectionData.data.slug} linkText={sectionData.data.seeAll} />}
+      {sectionTitle == "true" && <SectionTitle thin={sectionData.data.name.thin} thick={sectionData.data.name.thick} linkUrl={sectionData.data.slug} linkText={sectionData.data.seeAll} bothThin={bothThin} />}
     </div>
-
+    <div>
+      <slot />
+    </div>
     <ul
       class="mx-auto grid grid-cols-1  sm:grid-cols-2 text-secondary md:grid-cols-3 lg:grid-cols-4 items-start gap-6 mt-2 pt-2"
       role="list"

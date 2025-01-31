@@ -22,3 +22,36 @@ nav:
     de: "Start"
     fr: "Acceuil"
     en: "Home"
+
+article:
+  published:
+    de: "veröffentlicht am"
+    fr: "publié le"
+    en: "published on the"
+  updated:
+    de: "aktualisiert am"
+    fr: "actualisé le"
+    en: "updated on the"
+
+
+sources:
+  sources:
+    de: "Quellen"
+    fr: "Sources"
+    en: "Sources"
+  seeSource:
+    de: "zur Quelle"
+    fr: "y aller"
+    en: "Go to source"
+  seeArchive:
+    de: "Archivierte Version"
+    fr: "Vérsion archivée"
+    en: "Archived version"
+  byAuthor:
+    de: "von"
+    en: "by"
+    fr: "par"
+  inPub: 
+    de: "in"
+    en: "in"
+    fr: "dans"

@@ -3,21 +3,30 @@
 import { getCollection, render } from 'astro:content';
 import { getLangFromUrl } from '@i18n/langFunctions';
 import { sortSmallFirst } from '@/snippets/numberGames';
+import { defineConfig } from 'astro/config';
+import { translatePath } from '@i18n/langFunctions';
+import { Image } from 'astro/components/Image.astro';
+
+import languageIcon from "@assets/for_site/planetli.svg?raw";
+
+////console.log("translatePath");
+const translationPaths = await translatePath(Astro.url);
+
 
 const lang = getLangFromUrl(Astro.url);
-console.log("lang");
-console.log(lang);
+//////console.log("lang");
+//////console.log(lang);
 
 
 const sectionsAllLang = await getCollection('sections');
 const lB = await getCollection('lilBits');
 
-console.log("lB");
-console.log(lB);
+//////console.log("lB");
+//////console.log(lB);
 
 const tNav = lB.filter(entry => {
-	console.log("entry");
-	console.log(entry.id);
+	//////console.log("entry");
+	//////console.log(entry.id);
 	return entry.id == "nav";
 })[0].data;
 
@@ -27,12 +36,12 @@ const { slug, page, pages } = Astro.props;
 const sectionsThisLang = sectionsAllLang.filter(section => {
 	const sectionFilePath = section.filePath.split('/');
 	const sectionLang = sectionFilePath[sectionFilePath.length - 2];
-	console.log("sectionLang: "+sectionLang+" lang: "+lang);
+	//////console.log("sectionLang: "+sectionLang+" lang: "+lang);
 	return sectionLang == lang;
 });
 
-console.log("sectionsThisLang");
-console.log(sectionsThisLang);
+//////console.log("sectionsThisLang");
+//////console.log(sectionsThisLang);
 
 const sectionsInclude = sectionsThisLang.filter(section => section.data.menu_include == true);
 console.log("sectionsInclude");
@@ -42,24 +51,42 @@ const sectionsOrdered = sortSmallFirst(sectionsInclude, "menu_order");
 console.log("sectionsOrdered");
 console.log(sectionsOrdered);
 
-//console.log("sectionsThisLang");
-//console.log(sectionsThisLang);
+////////console.log("sectionsThisLang");
+////////console.log(sectionsThisLang);
 
-console.log("Astro.url");
-console.log(Astro.url.host);
+//////console.log("Astro.url");
+//////console.log(Astro.url.host);
 
 var frag4Large = "<span><a href='/"+lang+"/'>"+tNav.ind[lang]+"</a></span>";
 
-for (let i = 0; i < sectionsThisLang.length; i++) {
+for (let i = 0; i < sectionsOrdered.length; i++) {
 	frag4Large += "<span>";
 	frag4Large += "&nbsp;&nbsp;&nbsp;•&nbsp;&nbsp;&nbsp;"
 	frag4Large += "</span>";
 	frag4Large += "<span>";
-	frag4Large += "<a href=\"/"+lang+"/"+sectionsThisLang[i].data.slug+"\">";
-	frag4Large += sectionsThisLang[i].data.title;
+	frag4Large += "<a href=\"/"+lang+"/"+sectionsOrdered[i].data.slug+"\">";
+	frag4Large += sectionsOrdered[i].data.title;
 	frag4Large += "</a>";
 	frag4Large += "</span>";
 }
+
+var lang4Large = "";
+////console.log("translationPaths");
+////console.log(translationPaths);
+for(let i = 0; i < translationPaths.length; i++){
+	if(i != 0){
+		lang4Large += "<span>";
+		lang4Large += "&nbsp;&nbsp;&nbsp;•&nbsp;&nbsp;&nbsp;"
+		lang4Large += "</span>";
+	}
+	lang4Large += "<span>";
+	lang4Large += "<a href=\"/"+translationPaths[i].path+"\">";
+	lang4Large += translationPaths[i].locale;
+	lang4Large += "</a>";
+	lang4Large += "</span>";
+}
+
+
 
 var frag4Small = "<div class='w-fit'>";
 frag4Small += "&nbsp;&nbsp;&nbsp;•&nbsp;&nbsp;&nbsp;";
@@ -67,14 +94,14 @@ frag4Small += "<span><a href='/"+lang+"/'>"+tNav.ind[lang]+"</a></span>";
 frag4Small += "&nbsp;&nbsp;&nbsp;•&nbsp;&nbsp;&nbsp;";
 frag4Small += "</div>";
 
-for (let i = 0; i < sectionsThisLang.length; i++) {
+for (let i = 0; i < sectionsOrdered.length; i++) {
 	frag4Small += "<div class'w-fit'>";
 	frag4Small += "<span>";
 	frag4Small += "&nbsp;&nbsp;&nbsp;•&nbsp;&nbsp;&nbsp;";
 	frag4Small += "</span>";
 	frag4Small += "<span>";
-	frag4Small += "<a href=\"/"+lang+"/"+sectionsThisLang[i].data.slug+"\">";
-	frag4Small += sectionsThisLang[i].data.title;
+	frag4Small += "<a href=\"/"+lang+"/"+sectionsOrdered[i].data.slug+"\">";
+	frag4Small += sectionsOrdered[i].data.title;
 	frag4Small += "</a>";
 	frag4Small += "</span>";
 	frag4Small += "<span>";
@@ -83,27 +110,83 @@ for (let i = 0; i < sectionsThisLang.length; i++) {
 	frag4Small += "</div>";
 }
 
-var fragLang4Large = "";
 
-console.log("Astro.url");
-console.log(Astro.url.pathname);
+var lang4Small = "";
+////console.log("translationPaths");
+////console.log(translationPaths);
+for(let i = 0; i < translationPaths.length; i++){
+	lang4Small += "<div class'w-fit'>";
+	//if(i != 0){
+		lang4Small += "<span>";
+		lang4Small += "&nbsp;&nbsp;&nbsp;•&nbsp;&nbsp;&nbsp;"
+		lang4Small += "</span>";
+	//}
+	lang4Small += "<span>";
+	lang4Small += "<a href=\"/"+translationPaths[i].path+"\">";
+	lang4Small += translationPaths[i].locale;
+	lang4Small += "</a>";
+	lang4Small += "</span>";
+	lang4Small += "<span>";
+	lang4Small += "&nbsp;&nbsp;&nbsp;•&nbsp;&nbsp;&nbsp;"
+	lang4Small += "</span>";
+	lang4Small += "</div>";
+}
 
+//////console.log("Astro.url");
+//////console.log(Astro.url.pathname);
 
+////console.log("languageIcon");
+////console.log(languageIcon);
 
 ---
 
 <div class="hidden h-fit"></div>
 
-<div class="w-full hidden md:flex">
-	<div class="mx-auto w-fit">
-		<Fragment set:html={frag4Large} />
+<div class="w-full hidden md:flex flex-row">
+	<div class="mx-auto w-fit flex flex-row">
+		<span class="flex flex-row">
+			<Fragment set:html={frag4Large} />
+		</span>
+		<span class="flex flex-row">
+			&nbsp;&nbsp;&nbsp;•
+			<span class="wantLang cursor-pointer flex flex-row  transition-all max-w-36 overflow-hidden">
+				&nbsp;&nbsp;&nbsp;
+				<!-- <svg width="10px" height="10px" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg" fill="blue">
+					<object data={languageIcon.src} width="100%" height="100%"></object>
+				</svg> -->
+				<a class="border-b-[1px] border-transparent hover:border-secondary">
+					<Fragment set:html={languageIcon} />
+				</a>
+				
+				<!-- <img
+					src={languageIcon.src}
+					alt="other languages"
+					style="fill:blue"
+					class="h-5 w-5"
+				/> -->
+			</span>
+			<span class="chooseLang max-w-0 flex flex-row overflow-hidden  transition-all" style="fill: blue;">
+				&nbsp;&nbsp;&nbsp;
+				<Fragment set:html={lang4Large}/>
+			</span>
+		</span>
 	</div>
+
+	
 </div>
 
 <div class="w-full flex flex-col md:hidden">
 	<div class="w-full flex flex-col">
-		<div class="mx-auto w-fit mb-2">
-			<span>&nbsp;&nbsp;&nbsp;•&nbsp;&nbsp;&nbsp;</span><a class="cursor-pointer" id="mobileMenuButton">{tNav.menu[lang]}</a><span>&nbsp;&nbsp;&nbsp;•&nbsp;&nbsp;&nbsp;</span>
+		<div class="mx-auto w-fit mb-2 flex flex-row">
+			<span>&nbsp;&nbsp;&nbsp;•&nbsp;&nbsp;&nbsp;</span>
+			<a class="cursor-pointer" id="mobileMenuButton">
+				{tNav.menu[lang]}
+			</a>
+			<span>&nbsp;&nbsp;&nbsp;•&nbsp;&nbsp;&nbsp;</span>
+			<a class="cursor-pointer border-b-[1px] border-transparent hover:border-secondary" id="mobileLangButton">
+				<Fragment set:html={languageIcon} />
+			</a>
+			<span>&nbsp;&nbsp;&nbsp;•&nbsp;&nbsp;&nbsp;</span>
 		</div>
 	</div>
 	<div
@@ -116,6 +199,11 @@ console.log(Astro.url.pathname);
 			<Fragment set:html={frag4Small} />
 		</div>
 	</div>
+	<div class="w-full flex flex-col">
+		<div id="mobileLangContent" class="mx-auto transition-all w-fit flex flex-col overflow-hidden h-0 items-center space-y-4 my-0">
+			<Fragment set:html={lang4Small} />
+		</div>
+	</div>
 </div>
 
 <script>
@@ -123,20 +211,42 @@ import type { swapBodyElement } from "astro/virtual-modules/transitions-swap-fun
 
 	const mMB = document.getElementById("mobileMenuButton");
 	const mMC = document.getElementById("mobileMenuContent");
-	console.log("mMB");
-	console.log(mMB);
-	console.log("mMC");
-	console.log(mMC);
+
+	const mLB = document.getElementById("mobileLangButton");
+	const mLC = document.getElementById("mobileLangContent");
+
+	const wLD = document.querySelector(".wantLang");
+	const aLD = document.querySelector(".chooseLang");
+
+	//desktop languages
+	wLD.addEventListener("click", function(){
+		aLD.classList.remove("max-w-0");
+		wLD.classList.remove("max-w-36");
+		aLD.classList.add("max-w-36")
+		wLD.classList.add("max-w-0")
+	});
+	
+	//mobile menu
 	const body = document.querySelector("body");
 	var menuState = "closed";
 	mMB.addEventListener("click", function(){
-		console.log("clicked");
+		////console.log("menu => menu: "+menuState+" lang: "+langState);
+		//////console.log("clicked");
 		if(menuState == "closed"){
+			////console.log("menu is closed => menu: "+menuState+" lang: "+langState);
+			if(langState == "open"){
+				////console.log("close the lang");
+				closeLang();
+				langState = "closed";
+			}
 			openMenu();
 			menuState = "open";
+			////console.log("menu has been opened => menu: "+menuState+" lang: "+langState);
 		} else {
+			////console.log("menu is open => menu: "+menuState+" lang: "+langState);
 			closeMenu();
 			menuState = "closed";
+			////console.log("menu has been closed => menu: "+menuState+" lang: "+langState);
 		}
 	});
 	
@@ -152,5 +262,42 @@ import type { swapBodyElement } from "astro/virtual-modules/transitions-swap-fun
 		mMC.classList.add("h-fit");
 		mMC.classList.remove("my-0");
 		mMC.classList.add("my-4");
+	}
+
+	//mobile lang
+	var langState = "closed";
+	mLB.addEventListener("click", function(){
+		////console.log("lang => menu: "+menuState+" lang: "+langState);
+		//////console.log("clicked");
+		if(langState == "closed"){
+			////console.log("lang is closed => menu: "+menuState+" lang: "+langState);
+			if(menuState == "open"){
+				////console.log("close the menu");
+				closeMenu();
+				menuState = "closed";
+			}
+			openLang();
+			langState = "open";
+			////console.log("lang has been opened => menu: "+menuState+" lang: "+langState);
+		} else {
+			////console.log("lang is open => menu: "+menuState+" lang: "+langState);
+			closeLang();
+			langState = "closed";
+			////console.log("lang has been closed => menu: "+menuState+" lang: "+langState);
+		}
+	});
+	
+
+	function closeLang(){
+		mLC.classList.add("h-0");
+		mLC.classList.remove("h-fit");
+		mLC.classList.add("my-0");
+		mLC.classList.remove("my-4");
+	}
+	function openLang(){
+		mLC.classList.remove("h-0");
+		mLC.classList.add("h-fit");
+		mLC.classList.remove("my-0");
+		mLC.classList.add("my-4");
 	}
 </script>

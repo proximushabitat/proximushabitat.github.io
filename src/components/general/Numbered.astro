@@ -6,7 +6,7 @@ import { Image } from 'astro:assets';
 import SectionTitle from "@components/snippets/SectionTitle.astro";
 
 //i18n
-import { getLangFromUrl, useTranslations, showDate, sectionTitle } from '@i18n/utils';
+import { getLangFromUrl, useTranslations, showDate, sectionTitle, bothThin } from '@i18n/utils';
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 
@@ -32,9 +32,11 @@ function calculateAosDuration(index) {
   <div class="px-8 2xl:max-w-7xl mx-auto py-3">
     <div class="space-y-2">
       <!-- Section Title and Decorative Elements -->
-      {sectionTitle == "true" && <SectionTitle thin={sectionData.data.name.thin} thick={sectionData.data.name.thick} linkUrl={sectionData.data.slug} linkText={sectionData.data.seeAll} />}
+      {sectionTitle == "true" && <SectionTitle thin={sectionData.data.name.thin} thick={sectionData.data.name.thick} linkUrl={sectionData.data.slug} linkText={sectionData.data.seeAll} bothThin={bothThin} tagLine="asdf sda fa sdfa fds fdafsd sfdfsdfsdf"/>}
     </div>
-
+    <div>
+      <slot />
+    </div>
     <ul
       class="mx-auto grid grid-cols-1  sm:grid-cols-2 text-secondary md:grid-cols-3 lg:grid-cols-4 items-start gap-6 mt-3 lg:mt-24"
       role="list"

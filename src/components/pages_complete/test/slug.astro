@@ -13,72 +13,100 @@ import ArticlesNude from "@components/general/ArticlesNude.astro";
 import ArticlesImaged from "@components/general/ArticlesImaged.astro";
 import BarsBottom3 from "@components/general/BarsBottom3.astro";
 import divTitle from "@components/snippets/divTitle.astro";
+import SectionTitle from '@/components/snippets/SectionTitle.astro';
+import TwoThings from '@/components/snippets/TwoThings.astro';
 
 import ReferenceList from '@components/references/referenceList.astro';
 
+const lB = await getCollection('lilBits');
+
+const tArt = lB.filter(entry => {
+	//////console.log("entry");
+	//////console.log(entry.id);
+	return entry.id == "article";
+})[0].data;
+
+//console.log("tArt");
+//console.log(tArt);
+
 const { lang, slug, page, pages } = Astro.props;
 
-////////////console.log("");
-////////////console.log("TEST:ASTRO");
-////////////console.log("page");
-////////////console.log(page);
-////////////console.log("slug");
-////////////console.log(slug);
-////////////console.log("lang");
-////////////console.log(lang);
-////////////console.log("pages");
-////////////console.log(pages);
-
-//////////////console.log("page.filePath");
-//////////////console.log(page.filePath);
 //////////////console.log("");
+//////////////console.log("TEST:ASTRO");
+//////////////console.log("page");
+//////////////console.log(page);
+//////////////console.log("slug");
+//////////////console.log(slug);
+//////////////console.log("lang");
+//////////////console.log(lang);
+//////////////console.log("pages");
+//////////////console.log(pages);
 
-//////////////console.log("page.filePath?.split('/')[page.filePath?.split('/').length - 1]");
-//////////////console.log(page.filePath?.split('/')[page.filePath?.split('/').length - 1]);
+////////////////console.log("page.filePath");
+////////////////console.log(page.filePath);
+////////////////console.log("");
+
+////////////////console.log("page.filePath?.split('/')[page.filePath?.split('/').length - 1]");
+////////////////console.log(page.filePath?.split('/')[page.filePath?.split('/').length - 1]);
 //const translations = pages.filter(onePage => onePage.filePath?.split('/')[onePage.filePath?.split('/').length - 1] == page.filePath?.split('/')[page.filePath?.split('/').length - 1])
 var translations = getTranslations(page, pages);
 translations = translations.filter(translation => translation.data.is_trans_ready == true);
 
-//////////////console.log(" ");
-//////////////console.log("pages");
-//////////////console.log(pages);
-//////////////console.log(" ");
-////////////console.log("translations");
-////////////console.log(translations);
+////////////////console.log(" ");
+////////////////console.log("pages");
+////////////////console.log(pages);
+////////////////console.log(" ");
+//////////////console.log("translations");
+//////////////console.log(translations);
 
 const peops = await getCollection('people');
 const sections = await getCollection('sections');
 
 const noTranslation = await getEntry('lilBits', 'noTranslation');
-//console.log("noTranslation, lang "+lang);
-//console.log(noTranslation.data.excuse.title[lang]);
-//////////////console.log("people");
-//////////////console.log(peops);
+////console.log("noTranslation, lang "+lang);
+////console.log(noTranslation.data.excuse.title[lang]);
+////////////////console.log("people");
+////////////////console.log(peops);
 
-//////////////console.log("");
+////////////////console.log("");
 
 const formattedDate = page.data.date_published.toLocaleString(lang);
 
-//////////console.log("page");
-//////////console.log(page);
+////////////console.log("page");
+////////////console.log(page);
 
 const { Content } = await render(page);
 
-console.log("page.data.author");
-console.log(page.data.author);
+//console.log("page.data.author");
+//console.log(page.data.author);
 
 var authorString = "";
 for(let i = 0; i < page.data.author.length; i++){
   const thisAuth = peops.filter(person => person.id == page.data.author[i].id);
-  console.log("thisAuth");
-  console.log(thisAuth[0].data);
+  //console.log("thisAuth");
+  //console.log(thisAuth[0].data);
   authorString += thisAuth[0].data.name_first + " " + thisAuth[0].data.name_last;
   if(i < page.data.author.length - 1){
     authorString += ", ";
   }
 }
-console.log("authorString");
-console.log(authorString);
+//console.log("authorString");
+//console.log(authorString);
+
+var dateString = "";
+
+if(page.data.date_published){
+  dateString += tArt.published[lang];
+  dateString += " ";
+  dateString += formatDate(page.data.date_published);
+  //dateString += page.data.date_published;
+}
+if(page.data.date_updated){
+  dateString += ", "
+  dateString += tArt.updated[lang];
+  dateString += " ";
+  dateString += formatDate(page.data.date_updated);
+}
 
 ---
 
@@ -90,18 +118,18 @@ console.log(authorString);
     <div class="px-8 2xl:max-w-7xl mx-auto py-8 w-full">
       <div class="space-y-2 max-w-3xl mx-auto">
         <!-- div Title and Decorative Elements -->
-        <h1>
+        <h1 class="text-5xl font-bold italic">
           {page.data.headline}
         </h1>
-        <h2>
+        <h2 class="text-xl font-bold italic">
           {page.data.drophead}
         </h2>
       </div>
-      <div class="max-w-3xl mx-auto">
+      <div class="max-w-3xl mx-auto mt-1">
         {page.data.lead}
       </div>
       <div class="max-w-3xl mx-auto">
-        {formatDate(page.data.date_published)+" "+authorString}
+        {<TwoThings left={dateString} right={authorString}/>}
         {page.data.is_trans_ready && <Content />}
         {!page.data.is_trans_ready && 
           <h3>{noTranslation.data.excuse.title[lang]}</h3>
@@ -120,7 +148,9 @@ console.log(authorString);
     </div>
   </article>
 
-  <ReferenceList />
+  <div class="max-w-3xl mx-auto">
+    <ReferenceList />
+  </div>
 
   <BarsBottom3 />
 </BaseLayout>

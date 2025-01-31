@@ -1,10 +1,14 @@
 ---
 import BaseHead from "@components/BaseHead.astro";
+
+const { title, keywords, author, excerpt, datePub, dateUp } = Astro.props;
+
+var allKeywords = keywords;
 ---
 
 <html lang="en" class="selection:bg-complementary-split-pink selection:text-secondary text-secondary">
   <head>
-    <BaseHead />
+    <BaseHead title={title} keywords={allKeywords} author={author} excerpt={excerpt} datePub={datePub} dateUp={dateUp} />
   </head>
 
   <body class="bg-primary">

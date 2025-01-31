@@ -9,10 +9,19 @@ import { glob, file } from 'astro/loaders';
 
 // 3. Define your collection(s)
 
+// someContent
+const bigBits = defineCollection({
+	loader: glob({ pattern: "**/*.{md,mdx}", base: 'src/collections/bigBits' }),
+	/*schema: z.object({
+		
+	}),*/
+});
+
 // test articles
 const test = defineCollection({
 	loader: glob({ pattern: "**/*.{md,mdx}", base: 'src/collections/test' }),
 	schema: z.object({
+		id: z.string(),
 		is_draft: z.boolean(),
 		not_on_front: z.boolean().optional(),
 		not_on_section: z.boolean().optional(),
@@ -24,7 +33,6 @@ const test = defineCollection({
 		date_lastUpdate: z.date().optional(),
 		author: z.array(reference('people')).optional(),
 		title: z.string().optional(),
-		slug: z.string().optional(),
 	  	headline: z.string(),
 	  	drophead: z.string().optional(),
 		lead: z.string().optional(),
@@ -32,10 +40,65 @@ const test = defineCollection({
 		category: z.enum(['transportation', 'architecture', 'urbanism']).optional(),
 		related_test: z.array(reference('test')).optional(),
 		references: z.array(reference('sources')).optional(),
+		slug: z.string().optional(),
 	}),
 });
 
-// test sections
+// Overview articles
+const overviews = defineCollection({
+	loader: glob({ pattern: "**/*.{md,mdx}", base: 'src/collections/overview' }),
+	schema: z.object({
+		id: z.string(),
+		is_draft: z.boolean(),
+		not_on_front: z.boolean().optional(),
+		not_on_section: z.boolean().optional(),
+		no_own_page: z.boolean().optional(),
+		is_trans_ready: z.boolean(),
+		is_og: z.boolean(),
+		is_upToDate: z.boolean(),
+		date_published: z.date(),
+		date_lastUpdate: z.date().optional(),
+		author: z.array(reference('people')).optional(),
+		title: z.string().optional(),
+	  	headline: z.string(),
+	  	drophead: z.string().optional(),
+		lead: z.string().optional(),
+		excerpt: z.string().optional(),
+		category: z.enum(['transportation', 'architecture', 'urbanism']).optional(),
+		related_test: z.array(reference('test')).optional(),
+		references: z.array(reference('sources')).optional(),
+		slug: z.string().optional(),
+	}),
+});
+
+// News articles
+const news = defineCollection({
+	loader: glob({ pattern: "**/*.{md,mdx}", base: 'src/collections/news' }),
+	schema: z.object({
+		id: z.string(),
+		is_draft: z.boolean(),
+		not_on_front: z.boolean().optional(),
+		not_on_section: z.boolean().optional(),
+		no_own_page: z.boolean().optional(),
+		is_trans_ready: z.boolean(),
+		is_og: z.boolean(),
+		is_upToDate: z.boolean(),
+		date_published: z.date(),
+		date_lastUpdate: z.date().optional(),
+		author: z.array(reference('people')).optional(),
+		title: z.string().optional(),
+	  	headline: z.string(),
+	  	drophead: z.string().optional(),
+		lead: z.string().optional(),
+		excerpt: z.string().optional(),
+		category: z.enum(['transportation', 'architecture', 'urbanism']).optional(),
+		related_test: z.array(reference('test')).optional(),
+		references: z.array(reference('sources')).optional(),
+		slug: z.string().optional(),
+	}),
+});
+
+// sections
 const sections = defineCollection({
 	loader: glob({ pattern: "**/*.{md,mdx}", base: 'src/collections/sections' }),
 	schema: z.object({
@@ -47,7 +110,7 @@ const sections = defineCollection({
 		is_trans_ready: z.boolean(),
 		is_upToDate: z.boolean(),
 		date_published: z.date().optional(),
-		date_lastUpdate: z.date().optional(),
+		date_updated: z.date().optional(),
 		author: z.array(reference('people')).optional(),
 		title: z.string().optional(),
 		seeAll: z.string().optional(),
@@ -89,4 +152,4 @@ const lilBits = defineCollection({
 // quelle
 
 // 4. Export a single `collections` object to register your collection(s)
-export const collections = { test, people, sources, sections, lilBits };
+export const collections = { test, people, sources, sections, lilBits, overviews, news, bigBits };

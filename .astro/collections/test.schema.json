@@ -4,6 +4,9 @@
     "test": {
       "type": "object",
       "properties": {
+        "id": {
+          "type": "string"
+        },
         "is_draft": {
           "type": "boolean"
         },
@@ -100,9 +103,6 @@
           }
         },
         "title": {
-          "type": "string"
-        },
-        "slug": {
           "type": "string"
         },
         "headline": {
@@ -209,11 +209,15 @@
             ]
           }
         },
+        "slug": {
+          "type": "string"
+        },
         "$schema": {
           "type": "string"
         }
       },
       "required": [
+        "id",
         "is_draft",
         "is_trans_ready",
         "is_og",

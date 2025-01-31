@@ -1,0 +1,21 @@
+---
+const { left, right } = Astro.props;
+---
+{ 
+<div class="my-4 space-y-2 italic">
+	<div
+		class="h-0.5 bg-secondary"
+		data-aos="fade-up"
+		data-aos-duration="1000"
+		>
+	</div>
+	<div class="flex flex-row space-between">
+		<span class="grow">{left}</span><span></span>
+		<span>{right}</span>
+	</div>
+	<div 
+		class="h-1.5 bg-secondary"
+		>
+	</div>
+</div>
+}

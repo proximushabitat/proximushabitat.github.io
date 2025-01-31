@@ -1,7 +1,6 @@
 ---
 import BaseLayout from "@layouts/BaseLayout.astro";
 import Hero from "@components/landing/Hero.astro";
-import Intro from "@components/landing/Intro.astro";
 import Projects from "@components/landing/Projects.astro";
 import Testimonials from "@components/landing/Testimonials.astro";
 import Articles from "@components/landing/Articles.astro";
@@ -9,6 +8,13 @@ import FeaturedWork from "@components/landing/FeaturedWork.astro";
 import BarsTop5 from "@components/general/BarsTop5.astro";
 import BarsBottom5 from "@components/general/BarsBottom5.astro";
 import FrontSection from "@components/technical/FrontSection.astro";
+import ThinLine from "@/components/snippets/ThinLine.astro";
+import ThickLine from "@/components/snippets/ThickLine.astro";
+
+import { getLangFromUrl, useTranslations } from '@i18n/utils';
+const lang = getLangFromUrl(Astro.url);
+
+import { getCollection, getEntry, render } from 'astro:content';
 
 export function getStaticPaths () {
  return [
@@ -18,12 +24,23 @@ export function getStaticPaths () {
   ];
 }
 
-import { getCollection } from 'astro:content';
+const entry = lang+'/introtext01';
+const introContent = await getEntry('bigBits', entry);
+/*const introContentColl = await getCollection('bigBits');
 
-  const pages = await getCollection('test');
+const introContent = introContentColl.filter(item => {
+    const returnThis = item.id == entry;
+    console.log("entry: '"+entry+"'     item.id: '"+item.id+"'     returnThis: "+returnThis);
+    return returnThis;
+  }
+);*/
 
-  ////////////console.log("pages");
-  ////////////console.log(pages);
+/*console.log("introContentColl");
+console.log(introContentColl);*/
+console.log("introContent");
+console.log(introContent);
+
+const { Content: Intro } = await render(introContent);
 
 ---
 
@@ -31,10 +48,16 @@ import { getCollection } from 'astro:content';
   <BarsTop5 />
   <Intro />
   <div class="h-24"></div>
-  <FrontSection collection="test" howMany="4" component="Numbered" showDate="true" sectionTitle="true" />
+  <FrontSection collection="news" howMany="4" component="Numbered" showDate="true" sectionTitle="true">
+  </FrontSection>
   <div class="h-24"></div>
-  <FrontSection collection="test" howMany="4" component="ArticlesNude" showDate="true" sectionTitle="true" />
+  <FrontSection collection="news" howMany="4" component="ArticlesNude" showDate="true" sectionTitle="true">
+  </FrontSection>
   <div class="h-24"></div>
-  <FrontSection collection="test" howMany="4" component="ArticlesImaged" showDate="true" sectionTitle="true" />
+  <FrontSection collection="news" howMany="4" component="ArticlesImaged" showDate="true" sectionTitle="true">
+    fljsalkfjsdaflsadjfs fasd fasdf asdfsadfasd fasdf adsf dsf df asdf asdf asdfsadfsfljsalkfjsdaflsadjfs fasd fasdf asdfsadfasd fasdf adsf dsf df asdf asdf asdfsadfsfljsalkfjsdaflsadjfs fasd fasdf asdfsadfasd fasdf adsf dsf df asdf asdf asdfsadfsfljsalkfjsdaflsadjfs fasd fasdf asdfsadfasd fasdf adsf dsf df asdf asdf asdfsadfsfljsalkfjsdaflsadjfs fasd fasdf asdfsadfasd fasdf adsf dsf df asdf asdf asdfsadfsfljsalkfjsdaflsadjfs fasd fasdf asdfsadfasd fasdf adsf dsf df asdf asdf asdfsadfs
+  <ThinLine />
+  </FrontSection>
+
   <BarsBottom5 />
 </BaseLayout>

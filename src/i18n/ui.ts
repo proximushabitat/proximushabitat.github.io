@@ -8,9 +8,6 @@ export const languages = {
   export const showDefaultLang = true;
   
   export const ui = {
-    nav:{
-      
-    },
     en: {
       'nav.index': 'Home',
       'nav.about': 'About',

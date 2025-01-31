@@ -26,7 +26,7 @@ import { sortBigFirst } from '@snippets/numberGames';
 
 
 export async function getStaticPaths({ paginate }) {
-	const pages = await getCollection('test');
+	const pages = await getCollection('news');
 
 	const pagesThisLang = getOneLang(pages, 'en');
 
@@ -39,10 +39,10 @@ export async function getStaticPaths({ paginate }) {
 
 const { page } = Astro.props;
 
-//////console.log("page");
-//////console.log(page.data);
+//////////console.log("page");
+//////////console.log(page.data);
 
-const collection = 'test';
+const collection = 'news';
 
 //const itemsAllLang = await getCollection(collection);
 //const itemsUnorderly = getOneLang(itemsAllLang, lang);
@@ -53,9 +53,11 @@ const sectionData = getOneLang(sectionDataRaw, lang)[0];
 
 //////site klicke chönne, de grad no scrolle zu wome d'iträg gseht
 
+const keywords = sectionData.data.keywords;
+
 ---
 
-<BaseLayout>
+<BaseLayout /*keywords={keywords} title={sectionData.data.title} excerpt={sectionData.data.excerpt}>
 	<BarsTop4 />
 	<Intro />
 

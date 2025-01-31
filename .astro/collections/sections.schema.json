@@ -41,7 +41,7 @@
             }
           ]
         },
-        "date_lastUpdate": {
+        "date_updated": {
           "anyOf": [
             {
               "type": "string",

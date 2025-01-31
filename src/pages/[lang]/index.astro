@@ -30,15 +30,15 @@ const introContent = await getEntry('bigBits', entry);
 
 const introContent = introContentColl.filter(item => {
     const returnThis = item.id == entry;
-    console.log("entry: '"+entry+"'     item.id: '"+item.id+"'     returnThis: "+returnThis);
+    //console.log("entry: '"+entry+"'     item.id: '"+item.id+"'     returnThis: "+returnThis);
     return returnThis;
   }
 );*/
 
-/*console.log("introContentColl");
-console.log(introContentColl);*/
-console.log("introContent");
-console.log(introContent);
+/*//console.log("introContentColl");
+//console.log(introContentColl);*/
+//console.log("introContent");
+//console.log(introContent);
 
 const { Content: Intro } = await render(introContent);
 
@@ -48,15 +48,15 @@ const { Content: Intro } = await render(introContent);
   <BarsTop5 />
   <Intro />
   <div class="h-24"></div>
-  <FrontSection collection="news" howMany="4" component="Numbered" showDate="true" sectionTitle="true">
+  <FrontSection collection="news" sortBy="date_published" howMany="4" component="Numbered" showDate="true" sectionTitle="true">
   </FrontSection>
   <div class="h-24"></div>
-  <FrontSection collection="news" howMany="4" component="ArticlesNude" showDate="true" sectionTitle="true">
+  <FrontSection collection="news" sortBy="date_published" howMany="4" component="ArticlesNude" showDate="true" sectionTitle="true">
   </FrontSection>
   <div class="h-24"></div>
-  <FrontSection collection="news" howMany="4" component="ArticlesImaged" showDate="true" sectionTitle="true">
-    fljsalkfjsdaflsadjfs fasd fasdf asdfsadfasd fasdf adsf dsf df asdf asdf asdfsadfsfljsalkfjsdaflsadjfs fasd fasdf asdfsadfasd fasdf adsf dsf df asdf asdf asdfsadfsfljsalkfjsdaflsadjfs fasd fasdf asdfsadfasd fasdf adsf dsf df asdf asdf asdfsadfsfljsalkfjsdaflsadjfs fasd fasdf asdfsadfasd fasdf adsf dsf df asdf asdf asdfsadfsfljsalkfjsdaflsadjfs fasd fasdf asdfsadfasd fasdf adsf dsf df asdf asdf asdfsadfsfljsalkfjsdaflsadjfs fasd fasdf asdfsadfasd fasdf adsf dsf df asdf asdf asdfsadfs
-  <ThinLine />
+  <FrontSection collection="news" sortBy="date_published" howMany="4" component="ArticlesImaged" showDate="true" sectionTitle="true">
+    <!--fljsalkfjsdaflsadjfs fasd fasdf asdfsadfasd fasdf adsf dsf df asdf asdf asdfsadfsfljsalkfjsdaflsadjfs fasd fasdf asdfsadfasd fasdf adsf dsf df asdf asdf asdfsadfsfljsalkfjsdaflsadjfs fasd fasdf asdfsadfasd fasdf adsf dsf df asdf asdf asdfsadfsfljsalkfjsdaflsadjfs fasd fasdf asdfsadfasd fasdf adsf dsf df asdf asdf asdfsadfsfljsalkfjsdaflsadjfs fasd fasdf asdfsadfasd fasdf adsf dsf df asdf asdf asdfsadfsfljsalkfjsdaflsadjfs fasd fasdf asdfsadfasd fasdf adsf dsf df asdf asdf asdfsadfs
+  <ThinLine />-->
   </FrontSection>
 
   <BarsBottom5 />

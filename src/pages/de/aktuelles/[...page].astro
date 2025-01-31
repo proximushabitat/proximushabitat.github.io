@@ -23,13 +23,14 @@ const t = useTranslations(lang);
 //snippets
 import { sortBigFirst } from '@snippets/numberGames';
 
-
 export async function getStaticPaths({ paginate }) {
+	const sortBy = 'date_published';
+
 	const pages = await getCollection('news');
 
 	const pagesThisLang = getOneLang(pages, 'de');
 
-	const pagesOrdered = sortBigFirst(pagesThisLang, "date_published")
+	const pagesOrdered = sortBigFirst(pagesThisLang, sortBy)
 
 	return paginate(pagesOrdered, {
 		pageSize: 12,
@@ -38,8 +39,8 @@ export async function getStaticPaths({ paginate }) {
 
 const { page } = Astro.props;
 
-//////////console.log("page");
-//////////console.log(page.data);
+////////////console.log("page");
+////////////console.log(page.data);
 
 const collection = 'news';
 

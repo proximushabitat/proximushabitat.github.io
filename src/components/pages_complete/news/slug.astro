@@ -21,77 +21,77 @@ import ReferenceList from '@components/references/referenceList.astro';
 const lB = await getCollection('lilBits');
 
 const tArt = lB.filter(entry => {
-	//////console.log("entry");
-	//////console.log(entry.id);
+	////////console.log("entry");
+	////////console.log(entry.id);
 	return entry.id == "article";
 })[0].data;
 
-//console.log("tArt");
-//console.log(tArt);
+////console.log("tArt");
+////console.log(tArt);
 
 const { lang, slug, page, pages } = Astro.props;
 
-//////////////console.log("");
-//////////////console.log("TEST:ASTRO");
-//////////////console.log("page");
-//////////////console.log(page);
-//////////////console.log("slug");
-//////////////console.log(slug);
-//////////////console.log("lang");
-//////////////console.log(lang);
-//////////////console.log("pages");
-//////////////console.log(pages);
-
-////////////////console.log("page.filePath");
-////////////////console.log(page.filePath);
 ////////////////console.log("");
+////////////////console.log("TEST:ASTRO");
+////////////////console.log("page");
+////////////////console.log(page);
+////////////////console.log("slug");
+////////////////console.log(slug);
+////////////////console.log("lang");
+////////////////console.log(lang);
+////////////////console.log("pages");
+////////////////console.log(pages);
 
-////////////////console.log("page.filePath?.split('/')[page.filePath?.split('/').length - 1]");
-////////////////console.log(page.filePath?.split('/')[page.filePath?.split('/').length - 1]);
+//////////////////console.log("page.filePath");
+//////////////////console.log(page.filePath);
+//////////////////console.log("");
+
+//////////////////console.log("page.filePath?.split('/')[page.filePath?.split('/').length - 1]");
+//////////////////console.log(page.filePath?.split('/')[page.filePath?.split('/').length - 1]);
 //const translations = pages.filter(onePage => onePage.filePath?.split('/')[onePage.filePath?.split('/').length - 1] == page.filePath?.split('/')[page.filePath?.split('/').length - 1])
 var translations = getTranslations(page, pages);
 translations = translations.filter(translation => translation.data.is_trans_ready == true);
 
-////////////////console.log(" ");
-////////////////console.log("pages");
-////////////////console.log(pages);
-////////////////console.log(" ");
-//////////////console.log("translations");
-//////////////console.log(translations);
+//////////////////console.log(" ");
+//////////////////console.log("pages");
+//////////////////console.log(pages);
+//////////////////console.log(" ");
+////////////////console.log("translations");
+////////////////console.log(translations);
 
 const peops = await getCollection('people');
 const sections = await getCollection('sections');
 
 const noTranslation = await getEntry('lilBits', 'noTranslation');
-////console.log("noTranslation, lang "+lang);
-////console.log(noTranslation.data.excuse.title[lang]);
-////////////////console.log("people");
-////////////////console.log(peops);
+//////console.log("noTranslation, lang "+lang);
+//////console.log(noTranslation.data.excuse.title[lang]);
+//////////////////console.log("people");
+//////////////////console.log(peops);
 
-////////////////console.log("");
+//////////////////console.log("");
 
 const formattedDate = page.data.date_published.toLocaleString(lang);
 
-////////////console.log("page");
-////////////console.log(page);
+//////////////console.log("page");
+//////////////console.log(page);
 
 const { Content } = await render(page);
 
-//console.log("page.data.author");
-//console.log(page.data.author);
+////console.log("page.data.author");
+////console.log(page.data.author);
 
 var authorString = "";
 for(let i = 0; i < page.data.author.length; i++){
   const thisAuth = peops.filter(person => person.id == page.data.author[i].id);
-  //console.log("thisAuth");
-  //console.log(thisAuth[0].data);
+  ////console.log("thisAuth");
+  ////console.log(thisAuth[0].data);
   authorString += thisAuth[0].data.name_first + " " + thisAuth[0].data.name_last;
   if(i < page.data.author.length - 1){
     authorString += ", ";
   }
 }
-//console.log("authorString");
-//console.log(authorString);
+////console.log("authorString");
+////console.log(authorString);
 
 var dateString = "";
 
@@ -110,7 +110,10 @@ if(page.data.date_updated){
 
 const keywords = page.data.keywords;
 
-console.log("titleH: "+ page.data.title);
+console.log("keywords");
+console.log(page.data);
+
+//console.log("titleH: "+ page.data.title);
 
 ---
 

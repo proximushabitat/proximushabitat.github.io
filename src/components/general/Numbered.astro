@@ -19,7 +19,7 @@ import { getSection } from '@/snippets/handleCollections';
 //assets
 //import testImg from "../../assets/img/test3.webp";
 
-const { items, collection, showDate, sectionTitle, sectionData } = Astro.props;
+const { items, collection, showDate, sectionTitle, sectionData, howMany } = Astro.props;
 
 // Function to calculate `data-aos-duration` based on index
 function calculateAosDuration(index) {
@@ -32,7 +32,7 @@ function calculateAosDuration(index) {
   <div class="px-8 2xl:max-w-7xl mx-auto py-3">
     <div class="space-y-2">
       <!-- Section Title and Decorative Elements -->
-      {sectionTitle == "true" && <SectionTitle thin={sectionData.data.name.thin} thick={sectionData.data.name.thick} linkUrl={sectionData.data.slug} linkText={sectionData.data.seeAll} bothThin={bothThin} tagLine="asdf sda fa sdfa fds fdafsd sfdfsdfsdf"/>}
+      {sectionTitle == "true" && <SectionTitle thin={sectionData.data.name.thin} thick={sectionData.data.name.thick} linkUrl={sectionData.data.slug} linkText={sectionData.data.seeAll} bothThin={bothThin}/>}
     </div>
     <div>
       <slot />

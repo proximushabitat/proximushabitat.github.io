@@ -31,27 +31,27 @@ function calculateAosDuration(index) {
 
 for (let i = 0; i < items.length; i++){
   const { Thumb } = await render(items[i]);
-  ////////////console.log("Thumb"); 
-  ////////////console.log(Thumb);
+  //////////////console.log("Thumb"); 
+  //////////////console.log(Thumb);
 }
 
 const matches1 = import.meta.glob('../../../**/*.mdx', { eager: true });
 const posts1 = Object.values(matches1);
 for(let i = 0; i < posts1.length; i++){
-  ////////////console.log("posts1[i].thumb");
-  ////////////console.log(posts1[i]);
+  //////////////console.log("posts1[i].thumb");
+  //////////////console.log(posts1[i]);
 }
 
 for(let i = 0; i < items.length; i++){
   const singlePostForThumb = posts1.filter(post => 
     {
       const returnSmth = post.frontmatter.slug == items[i].data.slug;
-      ////////////console.log("post1: "+post.frontmatter.slug+" itemI: "+items[i].data.slug+" return: "+returnSmth);
+      //////////////console.log("post1: "+post.frontmatter.slug+" itemI: "+items[i].data.slug+" return: "+returnSmth);
       return post.frontmatter.slug == items[i].data.slug;
     }
   );
-  ////////////console.log("singlePostForThumb");
-  ////////////console.log(singlePostForThumb[0].thumb);
+  //////////////console.log("singlePostForThumb");
+  //////////////console.log(singlePostForThumb[0].thumb);
   if(singlePostForThumb[0].thumb){
     items[i]['thumb'] = singlePostForThumb[0].thumb;
   }else{
@@ -59,11 +59,11 @@ for(let i = 0; i < items.length; i++){
   }
 }
 
-//////console.log("sectionData.data");
-//////console.log(sectionData.data.no_trans_excerpt);
+////////console.log("sectionData.data");
+////////console.log(sectionData.data.no_trans_excerpt);
 
-////////////console.log("items");
-////////////console.log(items);
+//////////////console.log("items");
+//////////////console.log(items);
 
 ---
 
@@ -119,7 +119,7 @@ for(let i = 0; i < items.length; i++){
 <style>
 
 :root{
-  --dot-size: 0.123em;  
+  --dot-size: 0.151em;  
   --line-color: #333;       
   --line-contrast: 123%;    
   --photo-brightness: 88%;  

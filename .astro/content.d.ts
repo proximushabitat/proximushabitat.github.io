@@ -165,6 +165,14 @@ declare module 'astro:content' {
   rendered?: RenderedContent;
   filePath?: string;
 }>;
+"keyWords": Record<string, {
+  id: string;
+  body?: string;
+  collection: "keyWords";
+  data: any;
+  rendered?: RenderedContent;
+  filePath?: string;
+}>;
 "lilBits": Record<string, {
   id: string;
   body?: string;

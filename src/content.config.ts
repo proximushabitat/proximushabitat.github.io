@@ -95,6 +95,7 @@ const news = defineCollection({
 		related_test: z.array(reference('test')).optional(),
 		references: z.array(reference('sources')).optional(),
 		slug: z.string().optional(),
+		keywords: z.array(reference('keyWords')).optional(),
 	}),
 });
 
@@ -149,7 +150,12 @@ const lilBits = defineCollection({
 	loader: file("src/collections/lilBits.yaml", { parser: (bitly) => parseYaml(bitly) }),
 });
 
+// keywords
+const keyWords = defineCollection({
+	loader: file("src/collections/keyWords.yaml", { parser: (bitly) => parseYaml(bitly) }),
+});
+
 // quelle
 
 // 4. Export a single `collections` object to register your collection(s)
-export const collections = { test, people, sources, sections, lilBits, overviews, news, bigBits };
+export const collections = { test, people, sources, sections, lilBits, overviews, news, bigBits, keyWords };

@@ -7,11 +7,11 @@ import defineConfig from  'astro.config.mjs';
 import { getCollection, getEntry, render } from 'astro:content';
 
 export function getLangFromUrl(url: URL) {
-  //////console.log("url");
-  //////console.log(url);
+  ////////console.log("url");
+  ////////console.log(url);
   const [, lang] = url.pathname.split('/');
-  //////console.log("lang");
-  //////console.log(lang);
+  ////////console.log("lang");
+  ////////console.log(lang);
 
   if (lang in languages) return lang as keyof typeof dict;
   return defaultLang;
@@ -27,18 +27,18 @@ export function useTranslations(lang: keyof typeof dict) {
   return function t( cat: string | number, key: string) {
     const maybeArray = dict[cat][lang][key] || dict[cat][defaultLang][key];
     var justAWord;
-    ////////////////////console.log("");
-    ////////////////////console.log("cat, key");
-    ////////////////////console.log(cat+", "+key);
-    ////////////////////console.log("maybeArray");
-    ////////////////////console.log(maybeArray);
+    //////////////////////console.log("");
+    //////////////////////console.log("cat, key");
+    //////////////////////console.log(cat+", "+key);
+    //////////////////////console.log("maybeArray");
+    //////////////////////console.log(maybeArray);
     if(Array.isArray(maybeArray)){
       justAWord = maybeArray[Math.floor(Math.random() * maybeArray.length)];
     } else {
       justAWord = maybeArray;
     }
-    ////////////////////console.log("justAWord");
-    ////////////////////console.log(justAWord);
+    //////////////////////console.log("justAWord");
+    //////////////////////console.log(justAWord);
     return justAWord;
   }
 }
@@ -61,7 +61,7 @@ export async function translatePath(url: object){
   const locales = defineConfig.i18n.locales;
 
   //get parts of path
-  //console.log(url.pathname);
+  ////console.log(url.pathname);
   const pathSplitRaw = url.pathname.split('/');
   const pathSplit = pathSplitRaw.filter(path => path !== "");
 
@@ -70,11 +70,11 @@ export async function translatePath(url: object){
   const sectionRaw = pathSplit[1];
   const contentRaw = pathSplit[2];
 
-  //console.log("pathSplit");
-  //console.log(pathSplit);
-  //console.log("locale: "+locale);
-  //console.log("sectionRaw: "+sectionRaw);
-  //console.log("contentRaw: "+contentRaw);
+  ////console.log("pathSplit");
+  ////console.log(pathSplit);
+  ////console.log("locale: "+locale);
+  ////console.log("sectionRaw: "+sectionRaw);
+  ////console.log("contentRaw: "+contentRaw);
 
 
   //get the section
@@ -112,8 +112,8 @@ export async function translatePath(url: object){
   }
   
   for(let i = 0; i < locales.length; i++){
-    ////console.log(" ");
-    ////console.log("now doing: "+locales[i]);
+    //////console.log(" ");
+    //////console.log("now doing: "+locales[i]);
     var path = "";
     path += locales[i];
 
@@ -140,12 +140,12 @@ export async function translatePath(url: object){
         path = undefined;
       }
     }
-    ////console.log("path: "+path);
+    //////console.log("path: "+path);
     path += "/";
     const thisLocale = locales[i];
     paths[i] = { locale: thisLocale, path: path };
   }
-  //console.log("paths");
-  //console.log(paths);
+  ////console.log("paths");
+  ////console.log(paths);
   return paths;
 }

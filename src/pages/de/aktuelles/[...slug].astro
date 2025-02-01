@@ -4,7 +4,7 @@ import { getCollection, render } from 'astro:content';
 import { getTranslations, getOneLang } from '@snippets/handleCollections';
 
 export async function getStaticPaths() {
-  const pages = await getCollection('test');
+  const pages = await getCollection('news');
 
   ////////////////////console.log("pages");
   ////////////////////console.log(pages);

@@ -1,39 +1,57 @@
 ---
 import { getCollection, getEntry, render } from 'astro:content';
+import SectionTitle from "@components/snippets/SectionTitle.astro";
+import { getLangFromUrl } from '@i18n/langFunctions';
+
+import { formatDate } from '@snippets/numberGames';
 
 const sourcesColl = await getCollection('sources');
 
+const lang = getLangFromUrl(Astro.url);
+////console.log("lang");
+////console.log(lang);
+
 const lB = await getCollection('lilBits');
-//////////////console.log("sourcesColl");
-//////////////console.log(sourcesColl);
+const tSources = lB.filter(entry => {
+	//////////////console.log("entry");
+	//////////////console.log(entry.id);
+	return entry.id == "sources";
+})[0].data;
+////console.log("tSources");
+////console.log(tSources.seeSource[lang]);
+//////////////////////console.log("sourcesColl");
+//////////////////////console.log(sourcesColl);
+
+//aos
+import { aosDuration, aosDelay } from '@/snippets/aosValues';
 ---
 
-<div class="referenceContainer hidden">
-	<div>
-		referenceContainer
+<div class="referenceContainer mt-infoContainer hidden">
+	<div class="pb-4">
+		<SectionTitle title={tSources.title[lang]} />
 	</div>
-	<div>
+	<div class="text-left" data-aos="fade-up" data-aos-duration={aosDuration(3)} data-aos-delay={aosDelay(1)}>
 		<ul class="referenceList">
 		</ul>
 	</div>
 </div>
 <div class="hidden flex-row w-full  min-w-5 mb-2"></div>
 <div class="hidden"></div>
-<div class="hidden"></div>
 
-<script define:vars={{ sourcesColl }} is:inline>
-	//////////////console.log("sourcesColl");
-	//////////////console.log(sourcesColl);
+
+<script define:vars={{ sourcesColl, tSources, lang }} is:inline>
+	//////////////////////console.log("sourcesColl");
+	//////////////////////console.log(sourcesColl);
 	const references = document.querySelectorAll(".reference");
 	const container = document.querySelector(".referenceContainer");
 	const list = document.querySelector(".referenceList");
-	//////////////console.log("references");
-	//////////////console.log(references);
+	//////////////////////console.log("references");
+	//////////////////////console.log(references);
 
 	if(references.length > 0){
 		container.classList.remove("hidden")
 	}else{
-		//////////////console.log("no references");
+		//////////////////////console.log("no references");
 	}
 
 	var sourceIds = [];
@@ -45,55 +63,92 @@ const lB = await getCollection('lilBits');
 		}
 	}
 	
-	//////////////console.log("sourceIds");
-	//////////////console.log(sourceIds);
+	////console.log("sourceIds");
+	////console.log(sourceIds);
 
 	for(let i = 0; i < references.length; i++){
 		const idRaw = references[i].attributes['data-ref-id'].nodeValue;
-		references[i].innerHTML = sourceIds.indexOf(idRaw) + 1;
+		////console.log("idRaw : "+idRaw);
+		const thisSourceData = sourcesColl.filter(source => source.id == idRaw);
+		////console.log("thisSourceData");
+		////console.log(thisSourceData);
+		var floaty = "";
+		floaty += "<span class='toolTipTool' aria-describedby='toolTip'>";
+		if(thisSourceData[0]){
+			floaty += "<span class='toolTipTip bg-tooltip-bg text-tooltip-text text-tooltip border-1 border-primary'>";
+			floaty += thisSourceData[0].data.title;
+			floaty += "<span class='toolTipArrow bg-tooltip-bg border-b-1 border-r-1 border-primary'></span>";
+			floaty += "</span>";
+		}
+		floaty += sourceIds.indexOf(idRaw) + 1;
+		floaty += "</span>";
+		references[i].innerHTML = /*sourceIds.indexOf(idRaw) + 1 + " floaty: " +*/ floaty;
 	}
 
 	var listContent = "";
 	for(let i = 0; i < sourceIds.length; i++){
-		//////////////console.log("sourceIds[i]");
-		//////////////console.log(sourceIds[i]);
+		//////////////////////console.log("sourceIds[i]");
+		//////////////////////console.log(sourceIds[i]);
 		const thisSourceData = sourcesColl.filter(source => source.id == sourceIds[i]);
-		//////////////console.log("thisSourceData");
-		//////////////console.log(thisSourceData);
+		//////////////////////console.log("thisSourceData");
+		//////////////////////console.log(thisSourceData);
 		var thisSourceContent = "<li>";
 		thisSourceContent += "<div class='flex flex-row w-full mb-2'>"
 		thisSourceContent += "<div class='min-w-5'>"
+		thisSourceContent += "<span class='font-bold'>";
 		thisSourceContent += i + 1;
 		thisSourceContent += ": ";
+		thisSourceContent += "</span>";
 		thisSourceContent += "</div>"
 		thisSourceContent += "<div class='w-full'>"
 		thisSourceContent += "<div class=''>"
 		//source content after start into new var
 		//if not like after start, add comma in front of information
-		if(thisSourceData[0].data.title){
-			thisSourceContent += '"';
-			thisSourceContent += thisSourceData[0].data.title;
-			thisSourceContent += '"';
-			thisSourceContent += ", ";
-		}
+		
 		if(thisSourceData[0].data.author){
 			thisSourceContent += thisSourceData[0].data.author;
+			thisSourceContent += ": ";
+		}
+		if(thisSourceData[0].data.title){
+			thisSourceContent += '<span class="italic">';
+			thisSourceContent += thisSourceData[0].data.title;
+			thisSourceContent += '</span>';
+		}
+		if(thisSourceData[0].data.publication){
 			thisSourceContent += ", ";
+			thisSourceContent += thisSourceData[0].data.publication;
 		}
 		if(thisSourceData[0].data.date){
+			thisSourceContent += " (";
 			thisSourceContent += thisSourceData[0].data.date;
-			thisSourceContent += ", ";
+			thisSourceContent += ")";
 		}
-		thisSourceContent += "</div>"
-		thisSourceContent += "<div class=''>"
+		if(thisSourceData[0].data.title){
+			//thisSourceContent += ', ';
+		}
+		/*thisSourceContent += "</div>"
+		thisSourceContent += "<div class=''>"*/
 		if(thisSourceData[0].data.publication){
-			thisSourceContent += thisSourceData[0].data.publication;
-			thisSourceContent += ", ";
+			//thisSourceContent += thisSourceData[0].data.publication;
+			//thisSourceContent += ", ";
 		}
 		if(thisSourceData[0].data.url){
-
-			thisSourceContent += thisSourceData[0].data.publisher;
 			thisSourceContent += ", ";
+			thisSourceContent += "<a href='";
+			thisSourceContent += thisSourceData[0].data.url;
+			thisSourceContent += "'>";
+			thisSourceContent += tSources.original[lang];
+			thisSourceContent += "&nbsp; ↗";
+			thisSourceContent += "</a>";
+		}
+		if(thisSourceData[0].data.archiveUrl){
+			thisSourceContent += ", ";
+			thisSourceContent += "<a href='";
+			thisSourceContent += thisSourceData[0].data.archiveUrl;
+			thisSourceContent += "'>";
+			thisSourceContent += tSources.archived[lang];
+			thisSourceContent += "&nbsp; ↗";
+			thisSourceContent += "</a>";
 		}
 
 		/*if(thisSourceData[0].data.url){
@@ -115,8 +170,8 @@ const lB = await getCollection('lilBits');
 		listContent += thisSourceContent;
 	}
 
-	//////////////console.log("listContent");
-	//////////////console.log(listContent);
+	//////////////////////console.log("listContent");
+	//////////////////////console.log(listContent);
 
 	list.innerHTML = listContent;
 

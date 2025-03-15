@@ -45,3 +45,53 @@ example4:
  archived: true
  archiveUrl: "example4-url-archive"
  archiveDate: "example4-date-archive"
+
+vgbs:
+ title: "vgbs-title"
+ author: "vgbs-author"
+ publication: "vgbs-publication"
+ date: "vgbs-date"
+ type: "website"
+ isbn: ""
+ url: "https://vgbs.ch"
+ archived: true
+ archiveUrl: "vgbs-url-archive"
+ archiveDate: "vgbs-date-archive"
+
+FMTdochDasAus:
+ title: "Dem Fischermätteli-Tram droht doch das Aus"
+ publication: "Der Bund"
+ date: 30.11.2024
+ type: "newspaper"
+ url: "https://www.derbund.ch/fischermaetteli-tram-bern-von-kantonalen-sparplaenen-bedroht-907229485801"
+ archiveUrl: "https://archive.ph/DISyh"
+
+FMTkreditJa:
+ title: "Selbst das Quartier sagt Ja zum Fischermätteli-Tram"
+ publication: "Der Bund"
+ date: 22.09.2024
+ type: "newspaper"
+ url: "https://www.derbund.ch/abstimmung-bern-bevoelkerung-sagt-ja-zum-fischermaetteli-tram-557960222053"
+ archiveUrl: "https://archive.ph/wgaJm"
+
+FMTfachBericht:
+ title: "Gesamtsanierung Strassenraum Brunnhof–Fischermätteli: Ausführungskredit"
+ author: "Tiefbauamt der Stadt Bern"
+ date: 22.04.2024
+ url: "https://www.bern.ch/mediencenter/medienmitteilungen/aktuell_ptk/ins-fischermaetteli-soll-weiterhin-ein-tram-fahren/dokumente/fachbericht-gesamtsanierung-strassenraum-brunnhof.pdf/download"
+ archiveUrl: "https://web.archive.org/web/20240509002846/https://www.bern.ch/mediencenter/medienmitteilungen/aktuell_ptk/ins-fischermaetteli-soll-weiterhin-ein-tram-fahren/dokumente/fachbericht-gesamtsanierung-strassenraum-brunnhof.pdf/@@download/file/Fachbericht%20Gesamtsanierung%20Strassenraum%20Brunnhof-Fischerm%C3%A4tteli.pdf"
+
+TramGleis38:
+ title: "Der Stern bleibt in der Ferne Ab dem 7. März werden die Gleise und die Haltestellen erneuert"
+ publication: "Der Bund"
+ date: 20.02.2009
+ type: "newspaper"
+ url: "https://www.derbund.ch/abstimmung-bern-bevoelkerung-sagt-ja-zum-fischermaetteli-tram-557960222053"
+ archiveUrl: "https://archive.ph/mMVdP"
+
+BHBern:
+ title: "Teurer und später: Ausbau des Berner Bahnhofs verzögert sich "
+ publication: "SRF"
+ date: 16.02.2022
+ url: "https://www.srf.ch/news/schweiz/oev-knoten-mit-verzug-teurer-und-spaeter-ausbau-des-berner-bahnhofs-verzoegert-sich"
+ archiveUrl: "https://archive.ph/wUOgp"

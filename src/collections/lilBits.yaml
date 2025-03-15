@@ -35,18 +35,30 @@ article:
 
 
 sources:
+  title:
+    de: "Quellen"
+    fr: "Sources"
+    en: "References"
   sources:
     de: "Quellen"
     fr: "Sources"
     en: "Sources"
   seeSource:
-    de: "zur Quelle"
+    de: "url"
     fr: "y aller"
     en: "Go to source"
   seeArchive:
-    de: "Archivierte Version"
+    de: "archiviert"
     fr: "Vérsion archivée"
     en: "Archived version"
+  original:
+    de: "Original"
+    fr: "Original"
+    en: "Original"
+  archived:
+    de: "Archiviert"
+    fr: "Archivé"
+    en: "Archived"
   byAuthor:
     de: "von"
     en: "by"
@@ -55,3 +67,16 @@ sources:
     de: "in"
     en: "in"
     fr: "dans"
+
+remarks:
+  title:
+    de: "Anmerkungen"
+    fr: "Remarques"
+    en: "remarks"
+
+glossary:
+  title:
+    de: "Glossar"
+    fr: "Glossaire"
+    en: "Glossary"
+    

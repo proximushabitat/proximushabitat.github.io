@@ -5,6 +5,8 @@ import { getTranslations, getItemLang, getPageUrl } from '@snippets/handleCollec
 
 import { formatDate } from '@snippets/numberGames';
 
+import ToolTip from '@/components/technical/ToolTip.astro';
+
 import BaseLayout from "@layouts/BaseLayout.astro";
 import BarsTop3 from "@components/general/BarsTop3.astro";
 import Intro from "@components/general/Intro.astro";
@@ -17,81 +19,86 @@ import SectionTitle from '@/components/snippets/SectionTitle.astro';
 import TwoThings from '@/components/snippets/TwoThings.astro';
 
 import ReferenceList from '@components/references/referenceList.astro';
+import RemarkList from '@/components/references/remarkList.astro';
+import Glossary from '@/components/references/glossary.astro';
+
+//aos
+import { aosDuration, aosDelay } from '@/snippets/aosValues';
 
 const lB = await getCollection('lilBits');
 
 const tArt = lB.filter(entry => {
-	//////console.log("entry");
-	//////console.log(entry.id);
+	////////////console.log("entry");
+	////////////console.log(entry.id);
 	return entry.id == "article";
 })[0].data;
 
-//console.log("tArt");
-//console.log(tArt);
+////////console.log("tArt");
+////////console.log(tArt);
 
 const { lang, slug, page, pages } = Astro.props;
 
-//////////////console.log("");
-//////////////console.log("TEST:ASTRO");
-//////////////console.log("page");
-//////////////console.log(page);
-//////////////console.log("slug");
-//////////////console.log(slug);
-//////////////console.log("lang");
-//////////////console.log(lang);
-//////////////console.log("pages");
-//////////////console.log(pages);
+////////////////////console.log("");
+////////////////////console.log("TEST:ASTRO");
+////////////////////console.log("page");
+////////////////////console.log(page);
+////////////////////console.log("slug");
+////////////////////console.log(slug);
+////////////////////console.log("lang");
+////////////////////console.log(lang);
+////////////////////console.log("pages");
+////////////////////console.log(pages);
 
-////////////////console.log("page.filePath");
-////////////////console.log(page.filePath);
-////////////////console.log("");
+//////////////////////console.log("page.filePath");
+//////////////////////console.log(page.filePath);
+//////////////////////console.log("");
 
-////////////////console.log("page.filePath?.split('/')[page.filePath?.split('/').length - 1]");
-////////////////console.log(page.filePath?.split('/')[page.filePath?.split('/').length - 1]);
+//////////////////////console.log("page.filePath?.split('/')[page.filePath?.split('/').length - 1]");
+//////////////////////console.log(page.filePath?.split('/')[page.filePath?.split('/').length - 1]);
 //const translations = pages.filter(onePage => onePage.filePath?.split('/')[onePage.filePath?.split('/').length - 1] == page.filePath?.split('/')[page.filePath?.split('/').length - 1])
 var translations = getTranslations(page, pages);
-translations = translations.filter(translation => translation.data.is_trans_ready == true);
+translations = translations.filter(translation => translation.data.trans_ready == true);
 
-////////////////console.log(" ");
-////////////////console.log("pages");
-////////////////console.log(pages);
-////////////////console.log(" ");
-//////////////console.log("translations");
-//////////////console.log(translations);
+//////////////////////console.log(" ");
+//////////////////////console.log("pages");
+//////////////////////console.log(pages);
+//////////////////////console.log(" ");
+////////////////////console.log("translations");
+////////////////////console.log(translations);
 
 const peops = await getCollection('people');
 const sections = await getCollection('sections');
 
 const noTranslation = await getEntry('lilBits', 'noTranslation');
-////console.log("noTranslation, lang "+lang);
-////console.log(noTranslation.data.excuse.title[lang]);
-////////////////console.log("people");
-////////////////console.log(peops);
+//////////console.log("noTranslation, lang "+lang);
+//////////console.log(noTranslation.data.excuse.title[lang]);
+//////////////////////console.log("people");
+//////////////////////console.log(peops);
 
-////////////////console.log("");
+//////////////////////console.log("");
 
 const formattedDate = page.data.date_published.toLocaleString(lang);
 
-////////////console.log("page");
-////////////console.log(page);
+//////////////////console.log("page");
+//////////////////console.log(page);
 
 const { Content } = await render(page);
 
-//console.log("page.data.author");
-//console.log(page.data.author);
+////////console.log("page.data.author");
+////////console.log(page.data.author);
 
 var authorString = "";
 for(let i = 0; i < page.data.author.length; i++){
   const thisAuth = peops.filter(person => person.id == page.data.author[i].id);
-  //console.log("thisAuth");
-  //console.log(thisAuth[0].data);
+  ////////console.log("thisAuth");
+  ////////console.log(thisAuth[0].data);
   authorString += thisAuth[0].data.name_first + " " + thisAuth[0].data.name_last;
   if(i < page.data.author.length - 1){
     authorString += ", ";
   }
 }
-//console.log("authorString");
-//console.log(authorString);
+////////console.log("authorString");
+////////console.log(authorString);
 
 var dateString = "";
 
@@ -110,36 +117,41 @@ if(page.data.date_updated){
 
 const keywords = page.data.keywords;
 
-console.log("titleH: "+ page.data.title);
+//////console.log("titleH: "+ page.data.title);
 
 ---
 
 
 <BaseLayout author={authorString} datePub={page.data.date_published} dateUp={page.data.date_updated} keywords={keywords} title={page.data.title} excerpt={page.data.excerpt} >
   <BarsTop3 />
-
   <article class="bg-primary flex flex-col justify-center place-self-center text-justify">
-    <div class="px-8 2xl:max-w-7xl mx-auto py-8 w-full">
+    <div class="px-spaceFromEdge 2xl:max-w-7xl mx-auto py-8 w-full">
       <div class="space-y-2 max-w-3xl mx-auto">
         <!-- div Title and Decorative Elements -->
-        <h1 class="text-5xl font-bold italic">
+        <h1 class="text-5xl font-bold italic" data-aos="fade-up" data-aos-duration={aosDuration(1)}>
           {page.data.headline}
         </h1>
-        <h2 class="text-xl font-bold italic">
+        <h2 class="text-xl font-bold italic"  data-aos="fade-up" data-aos-duration={aosDuration(1.5)}>
           {page.data.drophead}
         </h2>
       </div>
-      <div class="max-w-3xl mx-auto mt-1">
+      <div class="max-w-3xl mx-auto mt-1"  data-aos="fade-up" data-aos-duration={aosDuration(2)}>
         {page.data.lead}
       </div>
       <div class="max-w-3xl mx-auto">
         {<TwoThings left={dateString} right={authorString}/>}
-        {page.data.is_trans_ready && <Content />}
-        {!page.data.is_trans_ready && 
-          <h3>{noTranslation.data.excuse.title[lang]}</h3>
-          <p>{noTranslation.data.excuse.text[lang]}</p>
-          <h4>{noTranslation.data.excuse.announceOthers[lang]}</h4>
-          <ul>
+
+        <div id="content"  data-aos="fade-up" data-aos-duration={aosDuration(3)} data-aos-delay={aosDelay(1)}>
+
+          {page.data.trans_ready && <Content />}
+
+        </div>
+
+        {!page.data.trans_ready && 
+          <h3 data-aos="fade-up" data-aos-duration={aosDuration(1)}>{noTranslation.data.excuse.title[lang]}</h3>
+          <p data-aos="fade-up" data-aos-duration={aosDuration(1.5)}>{noTranslation.data.excuse.text[lang]}</p>
+          <h4 data-aos="fade-up" data-aos-duration={aosDuration(2)}>{noTranslation.data.excuse.announceOthers[lang]}</h4>
+          <ul  data-aos="fade-up" data-aos-duration={aosDuration(2)} data-aos-delay={aosDelay(1)}>
             {translations.map((translation, index) => (
                 <li key={index}>
                   <a class="font-bold" href={getPageUrl(translation, sections)}>{getItemLang(translation)['full']}  &nbsp; ↗</a>
@@ -148,14 +160,17 @@ console.log("titleH: "+ page.data.title);
             }
           </ul>
         }
+
+        <ReferenceList />
+        <RemarkList />
+        <Glossary />
+
       </div>
     </div>
   </article>
 
-  <div class="max-w-3xl mx-auto">
-    <ReferenceList />
-  </div>
-
   <BarsBottom3 />
-</BaseLayout>
 
+  <ToolTip />
+
+</BaseLayout>

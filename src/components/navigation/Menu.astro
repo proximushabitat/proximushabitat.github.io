@@ -9,24 +9,27 @@ import { Image } from 'astro/components/Image.astro';
 
 import languageIcon from "@assets/for_site/planetli.svg?raw";
 
-////console.log("translatePath");
+//aos
+import { aosDuration, aosDelay } from '@/snippets/aosValues';
+
+//////////console.log("translatePath");
 const translationPaths = await translatePath(Astro.url);
 
 
 const lang = getLangFromUrl(Astro.url);
-//////console.log("lang");
-//////console.log(lang);
+////////////console.log("lang");
+////////////console.log(lang);
 
 
 const sectionsAllLang = await getCollection('sections');
 const lB = await getCollection('lilBits');
 
-//////console.log("lB");
-//////console.log(lB);
+////////////console.log("lB");
+////////////console.log(lB);
 
 const tNav = lB.filter(entry => {
-	//////console.log("entry");
-	//////console.log(entry.id);
+	////////////console.log("entry");
+	////////////console.log(entry.id);
 	return entry.id == "nav";
 })[0].data;
 
@@ -36,26 +39,26 @@ const { slug, page, pages } = Astro.props;
 const sectionsThisLang = sectionsAllLang.filter(section => {
 	const sectionFilePath = section.filePath.split('/');
 	const sectionLang = sectionFilePath[sectionFilePath.length - 2];
-	//////console.log("sectionLang: "+sectionLang+" lang: "+lang);
+	////////////console.log("sectionLang: "+sectionLang+" lang: "+lang);
 	return sectionLang == lang;
 });
 
-//////console.log("sectionsThisLang");
-//////console.log(sectionsThisLang);
+////////////console.log("sectionsThisLang");
+////////////console.log(sectionsThisLang);
 
 const sectionsInclude = sectionsThisLang.filter(section => section.data.menu_include == true);
-console.log("sectionsInclude");
-console.log(sectionsInclude);
+//////console.log("sectionsInclude");
+//////console.log(sectionsInclude);
 const sectionsOrdered = sortSmallFirst(sectionsInclude, "menu_order");
 
-console.log("sectionsOrdered");
-console.log(sectionsOrdered);
+//////console.log("sectionsOrdered");
+//////console.log(sectionsOrdered);
 
-////////console.log("sectionsThisLang");
-////////console.log(sectionsThisLang);
+//////////////console.log("sectionsThisLang");
+//////////////console.log(sectionsThisLang);
 
-//////console.log("Astro.url");
-//////console.log(Astro.url.host);
+////////////console.log("Astro.url");
+////////////console.log(Astro.url.host);
 
 var frag4Large = "<span><a href='/"+lang+"/'>"+tNav.ind[lang]+"</a></span>";
 
@@ -71,8 +74,8 @@ for (let i = 0; i < sectionsOrdered.length; i++) {
 }
 
 var lang4Large = "";
-////console.log("translationPaths");
-////console.log(translationPaths);
+//////////console.log("translationPaths");
+//////////console.log(translationPaths);
 for(let i = 0; i < translationPaths.length; i++){
 	if(i != 0){
 		lang4Large += "<span>";
@@ -112,8 +115,8 @@ for (let i = 0; i < sectionsOrdered.length; i++) {
 
 
 var lang4Small = "";
-////console.log("translationPaths");
-////console.log(translationPaths);
+//////////console.log("translationPaths");
+//////////console.log(translationPaths);
 for(let i = 0; i < translationPaths.length; i++){
 	lang4Small += "<div class'w-fit'>";
 	//if(i != 0){
@@ -132,11 +135,11 @@ for(let i = 0; i < translationPaths.length; i++){
 	lang4Small += "</div>";
 }
 
-//////console.log("Astro.url");
-//////console.log(Astro.url.pathname);
+////////////console.log("Astro.url");
+////////////console.log(Astro.url.pathname);
 
-////console.log("languageIcon");
-////console.log(languageIcon);
+//////////console.log("languageIcon");
+//////////console.log(languageIcon);
 
 ---
 
@@ -154,7 +157,7 @@ for(let i = 0; i < translationPaths.length; i++){
 				<!-- <svg width="10px" height="10px" viewBox="0 0 15 15" fill="none" xmlns="http://www.w3.org/2000/svg" fill="blue">
 					<object data={languageIcon.src} width="100%" height="100%"></object>
 				</svg> -->
-				<a class="border-b-[1px] border-transparent hover:border-secondary">
+				<a>
 					<Fragment set:html={languageIcon} />
 				</a>
 				
@@ -183,7 +186,7 @@ for(let i = 0; i < translationPaths.length; i++){
 				{tNav.menu[lang]}
 			</a>
 			<span>&nbsp;&nbsp;&nbsp;•&nbsp;&nbsp;&nbsp;</span>
-			<a class="cursor-pointer border-b-[1px] border-transparent hover:border-secondary" id="mobileLangButton">
+			<a class="cursor-pointer" id="mobileLangButton">
 				<Fragment set:html={languageIcon} />
 			</a>
 			<span>&nbsp;&nbsp;&nbsp;•&nbsp;&nbsp;&nbsp;</span>
@@ -192,7 +195,7 @@ for(let i = 0; i < translationPaths.length; i++){
 	<div
 		class="h-1.5 bg-secondary w-full"
 		data-aos="fade-up"
-		data-aos-duration="2000">
+		data-aos-duration={aosDuration(3)}>
 	</div>
 	<div class="w-full flex flex-col">
 		<div id="mobileMenuContent" class="mx-auto transition-all w-fit flex flex-col overflow-hidden h-0 items-center space-y-4 my-0">
@@ -230,23 +233,23 @@ import type { swapBodyElement } from "astro/virtual-modules/transitions-swap-fun
 	const body = document.querySelector("body");
 	var menuState = "closed";
 	mMB.addEventListener("click", function(){
-		////console.log("menu => menu: "+menuState+" lang: "+langState);
-		//////console.log("clicked");
+		//////////console.log("menu => menu: "+menuState+" lang: "+langState);
+		////////////console.log("clicked");
 		if(menuState == "closed"){
-			////console.log("menu is closed => menu: "+menuState+" lang: "+langState);
+			//////////console.log("menu is closed => menu: "+menuState+" lang: "+langState);
 			if(langState == "open"){
-				////console.log("close the lang");
+				//////////console.log("close the lang");
 				closeLang();
 				langState = "closed";
 			}
 			openMenu();
 			menuState = "open";
-			////console.log("menu has been opened => menu: "+menuState+" lang: "+langState);
+			//////////console.log("menu has been opened => menu: "+menuState+" lang: "+langState);
 		} else {
-			////console.log("menu is open => menu: "+menuState+" lang: "+langState);
+			//////////console.log("menu is open => menu: "+menuState+" lang: "+langState);
 			closeMenu();
 			menuState = "closed";
-			////console.log("menu has been closed => menu: "+menuState+" lang: "+langState);
+			//////////console.log("menu has been closed => menu: "+menuState+" lang: "+langState);
 		}
 	});
 	
@@ -267,23 +270,23 @@ import type { swapBodyElement } from "astro/virtual-modules/transitions-swap-fun
 	//mobile lang
 	var langState = "closed";
 	mLB.addEventListener("click", function(){
-		////console.log("lang => menu: "+menuState+" lang: "+langState);
-		//////console.log("clicked");
+		//////////console.log("lang => menu: "+menuState+" lang: "+langState);
+		////////////console.log("clicked");
 		if(langState == "closed"){
-			////console.log("lang is closed => menu: "+menuState+" lang: "+langState);
+			//////////console.log("lang is closed => menu: "+menuState+" lang: "+langState);
 			if(menuState == "open"){
-				////console.log("close the menu");
+				//////////console.log("close the menu");
 				closeMenu();
 				menuState = "closed";
 			}
 			openLang();
 			langState = "open";
-			////console.log("lang has been opened => menu: "+menuState+" lang: "+langState);
+			//////////console.log("lang has been opened => menu: "+menuState+" lang: "+langState);
 		} else {
-			////console.log("lang is open => menu: "+menuState+" lang: "+langState);
+			//////////console.log("lang is open => menu: "+menuState+" lang: "+langState);
 			closeLang();
 			langState = "closed";
-			////console.log("lang has been closed => menu: "+menuState+" lang: "+langState);
+			//////////console.log("lang has been closed => menu: "+menuState+" lang: "+langState);
 		}
 	});
 	

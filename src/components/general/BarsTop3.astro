@@ -3,6 +3,9 @@ import LogoTop from '@components/logo/LogoTop.astro'
 import Menu from '@components/navigation/Menu.astro'
 
 const { lang } = Astro.props;
+
+//aos
+import { aosDuration, aosDelay } from '@/snippets/aosValues';
 ---
 
 <!------
@@ -16,18 +19,25 @@ const { lang } = Astro.props;
 // this will allow the SVG become fill width and full heigh. It will also be responsive.
 --- -->
 <section class="bg-primary">
+  <div class="px-8 2xl:max-w-7xl mx-auto">
+    <div
+      class="h-0.5 bg-secondary "
+      data-aos="fade-up"
+      data-aos-duration={aosDuration(1)}>
+    </div>
+  </div>
   <LogoTop />
   <div class="px-8 2xl:max-w-7xl mx-auto pb-12">
     <div class="space-y-2">
       <div
         class="h-0.5 bg-secondary"
         data-aos="fade-up"
-        data-aos-duration="1000">
+        data-aos-duration={aosDuration(1)}>
       </div>
       <div
         class="flex flex-col sm:flex-row gap-3 justify-between items-center"
         data-aos="fade-up"
-        data-aos-duration="1500">
+        data-aos-duration={aosDuration(2)}>
         <Menu lang={lang}/>
         <!-- <div class="flex gap-3 items-center">
           <h3 class="text-secondary text-xs font-medium">
@@ -105,11 +115,11 @@ const { lang } = Astro.props;
       <div
         class="h-1.5 bg-secondary hidden w-full md:flex"
         data-aos="fade-up"
-        data-aos-duration="2000">
+        data-aos-duration={aosDuration(3)}>
       </div>
-      <div class="h-3 bg-secondary" data-aos="fade-up" data-aos-duration="2500">
+      <div class="h-3 bg-secondary" data-aos="fade-up" data-aos-duration={aosDuration(4)}>
       </div>
-      <div class="h-6 bg-secondary" data-aos="fade-up" data-aos-duration="3000">
+      <div class="h-6 bg-secondary" data-aos="fade-up" data-aos-duration={aosDuration(5)}>
       </div>
       <div class="flex w-full">
         <!-- ≈<span class="text-xs font-medium text-secondary flex"

@@ -1,0 +1,9 @@
+cat1:
+  name:
+    de: "Kategorie 1"
+    en: "Category 1"
+    fr: "Catégorie 1"
+  sluggy:
+    de: "kategorie-1"
+    en: "category-1"
+    fr: "categorie-1"

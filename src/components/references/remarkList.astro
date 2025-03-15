@@ -1,0 +1,115 @@
+---
+import { getCollection, getEntry, render } from 'astro:content';
+import SectionTitle from "@components/snippets/SectionTitle.astro";
+import { getLangFromUrl } from '@i18n/langFunctions';
+
+const lang = getLangFromUrl(Astro.url);
+//console.log("lang");
+//console.log(lang);
+
+//WEGWEGWEG
+const sourcesColl = await getCollection('sources');
+
+const alf = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+
+const lB = await getCollection('lilBits');
+const tRem = lB.filter(entry => {
+	////////////console.log("entry");
+	////////////console.log(entry.id);
+	return entry.id == "remarks";
+})[0].data;
+//console.log("tRem");
+//console.log(tRem);
+////////////////////console.log("sourcesColl");
+////////////////////console.log(sourcesColl);
+
+//aos
+import { aosDuration, aosDelay } from '@/snippets/aosValues';
+---
+
+<div class="remarksContainer mt-infoContainer hidden">
+	<div class="pb-4">
+		<SectionTitle title={tRem.title[lang]} />
+	</div>
+	<div class="text-left" data-aos="fade-up" data-aos-duration={aosDuration(3)} data-aos-delay={aosDelay(1)}>
+		<ul class="remarksList">
+		</ul>
+	</div>
+</div>
+<div class="hidden flex-row w-full  min-w-5 mb-2"></div>
+<div class="hidden"></div>
+
+
+<script define:vars={{ sourcesColl, lang, alf }} is:inline>
+	//console.log("script started");
+
+	////////////////////console.log(sourcesColl);
+	const remarks = document.querySelectorAll(".remark");
+	const container = document.querySelector(".remarksContainer");
+	const list = document.querySelector(".remarksList");
+	//console.log("remarks");
+	//console.log(remarks);
+
+	if(remarks.length > 0){
+		container.classList.remove("hidden")
+	}else{
+		//console.log("no remarks");
+	}
+
+	var allRemarks = [];
+
+	for(let i = 0; i < remarks.length; i++){
+		//console.log("remarks[i]");
+		//console.log(remarks[i]);
+		remarks[i].classList.remove("hidden");
+		const content = remarks[i].innerHTML;
+		allRemarks.push({i, content});
+		var floaty = "";
+		floaty += "<span class='toolTipTool' aria-describedby='toolTip'>";
+		
+		floaty += "<span class='toolTipTip bg-tooltip-bg text-tooltip-text text-tooltip text-md border-1 border-primary'>";
+		floaty += content;
+		floaty += "<span class='toolTipArrow bg-tooltip-bg border-b-1 border-r-1 border-primary'></span>";
+		floaty += "</span>";
+		
+		floaty += alf.charAt(i);
+		floaty += "</span>";
+		remarks[i].innerHTML = floaty;
+	}
+	
+	//console.log("allRemarks");
+	//console.log(allRemarks);
+
+	var listContent = "";
+	for(let i = 0; i < allRemarks.length; i++){
+		////////////////////console.log("allRemarks[i]");
+		////////////////////console.log(allRemarks[i]);
+		////////////////////console.log("thisSourceData");
+		////////////////////console.log(thisSourceData);
+		var thisSourceContent = "<li>";
+		thisSourceContent += "<div class='flex flex-row w-full mb-2'>"
+		thisSourceContent += "<div class='min-w-5'>"
+		thisSourceContent += "<span class='font-bold'>";
+		thisSourceContent += alf.charAt(allRemarks[i].i);
+		thisSourceContent += ": ";
+		thisSourceContent += "</span>";
+		thisSourceContent += "</div>";
+		thisSourceContent += "<div class='w-full'>";
+		thisSourceContent += "<div class=''>";
+		thisSourceContent += allRemarks[i].content;
+		//source content after start into new var
+		//if not like after start, add comma in front of information
+		thisSourceContent += "</div>"
+		thisSourceContent += "</div>";
+		thisSourceContent += "</li>";
+		
+		
+		listContent += thisSourceContent;
+	}
+
+	////////////////////console.log("listContent");
+	////////////////////console.log(listContent);
+
+	list.innerHTML = listContent;
+
+</script>

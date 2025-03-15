@@ -1,3 +1,5 @@
+import { tooltip } from '@material-tailwind/react';
+
 /** @type {import('tailwindcss').Config} */
 const colors = require('tailwindcss/colors');
 const plugin = require('tailwindcss/plugin')
@@ -16,12 +18,15 @@ export default {
 						yellow: "#ffff00",
 					},
 				},
-				
 				neutral: {
 					light: "#F4F1DE",
 					dark: colors.slate[900],
 				},
 				focus: "#ffff00",/*colors.emerald[300],*/
+				tooltip: {
+					bg: '#0000ff',
+					text: '#fafafa',
+				},
 			},
 			gradients: {
 				//'linksNorm': 'linear-gradient(0deg, rgba(255, 255, 00, 1) 33%, rgba(0, 0, 0, 0) 33%)',
@@ -44,13 +49,20 @@ export default {
 				'16/9': '16 / 9',
 				'9/16': '9 / 16',
 			},
+			spacing: {
+				'spaceFromEdge': '2rem',
+				'infoContainer': '4rem',
+			},
+			fontSize: {
+				'tooltip': '0.9rem',
+			},
 		},
 	},
 	plugins: [
 		plugin(function({ addBase, config, theme }) {
 			addBase({
-			  'a': { background: theme('gradients.linksNorm') },
-			  'a:hover': { transition: 'all ease-in-out, 0.5s', background: theme('gradients.linksHov'), textDecoration: 'underline', dropShadow: theme('dropShadow.xl') /*config('theme.colors.complementary.opposite.yellow')*/ },
+			  'a': { background: theme('gradients.linksNorm'), borderColor: theme('colors.secondary'), borderWidth: '0 0 1px 0', borderStyle: 'dotted' },
+			  'a:hover': { transition: 'all ease-in-out, 0.5s', background: theme('gradients.linksHov'), /*textDecoration: 'underline', */ borderStyle: 'solid', dropShadow: theme('dropShadow.xl') /*config('theme.colors.complementary.opposite.yellow')*/ },
 			  'h1': { fontSize: '2rem' },
 			  'h2': { fontSize: '1.75rem' },
 			  'h3': { fontSize: '1.5rem' },

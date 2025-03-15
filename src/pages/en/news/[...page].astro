@@ -3,7 +3,6 @@
 //components
 import BaseLayout from "@layouts/BaseLayout.astro";
 import BarsTop4 from "@components/general/BarsTop4.astro";
-import Intro from "@components/general/Intro.astro";
 import Numbered from "@components/general/Numbered.astro";
 import ArticlesNude from "@components/general/ArticlesNude.astro";
 import ArticlesImaged from "@components/general/ArticlesImaged.astro";
@@ -39,8 +38,8 @@ export async function getStaticPaths({ paginate }) {
 
 const { page } = Astro.props;
 
-//////////console.log("page");
-//////////console.log(page.data);
+////////////////console.log("page");
+////////////////console.log(page.data);
 
 const collection = 'news';
 
@@ -59,9 +58,9 @@ const keywords = sectionData.data.keywords;
 
 <BaseLayout /*keywords={keywords} title={sectionData.data.title} excerpt={sectionData.data.excerpt}>
 	<BarsTop4 />
-	<Intro />
+	<!-- INTRO -->
 
-	<PageSelector page={page} putAnchor="articles" thin={sectionData.data.items.title.thin} thick={sectionData.data.items.title.thick} />
+	<PageSelector page={page} putAnchor="articles" title={sectionData.data.title} />
 	<ArticlesImaged items={items} collection={collection} sectionData={sectionData} showDate={'true'} />
 	<PageSelector page={page}/>
 	<BarsBottom4 />

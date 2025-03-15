@@ -1,5 +1,8 @@
 ---
 import { otherprojects } from "../../data/otherprojects.json";
+
+//aos
+import { aosDuration, aosDelay } from '@/snippets/aosValues';
 ---
 
 <section class="bg-primary">
@@ -8,7 +11,7 @@ import { otherprojects } from "../../data/otherprojects.json";
       <p
         class="text-base lg:col-start-2 leading-relaxed"
         data-aos="fade-up"
-        data-aos-duration="2000"
+        data-aos-duration={aosDuration(3)}
       >
         I'm a self-taught front-end designer and developer who enjoys creating
         modern designs with Tailwind CSS. I have customers worldwide and have
@@ -19,7 +22,7 @@ import { otherprojects } from "../../data/otherprojects.json";
       <p
         class="text-base lg:col-start-2 leading-relaxed underline underline-offset-4"
         data-aos="fade-up"
-        data-aos-duration="2500"
+        data-aos-duration={aosDuration(4)}
       >
         I am currently available for Enquires. If you need a landing page or
         redesign something that you already have, do not hesitate to get in
@@ -29,7 +32,7 @@ import { otherprojects } from "../../data/otherprojects.json";
       <p
         class="text-base lg:col-start-4 leading-relaxed"
         data-aos="fade-up"
-        data-aos-duration="2500"
+        data-aos-duration={aosDuration(4)}
       >
         As a solo developer, I offer a unique and personalized approach to
         design and build exclusively and responsive landing pages using Astro
@@ -38,7 +41,7 @@ import { otherprojects } from "../../data/otherprojects.json";
       <p
         class="text-base lg:col-start-4 leading-relaxed"
         data-aos="fade-up"
-        data-aos-duration="3000"
+        data-aos-duration={aosDuration(5)}
       >
         My singular focus on your project ensures efficient and effective
         results, delivering a stunning website tailored to your specific

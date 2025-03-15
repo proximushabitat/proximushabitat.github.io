@@ -1,0 +1,130 @@
+---
+import { getCollection, getEntry, render } from 'astro:content';
+import SectionTitle from "@components/snippets/SectionTitle.astro";
+import { getLangFromUrl } from '@i18n/langFunctions';
+
+const glossaryAllLang = await getCollection('glossary');
+
+const lang = getLangFromUrl(Astro.url);
+
+const lB = await getCollection('lilBits');
+const tSources = lB.filter(entry => {
+	//////////////console.log("entry");
+	//////////////console.log(entry.id);
+	return entry.id == "glossary";
+})[0].data;
+
+const glossary = glossaryAllLang.filter(entry => {
+	return entry.id == lang;
+})[0].data;
+
+console.log("glossary");
+console.log(glossary);
+
+//aos
+import { aosDuration, aosDelay } from '@/snippets/aosValues';
+
+---
+
+<div class="glossaryContainer mt-infoContainer hidden">
+	<div class="pb-4">
+		<SectionTitle title={tSources.title[lang]} />
+	</div>
+	<div class="text-left" data-aos="fade-up" data-aos-duration={aosDuration(3)} data-aos-delay={aosDelay(1)}>
+		<ul class="glossaryList">
+		</ul>
+	</div>
+</div>
+
+<script define:vars={{ glossary, lang }} is:inline>
+
+	const article = document.querySelector("#content");
+	var articleHTML = article.innerHTML;
+
+	var thisGlossary = {};
+
+	console.log("articleHTML: ");
+	console.log(articleHTML);
+
+	console.log("lang: "+lang);
+	console.log("glossary: ");
+	console.log(glossary);
+	for (const [key, value] of Object.entries(glossary)) {
+		console.log(`${key}: ${value}`);
+
+		var regex = new RegExp(`${key}`, 'gi'), result, indices = [];
+		while ( (result = regex.exec(articleHTML)) ) {
+			indices.push(result.index);
+		}
+
+		console.log("indices");
+		console.log(indices);
+
+		for(let i = indices.length; i > 0; i--){
+			const index = indices[i-1];
+			const word = articleHTML.substring(index, index + key.length);
+			console.log("word");
+			console.log(word);
+			var replacement = "";
+			replacement += word;
+			replacement += "<span class='glossaryWord align-top text-xs ml-0.5'>";
+			replacement += "<span class='toolTipTool' aria-describedby='toolTip'>";
+			replacement += "<span class='toolTipTip bg-tooltip-bg text-tooltip-text text-tooltip text-md border-1 border-primary'>";
+			replacement += value;
+			replacement += "<span class='toolTipArrow bg-tooltip-bg border-b-1 border-r-1 border-primary'></span>";
+			replacement += "</span>";
+			replacement += "?";
+			replacement += "</span>";
+			replacement += "</span>";
+			console.log("replacement");
+			console.log(replacement);
+			articleHTML = articleHTML.substring(0, index) + replacement + articleHTML.substring(index + key.length);
+		}
+		console.log("  ");
+
+		if(indices.length != 0){
+			console.log("put "+key+" in glossary");
+			Object.assign(thisGlossary, {[key]: value});
+		}else{
+			console.log("don't put "+key+" in glossary");
+		}
+
+	}
+	article.innerHTML = articleHTML;
+
+	console.log("thisGlossary");
+	console.log(thisGlossary);
+
+	console.log("thisGlossary:", JSON.stringify(thisGlossary));
+
+	// Sorting the object by keys
+	const thisGlossaryOrdered = Object.keys(thisGlossary)
+		.sort() // Sort the keys alphabetically
+		.reduce((obj, key) => {
+			obj[key] = thisGlossary[key]; // Rebuild the object with sorted keys
+			return obj;
+		}, {});
+	
+	var listContent = "";
+	for (const [key, value] of Object.entries(thisGlossaryOrdered)){
+		listContent += "<li>";
+		listContent += "<div class='flex-row w-full mb-2'>";
+		listContent += "<span class='font-bold'>";
+		listContent += key;
+		listContent += ": ";
+		listContent += "</span>";
+		listContent += "<span>";
+		listContent += value;
+		listContent += "</span>";
+		listContent += "</div>";
+		listContent += "</li>";	
+	}
+
+	if(listContent != ""){
+		const glossaryList = document.querySelector(".glossaryList");
+		glossaryList.innerHTML = listContent;
+		const glossaryContainer = document.querySelector(".glossaryContainer");
+		glossaryContainer.classList.remove("hidden");
+	}
+
+</script>

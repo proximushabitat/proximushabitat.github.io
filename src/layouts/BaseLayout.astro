@@ -1,6 +1,10 @@
 ---
 import BaseHead from "@components/BaseHead.astro";
 
+import "aos/dist/aos.css"
+import AOS from 'aos';
+
+
 const { title, keywords, author, excerpt, datePub, dateUp } = Astro.props;
 
 var allKeywords = keywords;

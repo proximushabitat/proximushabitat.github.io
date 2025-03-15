@@ -4,28 +4,25 @@
     "test": {
       "type": "object",
       "properties": {
-        "id": {
-          "type": "string"
-        },
         "is_draft": {
           "type": "boolean"
         },
-        "not_on_front": {
+        "on_front": {
           "type": "boolean"
         },
-        "not_on_section": {
+        "on_section": {
           "type": "boolean"
         },
-        "no_own_page": {
+        "make_page": {
           "type": "boolean"
         },
-        "is_trans_ready": {
+        "trans_ready": {
           "type": "boolean"
         },
         "is_og": {
           "type": "boolean"
         },
-        "is_upToDate": {
+        "up_to_date": {
           "type": "boolean"
         },
         "date_published": {
@@ -102,30 +99,7 @@
             ]
           }
         },
-        "title": {
-          "type": "string"
-        },
-        "headline": {
-          "type": "string"
-        },
-        "drophead": {
-          "type": "string"
-        },
-        "lead": {
-          "type": "string"
-        },
-        "excerpt": {
-          "type": "string"
-        },
         "category": {
-          "type": "string",
-          "enum": [
-            "transportation",
-            "architecture",
-            "urbanism"
-          ]
-        },
-        "related_test": {
           "type": "array",
           "items": {
             "anyOf": [
@@ -167,7 +141,7 @@
             ]
           }
         },
-        "references": {
+        "keywords": {
           "type": "array",
           "items": {
             "anyOf": [
@@ -212,17 +186,29 @@
         "slug": {
           "type": "string"
         },
+        "title": {
+          "type": "string"
+        },
+        "headline": {
+          "type": "string"
+        },
+        "drophead": {
+          "type": "string"
+        },
+        "lead": {
+          "type": "string"
+        },
+        "excerpt": {
+          "type": "string"
+        },
         "$schema": {
           "type": "string"
         }
       },
       "required": [
-        "id",
         "is_draft",
-        "is_trans_ready",
-        "is_og",
-        "is_upToDate",
         "date_published",
+        "slug",
         "headline"
       ],
       "additionalProperties": false

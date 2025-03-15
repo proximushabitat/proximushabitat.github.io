@@ -12,8 +12,6 @@ menu
 trans fertig
 bi de sections der content inelade
 meta
-glossar -> unge + ? näbä wort zum hovere
-bemerkungen -> unge + Buechstäbä
 
 author?
 menü?

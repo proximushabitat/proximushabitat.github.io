@@ -8,8 +8,8 @@ export default {
 	theme: {
 		extend: {
 			colors: {
-				primary: '#f4f4f4',
-  				secondary: '#0000cc',
+				primary: '#fafafa',
+  				secondary: '#0000ff',
 				complementary: {
 					split: {
 						pink: "#ff00cc",

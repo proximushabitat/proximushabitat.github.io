@@ -107,7 +107,7 @@ const lilBits = defineCollection({
 });
 
 const keyWords = defineCollection({
-	loader: file("src/collections/keywords.yaml", { parser: (keywords) => parseYaml(keywords) }),
+	loader: file("src/collections/keyWords.yaml", { parser: (keywords) => parseYaml(keywords) }),
 });
 
 const glossary = defineCollection({

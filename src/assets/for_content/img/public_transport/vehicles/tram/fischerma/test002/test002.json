@@ -1,0 +1,19 @@
+{
+	"type": "img",
+	"filetype": "jpeg",
+	"attribute": "strict",
+	"author": "author",
+	"source_name": "wiki",
+	"source_url": "www.wiki.org",
+	"year": "2002",
+	"generic_caption": {
+	  "de": "fährt",
+	  "fr": "roule",
+	  "en": "drives"
+	},
+	"generic_alt": {
+	  "de": "fährt",
+	  "fr": "roule",
+	  "en": "drives"
+	}
+  }

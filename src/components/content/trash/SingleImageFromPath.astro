@@ -8,8 +8,8 @@ import { parse as parseYaml } from "yaml";
 //get path from props and maybe width to scale the picture
 var { path, width, height, lang, index } = Astro.props;
 
-////////////////////////console.log("pathB");
-////////////////////////console.log(path);
+//////////////////////////console.log("pathB");
+//////////////////////////console.log(path);
 
 //GET YAML WITH DATA
 //go to folders above
@@ -22,8 +22,8 @@ const urlData = new URL(pathData, import.meta.url);
 const fileData = await fs.readFile(urlData, 'utf-8');
 //load data from yaml file
 const data = parseYaml(fileData);
-////////////////////////console.log("image data");
-////////////////////////console.log(data.generic_alt);
+//////////////////////////console.log("image data");
+//////////////////////////console.log(data.generic_alt);
 
 //GET IMAGE
 //generate path of image

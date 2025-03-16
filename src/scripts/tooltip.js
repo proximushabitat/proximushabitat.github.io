@@ -10,17 +10,17 @@ const toolTipTool = document.querySelectorAll('.toolTipTool');
 const toolTipTip = document.querySelectorAll('.toolTipTip');
 const arrowElement = document.querySelectorAll('.toolTipArrow');
 
-////console.log("toolTipTool");
-////console.log(toolTipTool);
-////console.log("toolTipTool[0]");
-////console.log(toolTipTool[0]);
-////console.log("toolTipTool.length");
-////console.log(toolTipTool.length);
+//////console.log("toolTipTool");
+//////console.log(toolTipTool);
+//////console.log("toolTipTool[0]");
+//////console.log(toolTipTool[0]);
+//////console.log("toolTipTool.length");
+//////console.log(toolTipTool.length);
 
 
 for(let i = 0; i < toolTipTool.length; i++){
-	////console.log("i");
-	////console.log(i);
+	//////console.log("i");
+	//////console.log(i);
 	function update() {
 		computePosition(toolTipTool[i], toolTipTip[i], {
 			placement: 'top',
@@ -31,10 +31,10 @@ for(let i = 0; i < toolTipTool.length; i++){
 				arrow({element: arrowElement[i]}),
 			],
 		}).then(({x, y, placement, middlewareData}) => {
-			////console.log("placement");
-			////console.log(placement);
-			////console.log("placement");
-			////console.log(placement);
+			//////console.log("placement");
+			//////console.log(placement);
+			//////console.log("placement");
+			//////console.log(placement);
 
 			Object.assign(toolTipTip[i].style, {
 				left: `${x}px`,
@@ -51,8 +51,8 @@ for(let i = 0; i < toolTipTool.length; i++){
 				left: 'right',
 			}[placement.split('-')];
 
-			////console.log("staticSide");
-			////console.log(staticSide);
+			//////console.log("staticSide");
+			//////console.log(staticSide);
 			
 			Object.assign(arrowElement[i].style, {
 				left: arrowX != null ? `${arrowX}px` : '',

@@ -63,9 +63,12 @@ export default {
 			addBase({
 			  'a': { background: theme('gradients.linksNorm'), borderColor: theme('colors.secondary'), borderWidth: '0 0 1px 0', borderStyle: 'dotted' },
 			  'a:hover': { transition: 'all ease-in-out, 0.5s', background: theme('gradients.linksHov'), /*textDecoration: 'underline', */ borderStyle: 'solid', dropShadow: theme('dropShadow.xl') /*config('theme.colors.complementary.opposite.yellow')*/ },
-			  'h1': { fontSize: '2rem' },
-			  'h2': { fontSize: '1.75rem' },
-			  'h3': { fontSize: '1.5rem' },
+			  'h1': { fontSize: '2rem', fontStyle: 'italic' },
+			  'h2': { fontSize: '1.75rem', fontStyle: 'italic' },
+			  'h3': { fontSize: '1.5rem', fontStyle: 'italic' },
+			  'p': { marginBottom: '0.8rem' },
+			  'ul': { listStyleType: 'disc', listStylePosition: 'outside', paddingLeft: '1rem' },
+			  'li': { marginBottom: '0.8rem' },
 			})
 		  })
 	],

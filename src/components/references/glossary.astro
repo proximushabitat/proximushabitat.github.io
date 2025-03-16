@@ -9,8 +9,8 @@ const lang = getLangFromUrl(Astro.url);
 
 const lB = await getCollection('lilBits');
 const tSources = lB.filter(entry => {
-	//////////////console.log("entry");
-	//////////////console.log(entry.id);
+	////////////////console.log("entry");
+	////////////////console.log(entry.id);
 	return entry.id == "glossary";
 })[0].data;
 
@@ -18,8 +18,8 @@ const glossary = glossaryAllLang.filter(entry => {
 	return entry.id == lang;
 })[0].data;
 
-console.log("glossary");
-console.log(glossary);
+//console.log("glossary");
+//console.log(glossary);
 
 //aos
 import { aosDuration, aosDelay } from '@/snippets/aosValues';
@@ -43,18 +43,21 @@ import { aosDuration, aosDelay } from '@/snippets/aosValues';
 
 	var thisGlossary = {};
 
-	console.log("articleHTML: ");
-	console.log(articleHTML);
+	//console.log("articleHTML: ");
+	//console.log(articleHTML);
 
-	console.log("lang: "+lang);
-	console.log("glossary: ");
-	console.log(glossary);
+	//console.log("lang: "+lang);
+	//console.log("glossary: ");
+	//console.log(glossary);
 	for (const [key, value] of Object.entries(glossary)) {
-		console.log(`${key}: ${value}`);
+		//console.log(`${key}: ${value}`);
 
 		var regex = new RegExp(`${key}`, 'gi'), result, indices = [];
 		while ( (result = regex.exec(articleHTML)) ) {
-			indices.push(result.index);
+			console.log(getLastBracket(articleHTML, result.index));
+			if(getLastBracket(articleHTML, result.index) == ">"){
+				indices.push(result.index);
+			}
 		}
 
 		console.log("indices");
@@ -62,40 +65,43 @@ import { aosDuration, aosDelay } from '@/snippets/aosValues';
 
 		for(let i = indices.length; i > 0; i--){
 			const index = indices[i-1];
-			const word = articleHTML.substring(index, index + key.length);
+			const endIndex = getWordEndIndex(articleHTML, index);
+			const word = articleHTML.substring(index, endIndex+1);//index + key.length);
 			console.log("word");
 			console.log(word);
 			var replacement = "";
 			replacement += word;
-			replacement += "<span class='glossaryWord align-top text-xs ml-0.5'>";
+			replacement += "<span class='glossaryWord'>";
 			replacement += "<span class='toolTipTool' aria-describedby='toolTip'>";
 			replacement += "<span class='toolTipTip bg-tooltip-bg text-tooltip-text text-tooltip text-md border-1 border-primary'>";
 			replacement += value;
 			replacement += "<span class='toolTipArrow bg-tooltip-bg border-b-1 border-r-1 border-primary'></span>";
 			replacement += "</span>";
+			replacement += "<span class='align-top text-xs ml-0.5'>";
 			replacement += "?";
 			replacement += "</span>";
 			replacement += "</span>";
-			console.log("replacement");
-			console.log(replacement);
-			articleHTML = articleHTML.substring(0, index) + replacement + articleHTML.substring(index + key.length);
+			replacement += "</span>";
+			//console.log("replacement");
+			//console.log(replacement);
+			articleHTML = articleHTML.substring(0, index) + replacement + articleHTML.substring(endIndex+1);
 		}
-		console.log("  ");
+		//console.log("  ");
 
 		if(indices.length != 0){
-			console.log("put "+key+" in glossary");
+			//console.log("put "+key+" in glossary");
 			Object.assign(thisGlossary, {[key]: value});
 		}else{
-			console.log("don't put "+key+" in glossary");
+			//console.log("don't put "+key+" in glossary");
 		}
 
 	}
 	article.innerHTML = articleHTML;
 
-	console.log("thisGlossary");
-	console.log(thisGlossary);
+	//console.log("thisGlossary");
+	//console.log(thisGlossary);
 
-	console.log("thisGlossary:", JSON.stringify(thisGlossary));
+	//console.log("thisGlossary:", JSON.stringify(thisGlossary));
 
 	// Sorting the object by keys
 	const thisGlossaryOrdered = Object.keys(thisGlossary)
@@ -125,6 +131,35 @@ import { aosDuration, aosDelay } from '@/snippets/aosValues';
 		glossaryList.innerHTML = listContent;
 		const glossaryContainer = document.querySelector(".glossaryContainer");
 		glossaryContainer.classList.remove("hidden");
+	}
+
+	function getWordEndIndex(sentence, charIndex) {
+		if (charIndex < 0 || charIndex >= sentence.length) {
+			return -1; // Out of bounds
+		}
+
+		// Move right to find the end of the word
+		let end = charIndex;
+		while (end < sentence.length && sentence[end] !== ' ') {
+			end++;
+		}
+
+		return end - 1; // Return the last character index of the word
+	}
+
+	function getLastBracket(sentence, charIndex) {
+		if (charIndex < 0 || charIndex >= sentence.length) {
+			return null; // Out of bounds
+		}
+
+		let lastLessThan = sentence.lastIndexOf('<', charIndex);
+		let lastGreaterThan = sentence.lastIndexOf('>', charIndex);
+
+		if (lastLessThan === -1 && lastGreaterThan === -1) {
+			return null; // Neither symbol found
+		}
+
+		return lastLessThan > lastGreaterThan ? '<' : '>';
 	}
 
 </script>

@@ -1,5 +1,5 @@
 ---
-////////////////////////////console.log("SLIDER")
+//////////////////////////console.log("SLIDER")
 import { Image } from 'astro:assets';
 import type { ImageMetadata } from 'astro';
 import fs from 'node:fs/promises';
@@ -15,122 +15,35 @@ const slug = getSlugNoLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 
 
-const { items, interval = 5000, aspect, capAlt} = Astro.props;
+const { items, interval = 5000, aspect, capAlt, dataFile} = Astro.props;
 //const STRAPI_BASE_URL = import.meta.env.STRAPI_BASE_URL || "http://localhost:1337";
 const sliderId = `slider-${Math.random().toString(36).substr(2, 9)}`;
 
-//////////////////////////console.log("capAlt");
-//////////////////////////console.log(capAlt);
+////////////////////////console.log("capAlt");
+////////////////////////console.log(capAlt);
 
-////////////////////////////console.log("itemsJustImportant");
-////////////////////////////console.log(itemsOriginal);
+//////////////////////////console.log("itemsJustImportant");
+//////////////////////////console.log(itemsOriginal);
 //var items = ["hhh"];
 
 var navButtons = "";
 var navIndicators = "";
 
-async function itemAddData() {
-  //////////////////////////////console.log("itemsWITHIN");
-  //////////////////////////////console.log(items);
-  items = itemsOriginal;
-  //////////////////////////////console.log("itemsWITHIN2");
-  //////////////////////////////console.log(items);
-  for(let i=0; i < items.length; i++){
-    //////////////////////////////console.log(" ");
-    //////////////////////////////console.log("i: "+i);
-    //////////////////////////////console.log("item");
-    //////////////////////////////console.log(items[i]);
-    //GET PATH
-    var pathArray = items[i]['src'].split('/');
-    const pathArrayStart = pathArray.indexOf('assets');
-    //////////////////////console.log("pathArray1");
-    //////////////////////console.log(pathArray);
-    pathArray = pathArray.splice(pathArrayStart, pathArray.length);
-    //////////////////////console.log("pathArray2");
-    //////////////////////console.log(pathArray);
-    const imageFile = pathArray[pathArray.length - 1];
-    const imageFileNoType = imageFile.split(".")[1];
-    //change the name of the file to data.yaml, in the same folder
-    pathArray[pathArray.length - 1] = "data.yaml";
-    const parentFolder = pathArray[pathArray.length - 2];
-    //////////////////////console.log("parentFolder");
-    //////////////////////console.log(parentFolder);
-    //////////////////////console.log("imageNoType");
-    //////////////////////console.log(imageFileNoType);
-    //////////////////////console.log("capAlt");
-    //////////////////////console.log(capAlt);
-    const thisCapAlt = capAlt[parentFolder];
-    //////////////////////console.log("thisCapAlt");
-    //////////////////////console.log(thisCapAlt);
-    if(capAlt[parentFolder]['caption']){
-      //////////////////////console.log("hasCaption: "+capAlt[parentFolder]['caption']);
-      items[i]['caption'] = capAlt[parentFolder]['caption'];
-    }else{
-      //////////////////////console.log("hasNoCaption: "+capAlt[parentFolder]['caption']);
-    }
-    if(capAlt[parentFolder].alt){
-      //////////////////////console.log("hasAlt: "+capAlt[parentFolder].alt);
-      items[i]['alt'] = capAlt[parentFolder].alt;
-    }else{
-      //////////////////////console.log("hasNoAlt: "+capAlt[parentFolder].alt);
-    }
-    //items[i]['caption'] = capAlt[parentFolder].caption;
-    //items[i]['alt'] = capAlt[parentFolder].alt;
-    var pathData = pathArray.join('/');
-    pathData = "../../"+pathData;
-    //////////////////////////////console.log("pathData");
-    //////////////////////////////console.log(pathData);
-    //GET YAML WITH DATA
-    //generate url
-    //////////////////////////////console.log("yaml path");
-    //////////////////////////////console.log(pathData);
-    const urlData = new URL(pathData, import.meta.url);
-    //load yaml file
-    //////////////////////////////console.log("yaml url");
-    //////////////////////////////console.log(urlData);
-    const fileData = await fs.readFile(urlData, 'utf8');
-    //load data from yaml file
-    const data = parseYaml(fileData);
-    items[i].data = data;
-    ////////////////////////////console.log("data1: "+items[i].data);
-    //////////////////////////////console.log("image data");
-    //////////////////////////////console.log(data.generic_alt);
-  }
+////////////////////console.log("capAlt");
+////////////////////console.log(capAlt);
 
-  /*items.forEach((item, index) => {
-    ////////////////////////////console.log("item");
-    ////////////////////////////console.log(item);
-    //GET YAML WITH DATA
-    //go to folders above
-    item.path = "../../" + item.path;
-    //all data files are named data
-    const pathData = item.path+"data.yaml";
-    //generate url
-    const urlData = new URL(pathData, import.meta.url);
-    //load yaml file
-    const fileData = await fs.readFile(urlData, 'utf-8');
-    //load data from yaml file
-    const data = parseYaml(fileData);
-    //////////////////////////////console.log("image data");
-    //////////////////////////////console.log(data.generic_alt);
-  });*/
-}
-
+////////////////////console.log("items1");
+////////////////////console.log(items);
 for(let i = 0; i < items.length; i++ ){
-  items[i]['caption'] = capAlt[i]['caption']
+  items[i].data = dataFile[i];
 }
-
-
-//const images = import.meta.glob<{ default: ImageMetadata }>("../../assets/for_content/img/**/*.{jpeg,jpg,png,gif,tiff,webp}");
-
-//////////////////////////////console.log("images");
-//////////////////////////////console.log(images);
-
-//await itemAddData();
-
-//////////////////////console.log("items2");
-//////////////////////console.log(items);
-
+////////////////////console.log("items2");
+////////////////////console.log(items);
+for(let i = 0; i < items.length; i++ ){
+  items[i].capAlt = capAlt[i];
+}
+////////////////////console.log("items3");
+////////////////////console.log(items);
 
 ---
 
@@ -147,19 +60,20 @@ for(let i = 0; i < items.length; i++ ){
 <div class="hidden scale-y-0"></div>
 
 
-<div class={"flex flex-col custom-slider relative w-full overflow-hidden shadow-lg my-3 bg-secondary aspect-"+aspect} id={sliderId}>
+<div class={"flex flex-col custom-slider relative w-full overflow-hidden shadow-lg my-3  bg-secondary aspect-"+aspect} id={sliderId}>
   {items.map((thisImage, index) => (
     <div
-      class="absolute top-0 left-0 w-full h-full object-cover opacity-0 transition-opacity duration-500 ease-in-out invisible"
+      class="absolute top-0 left-0 w-full h-full object-cover opacity-0 transition-opacity duration-200 ease-in-out invisible"
       data-slider-container
     >
 
       <Image
         src={thisImage}
-        alt={thisImage.alt || thisImage.data.generic_alt[lang] || ""}
+        alt={thisImage.capAlt.alt || thisImage.data.generic_alt[lang] || ""}
         class="absolute medium-zoomable top-0 left-0 w-full h-full object-cover"
         data-slider-image
         data-index={index}
+        height="2160"
         medium-zoomable
       />
 
@@ -174,12 +88,12 @@ for(let i = 0; i < items.length; i++ ){
   
   
   <!-- Navigation buttons -->
-  <button class="absolute top-1/2 left-4 transform -translate-y-1/2 bg-primary bg-opacity-75 hover:bg-opacity-100 all-neutral-dark rounded-full p-3 shadow-md transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-focus" data-slider-prev>
+  <button class="absolute top-1/2 left-4 transform -translate-y-1/2 bg-primary bg-opacity-75 hover:bg-opacity-100 all-neutral-dark rounded-full p-3 shadow-md transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-primary" data-slider-prev>
     <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
     </svg>
   </button>
-  <button class="absolute top-1/2 right-4 transform -translate-y-1/2 bg-primary bg-opacity-75 hover:bg-opacity-100 all-neutral-dark rounded-full p-3 shadow-md transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-focus" data-slider-next>
+  <button class="absolute top-1/2 right-4 transform -translate-y-1/2 bg-primary bg-opacity-75 hover:bg-opacity-100 all-neutral-dark rounded-full p-3 shadow-md transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-primary" data-slider-next>
     <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
     </svg>
@@ -190,24 +104,24 @@ for(let i = 0; i < items.length; i++ ){
     <!-- Slide indicators -->
     <div class="mx-auto my-2 flex space-x-3 z-10 w-full justify-center">
       {items.map((_, index) => (
-        <button class="w-3 h-3 rounded-full bg-primary bg-opacity-50 hover:bg-opacity-100 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-focus" style="z-index: 0;" data-slider-indicator data-index={index}></button>
+        <button class="w-3 h-3 rounded-full bg-primary bg-opacity-50 hover:bg-opacity-100 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-primary" style="z-index: 0;" data-slider-indicator data-index={index}></button>
       ))}
     </div>
     <!-- caption -->
-    <div class="caption grid text-sm w-full z-10 h-fit transition-all duration-50 ease-in-out p-3" caption-outer-container>
-      <div class="grid grid-cols-1 grid-rows-1 bg-secondary transition-all duration-500 ease-in-out h-fit" caption-inner-container>
+    <div class="hidden sm:grid caption text-sm w-full z-10 h-fit transition-all duration-50 ease-in-out p-3" caption-outer-container>
+      <div class="grid grid-cols-1 grid-rows-1 bg-secondary transition-all duration-500 ease-in-out h-fit py-2" caption-inner-container>
         {items.map((thisImage, index) => (
-          <div class="invisible transition-all ease-in-out duration-300 delay-0 opacity-0 mx-0 mb-0 order-1 px-4 h-0 max-h-8 [grid-area: 1/1/1/1] text-primary" data-index={index}>{/*thisImage.caption || thisImage.data.generic_caption[lang] || */" "}</div>
+          <div class="invisible overflow-hidden transition-all ease-in-out duration-300 delay-0 opacity-0 mx-0 mb-0 order-1 px-4 h-0 max-h-8 [grid-area: 1/1/1/1]  text-primary " data-index={index}>{thisImage.capAlt.caption || thisImage.data.generic_caption[lang] || " " }<span class="ref float-right"><span href={thisImage.data.source_url}>{thisImage.data.author && thisImage.data.author}{thisImage.data.author && thisImage.data.source_name && ", "}{thisImage.data.source_name && thisImage.data.source_name}</span></span></div>
         ))}
       </div>
     </div>
   </div>
 </div>
 
-<div class="captionMobile text-sm grid w-full z-10 h-fit transition-all duration-50 ease-in-out pb-3 -my-3" caption-outer-container-mobile>
-  <div class="grid grid-cols-1 grid-rows-1 bg-secondary transition-all duration-500 ease-in-out h-fit" caption-inner-container-mobile>
+<div class="grid sm:hidden captionMobile text-sm w-full z-10 h-fit transition-all duration-50 ease-in-out pb-3 -my-3" caption-outer-container-mobile>
+  <div class="grid grid-cols-1 grid-rows-1 bg-secondary transition-all duration-500 ease-in-out h-fit shadow-lg z-50" caption-inner-container-mobile>
     {items.map((thisImage, index) => (
-      <div class="invisible overflow-hidden transition-all ease-in-out duration-300 delay-0 opacity-0 mx-0 mb-0 order-1 px-4 h-0 max-h-8 [grid-area: 1/1/1/1] text-primary" data-index={index}>{/*thisImage.caption || thisImage.data.generic_caption[lang] || */" " }</div>
+      <div class="invisible overflow-hidden transition-all ease-in-out duration-300 delay-0 opacity-0 mx-0 mb-0 order-1 px-4 h-0 max-h-8 [grid-area: 1/1/1/1]  text-primary " data-index={index}>{thisImage.capAlt.caption || thisImage.data.generic_caption[lang] || " " }<span class="ref float-right"><span href={thisImage.data.source_url}>{thisImage.data.author && thisImage.data.author}{thisImage.data.author && thisImage.data.source_name && ", "}{thisImage.data.source_name && thisImage.data.source_name}</span></span></div>
     ))}
   </div>
 </div>
@@ -221,6 +135,7 @@ for(let i = 0; i < items.length; i++ ){
   ////////////////////////////////////console.log("bg: "+bg);
   const zoom = await mediumZoom('[medium-zoomable]', {
     margin: 0,
+    background: "#fafafaed",
     /*opacity: "0.5",*/
     /*isTailWind: false,
     background: bg+"70",
@@ -237,7 +152,7 @@ for(let i = 0; i < items.length; i++ ){
 
   zoom.on('open', event => {
     // track when the image is zoomed
-    //////////////////////////////////////console.log("open");
+    ////////////////////////////////////console.log("open");
     prevButtonsAll.forEach(node => {
       node.classList.add('opacity-0');
       node.classList.add('invisible');
@@ -264,7 +179,7 @@ for(let i = 0; i < items.length; i++ ){
 
   zoom.on('closed', event => {
     // track when the image has finished closing
-    //////////////////////////////////////console.log("closed");
+    ////////////////////////////////////console.log("closed");
     prevButtonsAll.forEach(node => {
       node.classList.remove('opacity-0');
       node.classList.remove('invisible');
@@ -312,7 +227,7 @@ for(let i = 0; i < items.length; i++ ){
     indicators[currentSlide].classList.add('bg-opacity-50');
 
     captionInner[0].children[currentSlide].classList.add("invisible");
-    captionInner[0].children[currentSlide].classList.remove("flex");
+    //captionInner[0].children[currentSlide].classList.remove("flex");
     captionInner[0].children[currentSlide].classList.add("opacity-0");
     captionInner[0].children[currentSlide].classList.remove("opacity-100");
     captionInner[0].children[currentSlide].classList.remove("max-h-96");
@@ -322,7 +237,7 @@ for(let i = 0; i < items.length; i++ ){
     captionInner[0].children[currentSlide].classList.remove("py-3");
 
     captionInnerMobile[0].children[currentSlide].classList.add("invisible");
-    captionInnerMobile[0].children[currentSlide].classList.remove("flex");
+    //captionInnerMobile[0].children[currentSlide].classList.remove("flex");
     captionInnerMobile[0].children[currentSlide].classList.add("opacity-0");
     captionInnerMobile[0].children[currentSlide].classList.remove("opacity-100");
     captionInnerMobile[0].children[currentSlide].classList.remove("max-h-96");
@@ -340,7 +255,7 @@ for(let i = 0; i < items.length; i++ ){
     indicators[currentSlide].classList.add('bg-opacity-100');
 
     captionInner[0].children[currentSlide].classList.remove("invisible");
-    captionInner[0].children[currentSlide].classList.add("flex");
+    //captionInner[0].children[currentSlide].classList.add("flex");
     captionInner[0].children[currentSlide].classList.remove("opacity-0");
     captionInner[0].children[currentSlide].classList.add("opacity-100");
     captionInner[0].children[currentSlide].classList.add("max-h-96");
@@ -350,7 +265,7 @@ for(let i = 0; i < items.length; i++ ){
     captionInner[0].children[currentSlide].classList.add("py-3");
 
     captionInnerMobile[0].children[currentSlide].classList.remove("invisible");
-    captionInnerMobile[0].children[currentSlide].classList.add("flex");
+    //captionInnerMobile[0].children[currentSlide].classList.add("flex");
     captionInnerMobile[0].children[currentSlide].classList.remove("opacity-0");
     captionInnerMobile[0].children[currentSlide].classList.add("opacity-100");
     captionInnerMobile[0].children[currentSlide].classList.add("max-h-96");
@@ -415,9 +330,9 @@ for(let i = 0; i < items.length; i++ ){
 </script>
 
 <style>
-  .medium-zoom-overlay{z-index:99;backdrop-filter: blur(3px);position:fixed;top:0;right:0;bottom:0;left:0;opacity:0;transition:opacity .3s;will-change:opacity}.medium-zoom--opened .medium-zoom-overlay{z-index: 99;cursor:pointer;cursor:zoom-out;opacity:1}.medium-zoom-image{cursor:pointer;cursor:zoom-in;transition:transform .3s cubic-bezier(.2,0,.2,1)!important}.medium-zoom-image--hidden{visibility:hidden}.medium-zoom-image--opened{z-index:101;position:relative;cursor:pointer;cursor:zoom-out;will-change:transform}
+  .medium-zoom-overlay{z-index:5;backdrop-filter: blur(3px);position:fixed;top:0;right:0;bottom:0;left:0;opacity:0;transition:opacity .3s;will-change:opacity}.medium-zoom--opened .medium-zoom-overlay{z-index: 99;cursor:pointer;cursor:zoom-out;opacity:1}.medium-zoom-image{cursor:pointer;cursor:zoom-in;transition:transform .3s cubic-bezier(.2,0,.2,1)!important}.medium-zoom-image--hidden{visibility:hidden}.medium-zoom-image--opened{z-index:101;position:relative;cursor:pointer;cursor:zoom-out;will-change:transform}
 
-  @media screen and (min-width: 768px) {
+  /*@media screen and (min-width: 768px) {
     .caption {
       display: relative;
     }
@@ -432,7 +347,7 @@ for(let i = 0; i < items.length; i++ ){
     .captionMobile {
       display: relative;
     }
-  }
+  }*/
 
 
 </style>

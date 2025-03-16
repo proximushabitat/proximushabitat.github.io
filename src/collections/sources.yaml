@@ -89,9 +89,23 @@ TramGleis38:
  url: "https://www.derbund.ch/abstimmung-bern-bevoelkerung-sagt-ja-zum-fischermaetteli-tram-557960222053"
  archiveUrl: "https://archive.ph/mMVdP"
 
-BHBern:
+BHBernTeurer:
  title: "Teurer und später: Ausbau des Berner Bahnhofs verzögert sich "
  publication: "SRF"
  date: 16.02.2022
  url: "https://www.srf.ch/news/schweiz/oev-knoten-mit-verzug-teurer-und-spaeter-ausbau-des-berner-bahnhofs-verzoegert-sich"
  archiveUrl: "https://archive.ph/wUOgp"
+
+TramOMWebProjekt:
+  title: "Teurer und später: Ausbau des Berner Bahnhofs verzögert sich "
+  type: "website"
+  consulted: "2025-03-15"
+  url: "https://tram-bern-ostermundigen.ch/das-projekt/"
+  archiveUrl: "https://archive.ph/QpWDx"
+
+TramOMKosten:
+  title: "Tram Bern – Ostermundigen"
+  type: "website"
+  consulted: "2025-03-15"
+  url: "https://www.bern.ch/politik-und-verwaltung/stadtverwaltung/tvs/tiefbauamt/projekte-des-tab/projekte-in-vorbereitung/tram-bern-ostermundigen"
+  archiveUrl: "https://archive.ph/4hgQU"

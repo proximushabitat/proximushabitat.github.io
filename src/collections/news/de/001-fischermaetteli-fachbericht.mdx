@@ -44,24 +44,24 @@ CcapAlt:
   alt: ""
 
 ---
-import R from "@/components/references/referenceSingle.astro"
-import C from "@/components/references/remarkSingle.astro"
-import Slider from "@/components/content/Slider.astro" 
+import R from "@components/references/referenceSingle.astro"
+import C from "@components/references/remarkSingle.astro"
+import Slider from "@components/content/Slider.astro" 
 
-import thumby from "@/assets/for_content/img/public_transport/vehicles/tram/fischermaetteli/einfachSo/einfachSo.png"
+import thumby from "@assets/for_content/img/public_transport/vehicles/tram/fischermaetteli/einfachSo/einfachSo.png"
 
-import AAimg from "@/assets/for_content/img/public_transport/vehicles/tram/fischermaetteli/mitvelo/mitvelo.png"
-import AAdata from "@/assets/for_content/img/public_transport/vehicles/tram/fischermaetteli/mitvelo/mitvelo.json"
+import AAimg from "@assets/for_content/img/public_transport/vehicles/tram/fischermaetteli/mitVelo/mitVelo.png"
+import AAdata from "@assets/for_content/img/public_transport/vehicles/tram/fischermaetteli/mitVelo/mitVelo.json"
 
-import BAimg from "@/assets/for_content/img/public_transport/infra/stops/basel/volta/wikiA/wikiA.jpg"
-import BAdata from "@/assets/for_content/img/public_transport/infra/stops/basel/volta/wikiA/wikiA.json"
+import BAimg from "@assets/for_content/img/public_transport/infra/stops/basel/volta/wikiA/wikiA.jpg"
+import BAdata from "@assets/for_content/img/public_transport/infra/stops/basel/volta/wikiA/wikiA.json"
 
-import CAimg from "@/assets/for_content/img/public_transport/infra/stops/amsterdam/peterstraat/peterstraat.png"
-import CAdata from "@/assets/for_content/img/public_transport/infra/stops/amsterdam/peterstraat/peterstraat.json"
-import CBimg from "@/assets/for_content/img/public_transport/infra/stops/wroclaw/braterska/braterska.png"
-import CBdata from "@/assets/for_content/img/public_transport/infra/stops/wroclaw/braterska/braterska.json"
-import CCimg from "@/assets/for_content/img/public_transport/infra/stops/berlin/rothenbachstrasse/rothenbachstrasse.png"
-import CCdata from "@/assets/for_content/img/public_transport/infra/stops/berlin/rothenbachstrasse/rothenbachstrasse.json"
+import CAimg from "@assets/for_content/img/public_transport/infra/stops/amsterdam/peterstraat/peterstraat.png"
+import CAdata from "@assets/for_content/img/public_transport/infra/stops/amsterdam/peterstraat/peterstraat.json"
+import CBimg from "@assets/for_content/img/public_transport/infra/stops/wroclaw/braterska/braterska.png"
+import CBdata from "@assets/for_content/img/public_transport/infra/stops/wroclaw/braterska/braterska.json"
+import CCimg from "@assets/for_content/img/public_transport/infra/stops/berlin/rothenbachstrasse/rothenbachstrasse.png"
+import CCdata from "@assets/for_content/img/public_transport/infra/stops/berlin/rothenbachstrasse/rothenbachstrasse.json"
 
 
 export const thumb = thumby
@@ -88,14 +88,14 @@ Auch hier entfiele die direkte Verbindung in die Altstadt. Die Linie wäre dadur
 
 ## Konsequenzen für das Gesamtsystem
 Dass die Trams, welche ins Fischermätteli fahren, eher überdimensioniert sind, soll nicht bestritten werden. Von der Kapazität her könnte ein Bus durchaus funktionieren, um das Angebot attraktiv zu halten, müsste eine Buslösung aber auch ins Gesamtsystem passen. Wie eben gezeigt, ist bei Busbetrieb keine gleichwertige Lösung in Sicht. 
-Wirklich interessant wird es allerdings, wenn man sich die Implikationen fürs anderweitige Tramnetz näher ansieht. Aktuell besteht das Netz aus 4 Durchmesserlinien (6,7,8,9) und einer Radiallinie (3), welche westlich des Bahnhofs verkehrt. Mit der Inbetriebnahme des Trams Ostermundigen, man darf auf 2031 hoffen <R id="TramOMWebProjekt" />, käme ein Linienast im Osten hinzu. Es wäre nun möglich 5 Durchmesserlinien zu betreiben, kein Tram müsste mehr am Bahnhof wenden.
+Wirklich interessant wird es allerdings, wenn man sich die Implikationen fürs anderweitige Tramnetz näher ansieht. Aktuell besteht das Netz aus 4 Durchmesserlinien (6,7,8,9) und einer Radiallinie (3), welche westlich des Bahnhofs verkehrt. Mit der Inbetriebnahme des Trams Ostermundigen, man darf auf 2031 hoffen<R id="TramOMWebProjekt" />, käme ein Linienast im Osten hinzu. Es wäre nun möglich 5 Durchmesserlinien zu betreiben, kein Tram müsste mehr am Bahnhof wenden.
 Sollte das 6er Tram entfallen, hätte man für wenige Jahre ein Netz mit gleicher Anzahl Tramstrecken beidseits des Bahnhofs, man hätte die Möglichkeit ausschliesslich Durchmesserlinien zu betreiben. Bei Eröffnung des Trams Ostermundigen hätte man nun eine Radiallinie im Osten der Stadt. Dies ist durchaus problematisch, denn das Wenden einer solchen im Bahnhofsbereich birgt einige Nachteile. Eine Radiallinie Richtung Osten müsste die Wendeschleife via Wall- und Schwanengasse befahren. Dies hat einige Konsequenzen:
 
 * Heute wird diese Schleife in Störfällen befahren. Eine zusätzlich fahrplanmässig darüber verkehrende Tramlinie würde diese Funktion beeinträchtigen. Das Berner Tramnetz, das sowieso schon kaum über Ausweichrouten verfügt, wäre noch weniger resilient.
-* Diese Schleife kreuzt die Velohauptroute, sowie die stadteinwärtsfahrenden Trams und Busse <C cont="inklusive eines verdichteten 17er oder eines Fischermätteli-Buses"/>. Letztere gleich zwei Mal. Es entstünden also mehrere Konfliktpunkte an einem neuralgischen Punkt im Berner ÖV-Netz, das kreuzende Tram wäre den Velos im Weg.
+* Diese Schleife kreuzt die Velohauptroute, sowie die stadteinwärtsfahrenden Trams und Busse<C cont="inklusive eines verdichteten 17er oder eines Fischermätteli-Buses"/>. Letztere gleich zwei Mal. Es entstünden also mehrere Konfliktpunkte an einem neuralgischen Punkt im Berner ÖV-Netz, das kreuzende Tram wäre den Velos im Weg.
 * Die zur Schleife führende Weiche am Hirschengraben liegt nicht am Ende des Perrons, sondern in dessen Verlauf und zwar vor dem Haltepunkt. Eine wendende Tramlinie aus dem Osten könnte aktuell also am Hirschengraben nicht halten. 
 
-Der letzte Punkt verdient besondere Beachtung. Gerade wird der Bahnhof Bern ausgebaut, eine neue Unterführung wird errichtet, welche vom Hirschengraben aus erreichbar sein wird. Durchaus möglich also, dass in einigen Jahren der Steuerzahler aus seiner 375 Mio Franken teuren Unterführung <R id="BHBernTeurer" /> ans Tageslicht steigt um seinem 265 Mio Franken teuren Tram <R id="TramOMKosten" />, dass er eigentlich nehmen wollte beim gemütlichen Durchzuckeln zuzuschauen. Dies, weil man anderswo darauf bestanden hat, es zu versuchen einen mittleren einstelligen <C cont="Bei einer Radialline." />, oder tiefen zweistelligen <C cont="Bei Umleitung des 17ers" /> Milionenbetrag einzusparen. Anpassungen an der Infrastruktur im Bahnhofsbereich dürften die Ersparnisse, die eine Umstellung auf Bus Richtung Fischermätteli brächte, sehr schnell negieren. Es blieben die Nachteile und zusätzliche Baustellen.
+Der letzte Punkt verdient besondere Beachtung. Gerade wird der Bahnhof Bern ausgebaut, eine neue Unterführung wird errichtet, welche vom Hirschengraben aus erreichbar sein wird. Durchaus möglich also, dass in einigen Jahren der Steuerzahler aus seiner 375 Mio Franken teuren Unterführung<R id="BHBernTeurer" /> ans Tageslicht steigt um seinem 265 Mio Franken teuren Tram<R id="TramOMKosten" />, dass er eigentlich nehmen wollte beim gemütlichen Durchzuckeln zuzuschauen. Dies, weil man anderswo darauf bestanden hat, es zu versuchen einen mittleren einstelligen<C cont="Bei einer Radialline." />, oder tiefen zweistelligen<C cont="Bei Umleitung des 17ers" /> Milionenbetrag einzusparen. Anpassungen an der Infrastruktur im Bahnhofsbereich dürften die Ersparnisse, die eine Umstellung auf Bus Richtung Fischermätteli brächte, sehr schnell negieren. Es blieben die Nachteile und zusätzliche Baustellen.
 
 Eine Möglichkeit wäre, das 6i-Tram über den Bahnhof hinaus zu amputieren und wie bis vor 15 Jahren am Casinoplatz wenden zu lassen. Eine offensichtliche Angebotsverschlechterung.
 

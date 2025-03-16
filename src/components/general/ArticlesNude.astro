@@ -36,10 +36,10 @@ function calculateAosDuration(index) {
     <div>
       <slot />
     </div>
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 text-secondary gap-6 pt-2 mt-2" data-aos="fade-up" data-aos-duration={aosDuration(8)}> 
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 text-secondary gap-6 pt-2 mt-2"}> 
       {
         items.map((item, index) => (
-         <div class="h-full flex flex-col">
+         <div class="h-full flex flex-col"  data-aos="fade-up" data-aos-duration={aosDuration(8)} data-aos-delay={aosDuration(index)}>
             <h3 class="italic text-2xl block font-bold">
               {item.data.headline}
             </h3>

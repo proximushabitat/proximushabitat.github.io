@@ -26,8 +26,6 @@ lead: "lead-news-en-1"
 excerpt: "excerpt-news-en-1"
 
 
-thumb2: "@assets/for_content/img/public_transport/vehicles/tram/fischermaetteli/test001/test001.jpg"
-
 capAlt:
 - caption: "cap1DE"
   alt: "alt1DE"
@@ -37,12 +35,7 @@ capAlt:
 import R from "@components/references/referenceSingle.astro"
 import Slider from "@components/content/Slider.astro" 
 
-import AAimg from "@assets/for_content/img/public_transport/vehicles/tram/fischermaetteli/test001/test001.jpg"
-import AAdata from "@assets/for_content/img/public_transport/vehicles/tram/fischermaetteli/test001/test001.json"
-import ABimg from "@assets/for_content/img/public_transport/vehicles/tram/fischermaetteli/test002/test002.jpeg"
-import ABdata from "@assets/for_content/img/public_transport/vehicles/tram/fischermaetteli/test002/test002.json"
 
-export const thumb = AAimg
 
 # One number sign…
 
@@ -56,4 +49,3 @@ lsdfkjdsf sajlkdf sf d fsa f asdf adsfsdf asdf dsfas fadsf<R id="example2" />
 * hhh<R id="example2" />
 * hhh<R id="example3" />
 
-<Slider items={[AAimg, ABimg]} capAlt={frontmatter.capAlt} dataFile={[AAdata, ABdata]} aspect="3/2" />

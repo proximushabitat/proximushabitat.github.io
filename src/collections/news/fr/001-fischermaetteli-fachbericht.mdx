@@ -4,7 +4,7 @@ on_front: true
 on_section: true
 make_page: true
 
-trans_ready: true
+trans_ready: false
 is_og: true
 up_to_date: true
 date_published: 2025-03-15
@@ -17,12 +17,12 @@ keywords:
 - key1
 
 title: "fisch prov"
-slug: "fischermaettli-prov"
+slug: "fischermaettli-prov-fr"
 
 headline: "fisch prov"
 drophead: "drophead-news-de-1"
 lead: "lead-news-de-1"
-excerpt: "Nach langjährigem Hin-und-Her bleibt das Schicksal des Fischermättelitrams ungewiss. Ein Überblick."
+excerpt: "Nach langjährigem Hin-und-Her bleibt das Schicksal des Fischermättelitrams ungewiss. Die Fakten im Überblick."
 
 AcapAlt:
 - caption: ""
@@ -35,12 +35,6 @@ BcapAlt:
 CcapAlt:
 - caption: ""
   alt: ""
-- caption: ""
-  alt: ""
-- caption: ""
-  alt: ""
-
-DcapAlt:
 - caption: ""
   alt: ""
 - caption: ""
@@ -66,14 +60,10 @@ import CBdata from "@assets/for_content/img/public_transport/infra/stops/wroclaw
 import CCimg from "@assets/for_content/img/public_transport/infra/stops/berlin/rothenbachstrasse/rothenbachstrasse.png"
 import CCdata from "@assets/for_content/img/public_transport/infra/stops/berlin/rothenbachstrasse/rothenbachstrasse.json"
 
-import DAimg from "@assets/for_content/img/streetDrawings/stops/caecilien/caecilien.png"
-import DAdata from "@assets/for_content/img/streetDrawings/stops/caecilien/caecilien.json"
-import DBimg from "@assets/for_content/img/streetDrawings/stops/munzinger/munzinger.png"
-import DBdata from "@assets/for_content/img/streetDrawings/stops/munzinger/munzinger.json"
 
 export const thumb = thumby
 
-Über die Zukunft des Fischermättelitrams herrscht seit Jahren Unklarheit. Schliesslich hat sich im September 2024 die Stadtberner Bevölkerung klar für den Erhalt der Tramlinie ausgesprochen, mit 76% nahm sie den entsprechenden Kredit an.<R id="FMTkreditJa" /> Kaum geschehen, streicht das Kantonsparlament im November 2024 den Kantonsbeitrag.<R id="FMTdochDasAus" /> Wie es weitergeht, ist erneut nicht klar. Ein Überblick.
+Über die Zukunft der Fischermätteli-Trams herrscht seit Jahren Unklarheit. Schliesslich hat sich im September 2024 die Stadtberner Bevölkerung klar für den Erhalt der Tramlinie ausgesprochen, mit 76% nahm sie den entsprechenden Kredit an.<R id="FMTkreditJa" /> Kaum geschehen, streicht das Kantonsparlament im November 2024 den Kantonsbeitrag.<R id="FMTdochDasAus" /> Wie es weitergeht, ist erneut nicht klar. Ein Überblick.
 
 # Worum geht es?
 Gleisanlagen und Fahrleitung des Fischermättelitrams sind in die Jahre gekommen und müssen bald ersetzt werden. Im gleichen Strassenbereich finden sich ebenfalls zu ersetzende Siedlungsentwässerungsanlagen. Ausserdem sollen Arbeiten an Elektroanlagen, der Beleuchtung und zur Verbesserung von Aufenthaltsqualität und Verkehrssicherheit erfolgen.(Bericht) Auch ohne Ersatz der Traminfrastruktur fallen ein Grossteil der Arbeiten an.
@@ -140,7 +130,7 @@ Zur kostengünstigen und platzsparenden Erstellung von Tramstrecken, können die
 Behindertengleichstellungsgesetzkonforme Tramhaltestellen in schwierigen Platzverhältnissen velofreundlich zu gestalten ist ein junges Problem und definitiv knifflig. Die schmalen, vorausschaubar verkehrenden Fahrzeuge wären ja eigentlich vorteilhaft einsetzbar. Hier zwei Gedankenspiele, wie velofreundliche Haltestellen auf dem Fischermättelitram aussehen könnten.
 
 
-<Slider items={[DAimg, DBimg]} capAlt={frontmatter.DcapAlt} dataFile={[DAdata, DBdata]} aspect="3/2" />
+
 Beide Beispiele nutzen eine Gleisverschlingung, um die Breite der Tramtrassee im Haltestellenbereich zu reduzieren. Der Einstieg geschieht jeweils über befahrbare Haltestellenkaps. Es wird von Einrichtungsfahrzeugen ausgegangen, diese benötigen auf beiden Seiten Haltestellen. Bei exklusivem Einsatz von Zweirichtungsfahrzeugen könnte einseitig darauf verzichtet werden. 
 Im Gedankenspiel Munzinger liegt die Gleisverschlingung in der Strassenmitte. Beidseits wird die MIV-Spur über das Kap geführt. Der Velostreifen entfällt im Haltestellenbereich. Die Velos bleiben den Gleisen fern und es gingen keine Gebäudezufahrten verloren. Trams könnten im Haltestellenbereich nicht kreuzen.
 Im Gedankenspiel Cäcilienplatz wird in eine Richtung nur der Velostreifen übers Kap geführt, der MIV nutzt in selber Richtung die Fahrbahn, in der die aussermittig angeordnete Gleisverschlingung liegt. Auch hier bleiben die Velos den Gleisen fern und das Tram kann nicht kreuzen. Das Tram, das für den Halt auf die Gegenfahrbahn wechselt, blockiert den MIV in beide Richtungen, Velos könnten weiterhin passieren. Diese Haltestelle kann aber auch gut umgangen werden, entsprechend soll die Veloroute auch signalisiert werden.

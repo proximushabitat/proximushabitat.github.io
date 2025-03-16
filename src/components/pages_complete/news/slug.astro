@@ -28,8 +28,8 @@ import { aosDuration, aosDelay } from '@/snippets/aosValues';
 const lB = await getCollection('lilBits');
 
 const tArt = lB.filter(entry => {
-	//////////////console.log("entry");
-	//////////////console.log(entry.id);
+	console.log("entry");
+	console.log(entry.id);
 	return entry.id == "article";
 })[0].data;
 
@@ -46,8 +46,8 @@ const { lang, slug, page, pages } = Astro.props;
 //////////////////////console.log(slug);
 //////////////////////console.log("lang");
 //////////////////////console.log(lang);
-//////////////////////console.log("pages");
-//////////////////////console.log(pages);
+console.log("pages");
+console.log(pages);
 
 ////////////////////////console.log("page.filePath");
 ////////////////////////console.log(page.filePath);
@@ -56,15 +56,18 @@ const { lang, slug, page, pages } = Astro.props;
 ////////////////////////console.log("page.filePath?.split('/')[page.filePath?.split('/').length - 1]");
 ////////////////////////console.log(page.filePath?.split('/')[page.filePath?.split('/').length - 1]);
 //const translations = pages.filter(onePage => onePage.filePath?.split('/')[onePage.filePath?.split('/').length - 1] == page.filePath?.split('/')[page.filePath?.split('/').length - 1])
-var translations = getTranslations(page, pages);
-translations = translations.filter(translation => translation.data.trans_ready == true);
+var translationsAll = getTranslations(page, pages);
+var translations = translationsAll.filter(translation => translation.data.trans_ready == true);
+
 
 ////////////////////////console.log(" ");
 ////////////////////////console.log("pages");
 ////////////////////////console.log(pages);
 ////////////////////////console.log(" ");
-//////////////////////console.log("translations");
-//////////////////////console.log(translations);
+console.log("translationsAll");
+console.log(translationsAll);
+console.log("translations");
+console.log(translations);
 
 const peops = await getCollection('people');
 const sections = await getCollection('sections');
@@ -124,7 +127,7 @@ const keywords = page.data.keywords;
 
 <BaseLayout author={authorString} datePub={page.data.date_published} dateUp={page.data.date_updated} keywords={keywords} title={page.data.title} excerpt={page.data.excerpt} >
   <BarsTop3 />
-  <article class="bg-primary flex flex-col justify-center place-self-center text-justify">
+  <article lang="de" class="bg-primary flex flex-col justify-center place-self-center text-justify break-words break-all hyphens-manual">
     <div class="px-spaceFromEdge 2xl:max-w-7xl mx-auto py-8 w-full">
       <div class="space-y-2 max-w-3xl mx-auto">
         <!-- div Title and Decorative Elements -->
@@ -153,7 +156,7 @@ const keywords = page.data.keywords;
           <h4 data-aos="fade-up" data-aos-duration={aosDuration(2)}>{noTranslation.data.excuse.announceOthers[lang]}</h4>
           <ul  data-aos="fade-up" data-aos-duration={aosDuration(2)} data-aos-delay={aosDelay(1)}>
             {translations.map((translation, index) => (
-                <li key={index}>
+                <li>
                   <a class="font-bold" href={getPageUrl(translation, sections)}>{getItemLang(translation)['full']}  &nbsp; ↗</a>
                 </li>
               ))

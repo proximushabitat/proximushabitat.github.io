@@ -6,7 +6,7 @@ import tailwind from '@astrojs/tailwind';
 import mdx from '@astrojs/mdx';
 
 //to have github pages resolve the aliases
-import { path } from 'path'
+//import { path } from 'path'
 
 // https://astro.build/config
 export default defineConfig({

@@ -69,7 +69,7 @@ for(let i = 0; i < items.length; i++ ){
 <div class="hidden scale-y-0"></div>
 <div class="hidden bg-red-800"></div>
 
-
+<div class="mb-5">
 <div class={"flex flex-col custom-slider relative w-full overflow-hidden shadow-lg my-3 bg-secondary aspect-"+aspect} id={sliderId}>
   {items.map((thisImage, index) => (
     <div
@@ -126,6 +126,11 @@ for(let i = 0; i < items.length; i++ ){
                 {thisImage.data.author && "   " + tSources.byAuthor[lang] +" " + thisImage.data.author}{thisImage.data.author && thisImage.data.source_name && ", "}{thisImage.data.source_name && thisImage.data.source_name}
               </a>
             }
+            {!(thisImage.data.source_url) &&
+              <span>
+                {thisImage.data.author && "   " + tSources.byAuthor[lang] +" " + thisImage.data.author}{thisImage.data.author && thisImage.data.source_name && ", "}{thisImage.data.source_name && thisImage.data.source_name}
+              </span>
+            }
             </span></div>
         ))}
       </div>
@@ -137,11 +142,24 @@ for(let i = 0; i < items.length; i++ ){
   <div class="caption-outer-mobile captionMobile text-sm grid w-full z-10 h-fit transition-all duration-50 ease-in-out pb-3 -my-3" caption-outer-container-mobile>
     <div class="caption-inner-mobile grid grid-cols-1 grid-rows-1 bg-complementary-opposite-yellow transition-all duration-500 ease-in-out h-fit shadow-lg z-50" caption-inner-container-mobile>
       {items.map((thisImage, index) => (
-        <div class="invisible overflow-hidden transition-all ease-in-out duration-300 delay-0 opacity-0 mx-0 mb-0 order-1 px-4 h-0 max-h-8 [grid-area: 1/1/1/1] text-neutral-dark" data-index={index}>{thisImage.capAlt.caption || thisImage.data.generic_caption[lang] || " " }<span class="ref float-right"><a href={thisImage.data.source_url}>{"    by " + thisImage.data.author + ", " + thisImage.data.source_name}</a></span></div>
+        <div class="invisible overflow-hidden transition-all ease-in-out duration-300 delay-0 opacity-0 mx-0 mb-0 order-1 px-4 h-0 max-h-8 [grid-area: 1/1/1/1] text-neutral-dark" data-index={index}>{thisImage.capAlt.caption || thisImage.data.generic_caption[lang] || " " }<span class="ref float-right">
+          {thisImage.data.source_url &&
+            <a href={thisImage.data.source_url}>
+              {thisImage.data.author && "   " + tSources.byAuthor[lang] +" " + thisImage.data.author}{thisImage.data.author && thisImage.data.source_name && ", "}{thisImage.data.source_name && thisImage.data.source_name}
+            </a>
+          }
+          {!(thisImage.data.source_url) &&
+            <span>
+              {thisImage.data.author && "   " + tSources.byAuthor[lang] +" " + thisImage.data.author}{thisImage.data.author && thisImage.data.source_name && ", "}{thisImage.data.source_name && thisImage.data.source_name}
+            </span>
+          }
+          </span></div>
       ))}
     </div>
   </div>
 </div>  
+
+</div>
 
 <script define:vars={{ interval, sliderId, items }}>
   window.addEventListener("load", (event) => {

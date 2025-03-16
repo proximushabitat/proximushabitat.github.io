@@ -2,7 +2,11 @@ import { getCollection, getEntry } from "astro:content";
 
 
 export function getTranslations(post: object, posts: object) {
+	console.log("somePost")
+	console.log(post.filePath?.split('/')[post.filePath?.split('/').length - 1]);
 	const translations = posts.filter(onePage => onePage.filePath?.split('/')[onePage.filePath?.split('/').length - 1] == post.filePath?.split('/')[post.filePath?.split('/').length - 1])
+	console.log("translationsBefore");
+	console.log(translations);
 	return translations;
 }
 

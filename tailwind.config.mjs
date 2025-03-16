@@ -66,7 +66,7 @@ export default {
 			  'h1': { fontSize: '2rem', fontStyle: 'italic' },
 			  'h2': { fontSize: '1.75rem', fontStyle: 'italic' },
 			  'h3': { fontSize: '1.5rem', fontStyle: 'italic' },
-			  'p': { marginBottom: '0.8rem' },
+			  'p': { marginBottom: '0.8rem', hyphens: 'auto', wordBreak: 'break-word' },
 			  'ul': { listStyleType: 'disc', listStylePosition: 'outside', paddingLeft: '1rem' },
 			  'li': { marginBottom: '0.8rem' },
 			})

@@ -1,0 +1,81 @@
+---
+import LogoTop from '@components/logo/LogoTop.astro'
+import Menu from '@components/navigation/Menu.astro'
+
+const { lang, nLines, baseRem, incIncDecimal, startWith } = Astro.props;
+
+const alf = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+
+//aos
+import { aosDuration, aosDelay } from '@/snippets/aosValues';
+
+
+const spacingRem = 0.15; //spacing between, this value is used in calculations, it is not applied to the style
+const spacingTW = "designLinesSpaceBetween"; //spacing between, this is the tw class that will be applied
+
+var totalHeightN = 0; //in rem
+var heightOfLinesRem = [];
+
+for(let i = 0; i < nLines; i++){
+  if(i != 0){
+    totalHeightN = totalHeightN + spacingRem;
+  }
+  var heightOfLine: number = +(baseRem * ((1 + incIncDecimal)**i)).toFixed(1);
+  console.log("baseRem: " + baseRem + ", 1 + incIncDecimal: " + (1 + incIncDecimal) + ", height of line n: " + i + ": " + heightOfLine);
+  heightOfLinesRem.push(heightOfLine);
+  totalHeightN = totalHeightN + heightOfLine;
+}
+
+var heightOfLinesRemOrdered = [];
+
+if(startWith == "l"){
+  heightOfLinesRemOrdered = heightOfLinesRem.reverse();
+}else{
+  heightOfLinesRemOrdered = heightOfLinesRem;
+}
+
+var heightOfLinesPerc: Array<string> = [];
+
+heightOfLinesRem.forEach(heightRem => {
+  const perc = (heightRem / totalHeightN * 100).toFixed(1);
+  const percString = perc + "%";
+  heightOfLinesPerc.push(percString);
+});
+
+const totalHeight = totalHeightN + "rem";
+console.log("totalHeight");
+console.log(totalHeight);
+
+console.log("heightOfLinesPerc");
+console.log(heightOfLinesPerc);
+
+---
+
+<!------
+  /------------------
+// Big SVG hero Name
+//-------------------
+//
+// If you want to change your name you will have to recreate it
+// in Figma or any other way you can export text as SVG
+// After you have exported it, you have to remove the size atributes from the SVG
+// this will allow the SVG become fill width and full heigh. It will also be responsive.
+--- -->
+<div class="hidden mt-designLinesSpaceBetween"></div>
+<div class="hidden mt-0"></div>
+
+<section class="bg-primary" id="designTop">
+  <div class="px-spaceFromEdge 2xl:max-w-7xl mx-auto mt-16 pb-spaceFromEdge">
+      <div class={"linesContainer transition-all"} style={`height: ${totalHeight};max-height: ${totalHeight};`} data-totalHeight={totalHeight}>
+        {heightOfLinesPerc.map((heightOfLine, index) => (
+          <div class={index && "putLineSpacer mt-designLinesSpaceBetween transition-all" || "noLineSpacer"} style={`height: ${heightOfLine};`}>
+            <div 
+              class="bg-secondary h-full w-full" >
+            </div>
+          </div>
+        ))}
+      </div>
+  </div>
+</section>
+
+

@@ -70,17 +70,17 @@ for(let i = 0; i < items.length; i++ ){
 <div class="hidden bg-red-800"></div>
 
 <div class="mb-5">
-<div class={aspect && "grid custom-slider relative w-full overflow-hidden shadow-lg my-3 bg-secondary aspect-"+aspect || "grid custom-slider relative w-full overflow-hidden shadow-lg my-3 bg-secondary"} id={sliderId}>
+<div class={aspect && "flex flex-col custom-slider relative w-full overflow-hidden shadow-lg my-3 bg-secondary aspect-"+aspect || "flex flex-col custom-slider relative w-full overflow-hidden shadow-lg my-3 bg-secondary"} id={sliderId}>
   {items.map((thisImage, index) => (
     <div
-      class="row-span-1 row-start-1 col-span-1 col-start-1 slider-container top-0 left-0 w-full h-full object-cover opacity-0 transition-opacity duration-500 ease-in-out invisible"
+      class="slider-container absolute top-0 left-0 w-full h-full object-cover opacity-0 transition-opacity duration-500 ease-in-out invisible"
       data-slider-container
     >
 
       <Image
         src={thisImage}
         alt={thisImage.capAlt.alt || thisImage.data.generic_alt[lang] || ""}
-        class="slider-image medium-zoomable top-0 left-0 w-full h-full object-cover"
+        class="slider-image absolute medium-zoomable top-0 left-0 w-full h-full object-cover"
         data-slider-image
         data-index={index}
         medium-zoomable
@@ -138,11 +138,11 @@ for(let i = 0; i < items.length; i++ ){
   </div>
 </div>
 
-<div id={"sliderLower"+sliderId} class="grid">
-  <div class="row-span-1 row-start-1 col-span-1 col-start-1 caption-outer-mobile captionMobile text-sm grid w-full z-10 h-fit transition-all duration-[5s] ease-in-out pb-3 -my-3" caption-outer-container-mobile>
-    <div class="caption-inner-mobile grid grid-cols-1 grid-rows-1 row-span-1 row-start-1 col-span-1 col-start-1 bg-complementary-opposite-yellow transition-all duration-300 ease-in-out h-fit shadow-lg z-50" caption-inner-container-mobile>
+<div id={"sliderLower"+sliderId}>
+  <div class="caption-outer-mobile captionMobile text-sm grid w-full z-10 h-fit transition-all duration-50 ease-in-out pb-3 -my-3" caption-outer-container-mobile>
+    <div class="caption-inner-mobile grid grid-cols-1 grid-rows-1 bg-complementary-opposite-yellow transition-all duration-500 ease-in-out h-fit shadow-lg z-50" caption-inner-container-mobile>
       {items.map((thisImage, index) => (
-        <div class="invisible overflow-hidden transition-all ease-in-out duration-300 delay-0 opacity-0 mx-0 mb-0 order-1 px-4 h-0 max-h-0 [grid-area: 1/1/1/1] text-neutral-dark" data-index={index}><span>{thisImage.capAlt.caption || thisImage.data.generic_caption[lang] || " " }</span><span class="ref float-right">
+        <div class="invisible overflow-hidden transition-all ease-in-out duration-300 delay-0 opacity-0 mx-0 mb-0 order-1 px-4 h-0 max-h-8 [grid-area: 1/1/1/1] text-neutral-dark" data-index={index}><span>{thisImage.capAlt.caption || thisImage.data.generic_caption[lang] || " " }</span><span class="ref float-right">
           {thisImage.data.source_url && thisImage.data.attribute != "dont" &&
             <a href={thisImage.data.source_url}>
               {thisImage.data.author && "   " + /*tSources.byAuthor[lang] +*/" " + thisImage.data.author}{thisImage.data.author && thisImage.data.source_name && ", "}{thisImage.data.source_name && thisImage.data.source_name}
@@ -157,25 +157,7 @@ for(let i = 0; i < items.length; i++ ){
       ))}
     </div>
   </div>
-  <!-- just for height -->
-  <div class="invisible opacity-0 row-span-1 row-start-1 col-span-1 col-start-1 caption-outer-mobile captionMobile text-sm grid w-full z-10 h-fit transition-all duration-[5s] ease-in-out pb-3 -my-3" caption-outer-container-mobile>
-    <div class="caption-inner-mobile grid grid-cols-1 grid-rows-1 row-span-1 row-start-1 col-span-1 col-start-1 bg-complementary-split-pink transition-all duration-300 ease-in-out h-fit z-50" caption-inner-container-mobile>
-      {items.map((thisImage, index) => (
-        <div class="row-span-1 row-start-1 col-span-1 col-start-1 overflow-hidden transition-all ease-in-out duration-300 delay-0 opacity-50 mx-0 mb-0 order-1 px-4 [grid-area: 1/1/1/1] text-neutral-dark py-3" data-index={index}><span>{thisImage.capAlt.caption || thisImage.data.generic_caption[lang] || " " }</span><span class="ref float-right">
-          {thisImage.data.source_url && thisImage.data.attribute != "dont" &&
-            <a href={thisImage.data.source_url}>
-              {thisImage.data.author && "   " + /*tSources.byAuthor[lang] +*/" " + thisImage.data.author}{thisImage.data.author && thisImage.data.source_name && ", "}{thisImage.data.source_name && thisImage.data.source_name}
-            </a>
-          }
-          {!(thisImage.data.source_url) && thisImage.data.attribute != "dont" &&
-            <span>
-              {thisImage.data.author && "   " + /*tSources.byAuthor[lang] +*/" " + thisImage.data.author}{thisImage.data.author && thisImage.data.source_name && ", "}{thisImage.data.source_name && thisImage.data.source_name}
-            </span>
-          }
-          </span></div>
-      ))}
-    </div>
-  </div>
+</div>  
 
 </div>
 
@@ -247,7 +229,7 @@ for(let i = 0; i < items.length; i++ ){
     captionInner[0].children[currentSlide].classList.remove("max-h-96");
     captionInner[0].children[currentSlide].classList.add("h-0");
     captionInner[0].children[currentSlide].classList.remove("h-fit");
-    captionInner[0].children[currentSlide].classList.add("max-h-0");
+    captionInner[0].children[currentSlide].classList.add("max-h-8");
     captionInner[0].children[currentSlide].classList.remove("py-3");
 
     captionInnerMobile[0].children[currentSlide].classList.add("invisible");
@@ -256,7 +238,7 @@ for(let i = 0; i < items.length; i++ ){
     captionInnerMobile[0].children[currentSlide].classList.remove("max-h-96");
     captionInnerMobile[0].children[currentSlide].classList.add("h-0");
     captionInnerMobile[0].children[currentSlide].classList.remove("h-fit");
-    captionInnerMobile[0].children[currentSlide].classList.add("max-h-0");
+    captionInnerMobile[0].children[currentSlide].classList.add("max-h-8");
     captionInnerMobile[0].children[currentSlide].classList.remove("py-3");
 
     ////console.log("finishing slide: "+currentSlide);
@@ -276,7 +258,7 @@ for(let i = 0; i < items.length; i++ ){
     captionInner[0].children[currentSlide].classList.add("max-h-96");
     captionInner[0].children[currentSlide].classList.remove("h-0");
     captionInner[0].children[currentSlide].classList.add("h-fit");
-    captionInner[0].children[currentSlide].classList.remove("max-h-0");
+    captionInner[0].children[currentSlide].classList.remove("max-h-8");
     captionInner[0].children[currentSlide].classList.add("py-3");
 
     captionInnerMobile[0].children[currentSlide].classList.remove("invisible");
@@ -286,7 +268,7 @@ for(let i = 0; i < items.length; i++ ){
     captionInnerMobile[0].children[currentSlide].classList.add("max-h-96");
     captionInnerMobile[0].children[currentSlide].classList.remove("h-0");
     captionInnerMobile[0].children[currentSlide].classList.add("h-fit");
-    captionInnerMobile[0].children[currentSlide].classList.remove("max-h-0");
+    captionInnerMobile[0].children[currentSlide].classList.remove("max-h-8");
     captionInnerMobile[0].children[currentSlide].classList.add("py-3");
 
     ////console.log("finishing slide: "+currentSlide);
@@ -393,12 +375,11 @@ for(let i = 0; i < items.length; i++ ){
   .medium-zoom-overlay{z-index:5;backdrop-filter: blur(3px);position:fixed;top:0;right:0;bottom:0;left:0;opacity:0;transition:opacity .3s;will-change:opacity}.medium-zoom--opened .medium-zoom-overlay{z-index: 99;cursor:pointer;cursor:zoom-out;opacity:1}.medium-zoom-image{cursor:pointer;cursor:zoom-in;transition:transform .3s cubic-bezier(.2,0,.2,1)!important}.medium-zoom-image--hidden{visibility:hidden}.medium-zoom-image--opened{z-index:101;position:relative;cursor:pointer;cursor:zoom-out;will-change:transform}
 
   @media screen and (min-width: 768px) {
-    /*switch for alternative caption within image in bigger mode*/
     .caption {
-      display: none;
+      display: relative;
     }
     .captionMobile {
-      display: relative;
+      display: none;
     }
   }
   @media screen and (max-width: 768px) {

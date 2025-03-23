@@ -1,5 +1,8 @@
 ---
 import banner from "@assets/for_site/banner.svg?raw";
+import full from "@assets/for_site/HT02full.svg?raw"
+import short from "@assets/for_site/HT02short.svg?raw"
+import initials from "@assets/for_site/HT02initials.svg?raw"
 
 //aos
 import { aosDuration, aosDelay } from '@/snippets/aosValues';
@@ -9,11 +12,15 @@ import { aosDuration, aosDelay } from '@/snippets/aosValues';
     class="px-8 2xl:max-w-7xl mx-auto pt-0"
     data-aos="fade-up"
     data-aos-duration={aosDuration(1.4)}>
-    <div class="-my-0.5 overflow-hidden">
-      <svg viewBox="0 0.2 254 21.2" fill="blue" xmlns="http://www.w3.org/2000/svg" stroke="none">
-        <foreignObject class="title" x="0" y="0" width="100%" height="150%">
-          <Fragment set:html={banner} />
-        </foreignObject>
+    <div class="h-spaceFromEdge w-full"></div>
+    <div class="-my-0.5 overflow-hidden hidden md:flex flex-col bg-secondary">
+      <svg viewBox="0 0 568 45" fill="#fcfcfc" xmlns="http://www.w3.org/2000/svg" stroke="none">
+          <Fragment set:html={full} />
+      </svg>
+    </div>
+    <div class="-my-0.5 overflow-hidden flex md:hidden flex-col bg-secondary">
+      <svg viewBox="0 0 340.2 46" fill="#fcfcfc" xmlns="http://www.w3.org/2000/svg" stroke="none">
+          <Fragment set:html={short} />
       </svg>
     </div>
   </div>

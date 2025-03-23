@@ -12,24 +12,24 @@ import languageIcon from "@assets/for_site/planetli.svg?raw";
 //aos
 import { aosDuration, aosDelay } from '@/snippets/aosValues';
 
-////////////console.log("translatePath");
+////////////////console.log("translatePath");
 const translationPaths = await translatePath(Astro.url);
 
 
 const lang = getLangFromUrl(Astro.url);
-//////////////console.log("lang");
-//////////////console.log(lang);
+//////////////////console.log("lang");
+//////////////////console.log(lang);
 
 
 const sectionsAllLang = await getCollection('sections');
 const lB = await getCollection('lilBits');
 
-//////////////console.log("lB");
-//////////////console.log(lB);
+//////////////////console.log("lB");
+//////////////////console.log(lB);
 
 const tNav = lB.filter(entry => {
-	//////////////console.log("entry");
-	//////////////console.log(entry.id);
+	//////////////////console.log("entry");
+	//////////////////console.log(entry.id);
 	return entry.id == "nav";
 })[0].data;
 
@@ -39,26 +39,26 @@ const { slug, page, pages } = Astro.props;
 const sectionsThisLang = sectionsAllLang.filter(section => {
 	const sectionFilePath = section.filePath.split('/');
 	const sectionLang = sectionFilePath[sectionFilePath.length - 2];
-	//////////////console.log("sectionLang: "+sectionLang+" lang: "+lang);
+	//////////////////console.log("sectionLang: "+sectionLang+" lang: "+lang);
 	return sectionLang == lang;
 });
 
-//////////////console.log("sectionsThisLang");
-//////////////console.log(sectionsThisLang);
+//////////////////console.log("sectionsThisLang");
+//////////////////console.log(sectionsThisLang);
 
 const sectionsInclude = sectionsThisLang.filter(section => section.data.menu_include == true);
-////////console.log("sectionsInclude");
-////////console.log(sectionsInclude);
+////////////console.log("sectionsInclude");
+////////////console.log(sectionsInclude);
 const sectionsOrdered = sortSmallFirst(sectionsInclude, "menu_order");
 
-////////console.log("sectionsOrdered");
-////////console.log(sectionsOrdered);
+////////////console.log("sectionsOrdered");
+////////////console.log(sectionsOrdered);
 
-////////////////console.log("sectionsThisLang");
-////////////////console.log(sectionsThisLang);
+////////////////////console.log("sectionsThisLang");
+////////////////////console.log(sectionsThisLang);
 
-//////////////console.log("Astro.url");
-//////////////console.log(Astro.url.host);
+//////////////////console.log("Astro.url");
+//////////////////console.log(Astro.url.host);
 
 var frag4Large = "<span><a href='/"+lang+"/'>"+tNav.ind[lang]+"</a></span>";
 
@@ -74,8 +74,8 @@ for (let i = 0; i < sectionsOrdered.length; i++) {
 }
 
 var lang4Large = "";
-////////////console.log("translationPaths");
-////////////console.log(translationPaths);
+////////////////console.log("translationPaths");
+////////////////console.log(translationPaths);
 for(let i = 0; i < translationPaths.length; i++){
 	if(i != 0){
 		lang4Large += "<span>";
@@ -115,8 +115,8 @@ for (let i = 0; i < sectionsOrdered.length; i++) {
 
 
 var lang4Small = "";
-////////////console.log("translationPaths");
-////////////console.log(translationPaths);
+////////////////console.log("translationPaths");
+////////////////console.log(translationPaths);
 for(let i = 0; i < translationPaths.length; i++){
 	lang4Small += "<div class'w-fit'>";
 	//if(i != 0){
@@ -135,17 +135,21 @@ for(let i = 0; i < translationPaths.length; i++){
 	lang4Small += "</div>";
 }
 
-//////////////console.log("Astro.url");
-//////////////console.log(Astro.url.pathname);
+//////////////////console.log("Astro.url");
+//////////////////console.log(Astro.url.pathname);
 
-////////////console.log("languageIcon");
-////////////console.log(languageIcon);
+////////////////console.log("languageIcon");
+////////////////console.log(languageIcon);
 
 ---
 
 <div class="hidden h-fit"></div>
+<div class="hidden h-0"></div>
+<div class="hidden h-designLineMenu"></div>
+<div class="hidden max-h-0"></div>
+<div class="hidden max-h-20"></div>
 
-<div class="w-full hidden md:flex flex-row max-h-6">
+<div class="w-full hidden md:flex flex-row max-h-6 mb-2">
 	<div class="mx-auto w-fit flex flex-row">
 		<span class="flex flex-row">
 			<Fragment set:html={frag4Large} />
@@ -193,17 +197,18 @@ for(let i = 0; i < translationPaths.length; i++){
 		</div>
 	</div>
 	<div
-		class="h-1.5 bg-secondary w-full"
 		data-aos="fade-up"
 		data-aos-duration={aosDuration(3)}>
+		<div class="menuLine bg-black w-full h-designLineMenu max-h-0 transition-all">
+		</div>
 	</div>
 	<div class="w-full flex flex-col">
-		<div id="mobileMenuContent" class="mx-auto transition-all w-fit flex flex-col overflow-hidden h-0 items-center space-y-4 my-0">
+		<div id="mobileMenuContent" class="mx-auto transition-all w-fit flex flex-col overflow-hidden h-fit max-h-0 items-center space-y-4 my-0">
 			<Fragment set:html={frag4Small} />
 		</div>
 	</div>
 	<div class="w-full flex flex-col">
-		<div id="mobileLangContent" class="mx-auto transition-all w-fit flex flex-col overflow-hidden h-0 items-center space-y-4 my-0">
+		<div id="mobileLangContent" class="mx-auto transition-all w-fit flex flex-col overflow-hidden h-fit max-h-0 items-center space-y-4 my-0">
 			<Fragment set:html={lang4Small} />
 		</div>
 	</div>
@@ -211,6 +216,8 @@ for(let i = 0; i < translationPaths.length; i++){
 
 <script>
 //import type { swapBodyElement } from "astro/virtual-modules/transitions-swap-functions.js";
+
+	const dT = document.getElementById("designTop");
 
 	const mMB = document.getElementById("mobileMenuButton");
 	const mMC = document.getElementById("mobileMenuContent");
@@ -220,6 +227,16 @@ for(let i = 0; i < translationPaths.length; i++){
 
 	const wLD = document.querySelector(".wantLang");
 	const aLD = document.querySelector(".chooseLang");
+
+	const mL = document.querySelector(".menuLine");
+
+	//handle lines from DesignTop
+	const lC = dT.querySelector(".linesContainer");
+	console.log(lC);
+	const tH = lC.attributes["data-totalHeight"].nodeValue;
+	console.log("totalHeight: "+tH);
+	const sL = lC.querySelectorAll(".putLineSpacer");
+
 
 	//desktop languages
 	wLD.addEventListener("click", function(){
@@ -233,36 +250,38 @@ for(let i = 0; i < translationPaths.length; i++){
 	const body = document.querySelector("body");
 	var menuState = "closed";
 	mMB.addEventListener("click", function(){
-		////////////console.log("menu => menu: "+menuState+" lang: "+langState);
-		//////////////console.log("clicked");
+		////////////////console.log("menu => menu: "+menuState+" lang: "+langState);
+		//////////////////console.log("clicked");
 		if(menuState == "closed"){
-			////////////console.log("menu is closed => menu: "+menuState+" lang: "+langState);
+			////////////////console.log("menu is closed => menu: "+menuState+" lang: "+langState);
 			if(langState == "open"){
-				////////////console.log("close the lang");
+				////////////////console.log("close the lang");
 				closeLang();
 				langState = "closed";
 			}
 			openMenu();
 			menuState = "open";
-			////////////console.log("menu has been opened => menu: "+menuState+" lang: "+langState);
+			showLine();collapseLines();
+			////////////////console.log("menu has been opened => menu: "+menuState+" lang: "+langState);
 		} else {
-			////////////console.log("menu is open => menu: "+menuState+" lang: "+langState);
+			////////////////console.log("menu is open => menu: "+menuState+" lang: "+langState);
 			closeMenu();
 			menuState = "closed";
-			////////////console.log("menu has been closed => menu: "+menuState+" lang: "+langState);
+			hideLine();accordeonLines();
+			////////////////console.log("menu has been closed => menu: "+menuState+" lang: "+langState);
 		}
 	});
 	
 
 	function closeMenu(){
-		mMC.classList.add("h-0");
-		mMC.classList.remove("h-fit");
+		mMC.classList.add("max-h-0");
+		mMC.classList.remove("max-h-20");
 		mMC.classList.add("my-0");
 		mMC.classList.remove("my-4");
 	}
 	function openMenu(){
-		mMC.classList.remove("h-0");
-		mMC.classList.add("h-fit");
+		mMC.classList.remove("max-h-0");
+		mMC.classList.add("max-h-20");
 		mMC.classList.remove("my-0");
 		mMC.classList.add("my-4");
 	}
@@ -270,37 +289,85 @@ for(let i = 0; i < translationPaths.length; i++){
 	//mobile lang
 	var langState = "closed";
 	mLB.addEventListener("click", function(){
-		////////////console.log("lang => menu: "+menuState+" lang: "+langState);
-		//////////////console.log("clicked");
+		////////////////console.log("lang => menu: "+menuState+" lang: "+langState);
+		//////////////////console.log("clicked");
 		if(langState == "closed"){
-			////////////console.log("lang is closed => menu: "+menuState+" lang: "+langState);
+			////////////////console.log("lang is closed => menu: "+menuState+" lang: "+langState);
 			if(menuState == "open"){
-				////////////console.log("close the menu");
+				////////////////console.log("close the menu");
 				closeMenu();
 				menuState = "closed";
 			}
 			openLang();
 			langState = "open";
-			////////////console.log("lang has been opened => menu: "+menuState+" lang: "+langState);
+			showLine();collapseLines();
+			////////////////console.log("lang has been opened => menu: "+menuState+" lang: "+langState);
 		} else {
-			////////////console.log("lang is open => menu: "+menuState+" lang: "+langState);
+			////////////////console.log("lang is open => menu: "+menuState+" lang: "+langState);
 			closeLang();
 			langState = "closed";
-			////////////console.log("lang has been closed => menu: "+menuState+" lang: "+langState);
+			hideLine();accordeonLines();
+			////////////////console.log("lang has been closed => menu: "+menuState+" lang: "+langState);
 		}
 	});
-	
 
 	function closeLang(){
-		mLC.classList.add("h-0");
-		mLC.classList.remove("h-fit");
+		mLC.classList.add("max-h-0");
+		mLC.classList.remove("max-h-20");
 		mLC.classList.add("my-0");
 		mLC.classList.remove("my-4");
 	}
 	function openLang(){
-		mLC.classList.remove("h-0");
-		mLC.classList.add("h-fit");
+		mLC.classList.remove("max-h-0");
+		mLC.classList.add("max-h-20");
 		mLC.classList.remove("my-0");
 		mLC.classList.add("my-4");
+	}
+
+	//handle Line
+	function hideLine(){
+		if(mL.classList.contains("max-h-designLineMenu")){
+			mL.classList.remove("max-h-designLineMenu");
+			mL.classList.add("max-h-0");
+		}
+	}
+	function showLine(){
+		if(mL.classList.contains("max-h-0")){
+			mL.classList.remove("max-h-0");
+			mL.classList.add("max-h-designLineMenu");
+		}
+	}
+
+	//handle design lines
+	function collapseLines(){
+		//collapse height
+		if(!(lC.classList.contains("collapsed"))){
+			lC.classList.add("collapsed");
+			lC.classList.add("max-h-designLineMenu");
+			lC.style.maxHeight="";
+		}
+		//remove space between
+		sL.forEach(line => {
+			if(line.classList.contains("mt-designLinesSpaceBetween")){
+				line.classList.remove("mt-designLinesSpaceBetween");
+				line.classList.add("mt-0");
+			}
+		});
+	}
+
+	function accordeonLines(){
+		//collapse height
+		if((lC.classList.contains("collapsed"))){
+			lC.classList.remove("collapsed");
+			lC.classList.remove("max-h-designLineMenu");
+			lC.style.maxHeight=tH;
+		}
+		//remove space between
+		sL.forEach(line => {
+			if(!line.classList.contains("mt-designLinesSpaceBetween")){
+				line.classList.add("mt-designLinesSpaceBetween");
+				line.classList.remove("mt-0");
+			}
+		});
 	}
 </script>

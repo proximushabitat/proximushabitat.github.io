@@ -2,7 +2,7 @@
 
 //components
 import BaseLayout from "@layouts/BaseLayout.astro";
-import BarsTop4 from "@components/general/BarsTop4.astro";
+import DesignTop from "@components/general/DesignTop.astro";
 import Numbered from "@components/general/Numbered.astro";
 import ArticlesNude from "@components/general/ArticlesNude.astro";
 import ArticlesImaged from "@components/general/ArticlesImaged.astro";
@@ -37,8 +37,8 @@ export async function getStaticPaths({ paginate }) {
 
 const { page } = Astro.props;
 
-//////////////////console.log("page");
-//////////////////console.log(page.data);
+//////////////////////console.log("page");
+//////////////////////console.log(page.data);
 
 const collection = 'news';
 
@@ -59,7 +59,7 @@ import { aosDuration, aosDelay } from '@/snippets/aosValues';
 ---
 
 <BaseLayout keywords={keywords} title={sectionData.data.title} excerpt={sectionData.data.excerpt}>
-	<BarsTop4 />
+	<DesignTop nLines={4} baseRem={0.4} incIncDecimal={0.7} startWith="l" />
 	<!-- INTRO -->
 
 	<PageSelector page={page} putAnchor="articles" title={sectionData.data.title} />

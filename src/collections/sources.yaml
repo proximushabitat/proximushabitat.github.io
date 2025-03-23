@@ -61,7 +61,7 @@ vgbs:
 FMTdochDasAus:
  title: "Dem Fischermätteli-Tram droht doch das Aus"
  publication: "Der Bund"
- date: 30.11.2024
+ date: 2024-11-30
  type: "newspaper"
  url: "https://www.derbund.ch/fischermaetteli-tram-bern-von-kantonalen-sparplaenen-bedroht-907229485801"
  archiveUrl: "https://archive.ph/DISyh"
@@ -69,7 +69,7 @@ FMTdochDasAus:
 FMTkreditJa:
  title: "Selbst das Quartier sagt Ja zum Fischermätteli-Tram"
  publication: "Der Bund"
- date: 22.09.2024
+ date: 2024-09-22
  type: "newspaper"
  url: "https://www.derbund.ch/abstimmung-bern-bevoelkerung-sagt-ja-zum-fischermaetteli-tram-557960222053"
  archiveUrl: "https://archive.ph/wgaJm"
@@ -77,14 +77,43 @@ FMTkreditJa:
 FMTfachBericht:
  title: "Gesamtsanierung Strassenraum Brunnhof–Fischermätteli: Ausführungskredit"
  author: "Tiefbauamt der Stadt Bern"
- date: 22.04.2024
+ date: 2024-04-22
  url: "https://www.bern.ch/mediencenter/medienmitteilungen/aktuell_ptk/ins-fischermaetteli-soll-weiterhin-ein-tram-fahren/dokumente/fachbericht-gesamtsanierung-strassenraum-brunnhof.pdf/download"
  archiveUrl: "https://web.archive.org/web/20240509002846/https://www.bern.ch/mediencenter/medienmitteilungen/aktuell_ptk/ins-fischermaetteli-soll-weiterhin-ein-tram-fahren/dokumente/fachbericht-gesamtsanierung-strassenraum-brunnhof.pdf/@@download/file/Fachbericht%20Gesamtsanierung%20Strassenraum%20Brunnhof-Fischerm%C3%A4tteli.pdf"
+
+FMT40A:
+ title: "Tramstrecke auf Fischermätteli-Ast wird saniert"
+ publication: "Berner Zeitung"
+ date: 2021-05-20
+ type: "newspaper"
+ url: "https://www.bernerzeitung.ch/tramstrecke-auf-fischermaetteli-ast-wird-saniert-110610059619"
+
+FMT40B:
+ title: "Quartierkommission für Sanierung des Fischermätteli-Trams"
+ publication: "Der Bund"
+ date: 2021-07-01
+ type: "newspaper"
+ url: "https://www.derbund.ch/quartierkommission-fuer-sanierung-des-fischermaetteli-trams-466551196301"
+
+FMT42A:
+ title: "Volk kann über Sanierung des Fischermätteli-Trams entscheiden"
+ publication: "Berner Zeitung"
+ date: 2024-06-13
+ type: "newspaper"
+ url: "https://www.bernerzeitung.ch/bern-sanierung-des-fischermaetteli-trams-kommt-vors-volk-577203880973"
+
+FMT42B:
+ title: "Das Fischermätteli-Tram hat ausgedient"
+ publication: "Der Bund"
+ date: 2024-05-15
+ type: "newspaper"
+ url: "https://www.derbund.ch/arpad-boa-zum-tram-5-ins-fischermaetteli-in-der-stadt-bern-515057900957"
+
 
 TramGleis38:
  title: "Der Stern bleibt in der Ferne Ab dem 7. März werden die Gleise und die Haltestellen erneuert"
  publication: "Der Bund"
- date: 20.02.2009
+ date: "2009-02-02"
  type: "newspaper"
  url: "https://www.derbund.ch/abstimmung-bern-bevoelkerung-sagt-ja-zum-fischermaetteli-tram-557960222053"
  archiveUrl: "https://archive.ph/mMVdP"
@@ -92,12 +121,12 @@ TramGleis38:
 BHBernTeurer:
  title: "Teurer und später: Ausbau des Berner Bahnhofs verzögert sich "
  publication: "SRF"
- date: 16.02.2022
+ date: 2022-02-16
  url: "https://www.srf.ch/news/schweiz/oev-knoten-mit-verzug-teurer-und-spaeter-ausbau-des-berner-bahnhofs-verzoegert-sich"
  archiveUrl: "https://archive.ph/wUOgp"
 
 TramOMWebProjekt:
-  title: "Teurer und später: Ausbau des Berner Bahnhofs verzögert sich "
+  title: "Das Projekt"
   type: "website"
   consulted: "2025-03-15"
   url: "https://tram-bern-ostermundigen.ch/das-projekt/"
@@ -109,3 +138,39 @@ TramOMKosten:
   consulted: "2025-03-15"
   url: "https://www.bern.ch/politik-und-verwaltung/stadtverwaltung/tvs/tiefbauamt/projekte-des-tab/projekte-in-vorbereitung/tram-bern-ostermundigen"
   archiveUrl: "https://archive.ph/4hgQU"
+
+ASTRAVeVf:
+  title: "Verkehrsentwicklung und Verkehrsfluss 2023"
+  type: "Statistik"
+  author: "ASTRA"
+  date: "2024-06"
+  url: "https://www.astra.admin.ch/dam/astra/de/dokumente/abteilung_strassennetzeallgemein/verkehrsentwicklung_verfuegbarkeit_nationalstrassen_jahresbericht_2023.pdf.download.pdf/Verkehrsentwicklung_und_Verf%C3%BCgbarkeit_der_Nationalstrassen_Jahresbericht_2023.pdf"
+
+NBSNzz:
+  title: "Zwei-Minuten-Zugfolge mit 200 km/h"
+  publication: "NZZ"
+  date: 2001-10-25
+  type: "newspaper"
+  url: "https://www.nzz.ch/article7QUD2-ld.186126"
+
+NBSETCS:
+  title: "Fact-Sheet European Train Control System (ETCS)"
+  type: "Fact-Sheet"
+  author: "SBB"
+  date: "2008-08-18"
+  url: "https://www.astra.admin.ch/dam/astra/de/dokumente/abteilung_strassennetzeallgemein/verkehrsentwicklung_verfuegbarkeit_nationalstrassen_jahresbericht_2023.pdf.download.pdf/Verkehrsentwicklung_und_Verf%C3%BCgbarkeit_der_Nationalstrassen_Jahresbericht_2023.pdf"
+
+TagiFlaechen:
+  title: "So wichtig sind die Autobahnen für die Schweiz"
+  publication: "Tagesanzeiger"
+  date: 2024-11-03
+  type: "newspaper"
+  url: "https://www.tagesanzeiger.ch/abstimmung-24-november-so-wichtig-sind-die-autobahnen-135536837187"
+  archiveUrl: "https://archive.md/WZ2Vz"
+
+NOAS04Kat:
+  title: "Standardnomenkatur NOAS04"
+  author: "Bundesamt für Statistik"
+  date: "2018-12-13"
+  url: "https://www.bfs.admin.ch/bfs/de/home/statistiken/raum-umwelt/nomenklaturen/arealstatistik/noas2004.assetdetail.6948898.html"
+

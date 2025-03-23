@@ -8,14 +8,14 @@ export default {
 	theme: {
 		extend: {
 			colors: {
-				primary: '#fafafa',
-  				secondary: '#0000ff',
+				primary: '#fcfcfc', //fafafa -> og
+  				secondary: '#1E212B', //392759 -> violet //1D2EC3 -> blau besser //24476B -> graublau //23526C -> auch graublau //2F4858 -> kohle
 				complementary: {
 					split: {
 						pink: "#ff00cc",
 					},
 					opposite: {
-						yellow: "#ffff00",
+						yellow: "#FED766",//"#F44E3F",//"#74D3AE",//"#C3E8BD",//"#FE4A49",FED766, 2AB7CA, FE4A49
 					},
 				},
 				neutral: {
@@ -52,6 +52,12 @@ export default {
 			spacing: {
 				'spaceFromEdge': '2rem',
 				'infoContainer': '4rem',
+				'accentLineThick': '0.375rem',
+				'accentLineThin': '0.125rem',
+				'accentsSpaceBetween': '0.25rem',
+				'designLinesSpaceBetween': '0.15rem',
+				'designLineMenu': '3px',
+				'singleWidth': '48rem'
 			},
 			fontSize: {
 				'tooltip': '0.9rem',

@@ -4,8 +4,8 @@ import SectionTitle from "@components/snippets/SectionTitle.astro";
 import { getLangFromUrl } from '@i18n/langFunctions';
 
 const lang = getLangFromUrl(Astro.url);
-////console.log("lang");
-////console.log(lang);
+////////console.log("lang");
+////////console.log(lang);
 
 //WEGWEGWEG
 const sourcesColl = await getCollection('sources');
@@ -14,14 +14,14 @@ const alf = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
 const lB = await getCollection('lilBits');
 const tRem = lB.filter(entry => {
-	//////////////console.log("entry");
-	//////////////console.log(entry.id);
+	//////////////////console.log("entry");
+	//////////////////console.log(entry.id);
 	return entry.id == "remarks";
 })[0].data;
-////console.log("tRem");
-////console.log(tRem);
-//////////////////////console.log("sourcesColl");
-//////////////////////console.log(sourcesColl);
+////////console.log("tRem");
+////////console.log(tRem);
+//////////////////////////console.log("sourcesColl");
+//////////////////////////console.log(sourcesColl);
 
 //aos
 import { aosDuration, aosDelay } from '@/snippets/aosValues';
@@ -36,31 +36,31 @@ import { aosDuration, aosDelay } from '@/snippets/aosValues';
 		</ul>
 	</div>
 </div>
-<div class="hidden flex-row w-full  min-w-5 mb-2"></div>
+<div class="hidden flex-row w-full  min-w-6 mb-2"></div>
 <div class="hidden break-normal"></div>
 
 
-<script define:vars={{ sourcesColl, lang, alf }} is:inline>
-	////console.log("script started");
+<script define:vars={{ sourcesColl, lang, alf, tRem }} is:inline>
+	////////console.log("script started");
 
-	//////////////////////console.log(sourcesColl);
+	//////////////////////////console.log(sourcesColl);
 	const remarks = document.querySelectorAll(".remark");
 	const container = document.querySelector(".remarksContainer");
 	const list = document.querySelector(".remarksList");
-	////console.log("remarks");
-	////console.log(remarks);
+	////////console.log("remarks");
+	////////console.log(remarks);
 
 	if(remarks.length > 0){
 		container.classList.remove("hidden")
 	}else{
-		////console.log("no remarks");
+		////////console.log("no remarks");
 	}
 
 	var allRemarks = [];
 
 	for(let i = 0; i < remarks.length; i++){
-		////console.log("remarks[i]");
-		////console.log(remarks[i]);
+		////////console.log("remarks[i]");
+		////////console.log(remarks[i]);
 		remarks[i].classList.remove("hidden");
 		const content = remarks[i].innerHTML;
 		allRemarks.push({i, content});
@@ -68,6 +68,8 @@ import { aosDuration, aosDelay } from '@/snippets/aosValues';
 		floaty += "<span class='toolTipTool' aria-describedby='toolTip'>";
 		
 		floaty += "<span class='toolTipTip bg-tooltip-bg text-tooltip-text text-tooltip text-md border-1 border-primary'>";
+		floaty += tRem.tooltip[lang];
+		floaty += ": ";
 		floaty += content;
 		floaty += "<span class='toolTipArrow bg-tooltip-bg border-b-1 border-r-1 border-primary'></span>";
 		floaty += "</span>";
@@ -79,18 +81,18 @@ import { aosDuration, aosDelay } from '@/snippets/aosValues';
 		remarks[i].innerHTML = floaty;
 	}
 	
-	////console.log("allRemarks");
-	////console.log(allRemarks);
+	////////console.log("allRemarks");
+	////////console.log(allRemarks);
 
 	var listContent = "";
 	for(let i = 0; i < allRemarks.length; i++){
-		//////////////////////console.log("allRemarks[i]");
-		//////////////////////console.log(allRemarks[i]);
-		//////////////////////console.log("thisSourceData");
-		//////////////////////console.log(thisSourceData);
+		//////////////////////////console.log("allRemarks[i]");
+		//////////////////////////console.log(allRemarks[i]);
+		//////////////////////////console.log("thisSourceData");
+		//////////////////////////console.log(thisSourceData);
 		var thisSourceContent = "<li class='break-normal'>";
 		thisSourceContent += "<div class='flex flex-row w-full mb-2'>"
-		thisSourceContent += "<div class='min-w-5'>"
+		thisSourceContent += "<div class='min-w-6'>"
 		thisSourceContent += "<span class='font-bold'>";
 		thisSourceContent += alf.charAt(allRemarks[i].i);
 		thisSourceContent += ": ";
@@ -109,8 +111,8 @@ import { aosDuration, aosDelay } from '@/snippets/aosValues';
 		listContent += thisSourceContent;
 	}
 
-	//////////////////////console.log("listContent");
-	//////////////////////console.log(listContent);
+	//////////////////////////console.log("listContent");
+	//////////////////////////console.log(listContent);
 
 	list.innerHTML = listContent;
 

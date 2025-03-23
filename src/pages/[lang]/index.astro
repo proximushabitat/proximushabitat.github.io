@@ -5,7 +5,8 @@ import Projects from "@components/landing/Projects.astro";
 import Testimonials from "@components/landing/Testimonials.astro";
 import Articles from "@components/landing/Articles.astro";
 import FeaturedWork from "@components/landing/FeaturedWork.astro";
-import BarsTop5 from "@components/general/BarsTop5.astro";
+import DesignTop from "@components/general/DesignTop.astro";
+import DesignBottom from "@components/general/DesignBottom.astro";
 import BarsBottom5 from "@components/general/BarsBottom5.astro";
 import FrontSection from "@components/technical/FrontSection.astro";
 import ThinLine from "@/components/snippets/ThinLine.astro";
@@ -30,32 +31,26 @@ const introContent = await getEntry('bigBits', entry);
 
 const introContent = introContentColl.filter(item => {
     const returnThis = item.id == entry;
-    ////////console.log("entry: '"+entry+"'     item.id: '"+item.id+"'     returnThis: "+returnThis);
+    ////////////console.log("entry: '"+entry+"'     item.id: '"+item.id+"'     returnThis: "+returnThis);
     return returnThis;
   }
 );*/
 
-/*////////console.log("introContentColl");
-////////console.log(introContentColl);*/
-////////console.log("introContent");
-////////console.log(introContent);
+/*////////////console.log("introContentColl");
+////////////console.log(introContentColl);*/
+////////////console.log("introContent");
+////////////console.log(introContent);
 
 const { Content: Intro } = await render(introContent);
 
 ---
 
 <BaseLayout>
-  <BarsTop5 />
-  <Intro />
-  <div class="h-24"></div>
-  <FrontSection collection="news" howMany="4" component="Numbered" showDate="true" sectionTitle="true">
-  </FrontSection>
-  <div class="h-24"></div>
-  <FrontSection collection="news" howMany="4" component="ArticlesNude" showDate="true" sectionTitle="true">
-  </FrontSection>
-  <div class="h-24"></div>
+  <DesignTop nLines={5} baseRem={0.2} incIncDecimal={0.5} startWith="l" />
+  <div class="px-8 mx-auto max-w-singleWidth text-justify break-words break-all hyphens-manual pb-20" lang={lang}>
+    <Intro />
+  </div>
   <FrontSection collection="news" howMany="4" component="ArticlesImaged" showDate="true" sectionTitle="true">
   </FrontSection>
-
-  <BarsBottom5 />
+  <DesignBottom nLines={5} baseRem={0.2} incIncDecimal={0.5} startWith="s" />
 </BaseLayout>

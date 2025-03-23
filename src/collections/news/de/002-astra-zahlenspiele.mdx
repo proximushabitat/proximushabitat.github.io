@@ -1,0 +1,53 @@
+---
+is_draft: false
+on_front: true
+on_section: true
+make_page: true
+
+trans_ready: true
+is_og: true
+up_to_date: true
+date_published: 2025-03-21
+
+author:
+- johann-keller
+
+
+title: "astra prov tit"
+slug: "astra-prov"
+
+headline: "astra prov head,.-."
+drophead: "drophead-news-de-1"
+lead: "lead-news-de-1"
+excerpt: "Nach langjährigem Hin-und-Her bleibt das Schicksal des Fischermättelitrams ungewiss. Ein Überblick."
+
+AcapAlt:
+- caption: ""
+  alt: ""
+
+---
+import R from "@components/references/referenceSingle.astro"
+import C from "@components/references/remarkSingle.astro"
+import Slider from "@components/content/Slider.astro" 
+
+import AAimg from "@assets/for_content/singlePiece/astraZahlenspiele/graph/graph.png"
+import AAdata from "@assets/for_content/singlePiece/astraZahlenspiele/graph/graph.json"
+
+export const thumb = AAimg
+
+Ende November 2024 hat die Schweiz den Autobauausbau abgelehnt. Unter den vielen im Vorfeld erschienenen Artikel stach einer hervor. Im Tagesanzeiger wurde ein vom ASTRA veröffentlichter Bericht mit dem Titel “Verkehrsentwicklung und Verkehrsfluss 2023” zitiert.<R id="TagiFlaechen" /> Berechnungen sollen zeigen, dass die Autobahn 2.5-mal so flächeneffizient sei wie die Bahn. Ein überraschendes Ergebnis, doch wie kommt es zustande? 
+
+# Der ASTRA-Bericht
+Schnell wird klar, das ASTRA vergleicht tatsächlich die meistgenutzten Strassen mit der gesamten Bahninfrastruktur.<R id="ASTRAVeVf" /> Der Bericht des ASTRA stützt sich auf die Arealstatistik, genauer auf die darin definierten Kategorien “Autobahnen” und “befestigtes Bahnareal”. Diese umfassen allerdings ganz unterschiedliche Dinge und sind zum direkten Vergleich absolut ungeeignet. Während so gut wie alles, was mit der Bahn zu tun hat, als befestigtes Bahnareal gilt, werden selbst Autobahnwerkhöfe nicht zu den Autobahnen gezählt.<R id="NOAS04Kat" />
+
+Auch der Tagesanzeiger kritisierte dies, er verdächtigt richtigerweise, dass Nebenstrecken der Bahn das Bild verzerren.<R id="TagiFlaechen" /> Eingleisige Bimmelbahnen mit Autobahnen vergleichen zu wollen ist schon weit hergeholt. Dazu kommt aber noch vieles mehr: die Einkaufszentren an Bahnhöfen, alle Depots, alle Werkstätten, alle Rangierbahnhöfe, etwaige Anschluss- und Abstellgleise, auch Tramwendeschlaufen und selbst Lagerhäuser und “Verkehrsfreie Vorplätze”, denn sie alle gelten in der Arealstatistik als Bahnareal. Für einen fairen Vergleich müsste man beim Strassenverkehr neben allen weiteren Strassen auch alle Parkplatzflächen, alle Garagen, alle Autowerkstätten, alle Tankstellen, alle Raststätten, all die den LKW dienenden Industrieflächen, alle Autohändler und generell alle irgendwie dem Strassenverkehr dienenden Bauten mitrechnen. Diese befinden sich zu einem beachtlichen Teil auf privatem Grund und werden von der Arealstatistik nicht eigens erfasst.
+
+<Slider items={[AAimg]} capAlt={frontmatter.AcapAlt} dataFile={[AAdata]} />
+
+# Versuch eines aussagekräftigen Vergleich
+Die wohl am ehesten mit einer Autobahn vergleichbare Schweizer Eisenbahnstrecke ist die NBS Mattstetten-Rothrist. Deren Fläche lässt sich einfach errechnen, ihre Länge ist bekannt und ihre Breite lässt sich auf der Karte messen.<C cont="Quellen für die Rechnungen finden sich im Anhang" /> Vergleicht man sie mit dem Passagieraufkommen, erhält man folgendes Resultat: 2316 Personenkilometer pro Quadratmeter. Also fast 8 Mal mehr als das Astra für die Bahn angibt, und rund 2.5 Mal mehr als es für Autobahnen angibt. <C cont="in der Grafik steht pro 100m2, beim Nachrechnen scheint es, es sei pro m2 gerechnet worden" /> 
+Auch sei erwähnt, dass auf der NBS tagsüber 7 Personenzüge pro Stunde und Richtung verkehren, auf dem Grossteil nur 6. Auf der NBS beträgt die betriebliche Zugfolgezeit 2 Minuten,<R id="NBSNzz" /><R id="NBSETCS" /> es könnten also bis zu 30 Züge pro Stunde verkehren.<C cont="Auf Schnellfahrstrecken im Ausland fahren tendenziell eher bis zu 20 Züge pro Stunde, allerdings schneller" /> Die Kapazität dieser Strecke ist also noch lange nicht ausgeschöpft. 
+
+Ein vorsichtiges Gedankenexperiment könnte lauten: Bei identischem Flächenverbrauch könnte man 4 Mal mehr Züge verkehren,<C cont="4 x 7 = 28 Züge pro Stunde und Richtung" /> es würden entsprechend mehr Passagiere befördert. Staufrei, auch zu Stosszeiten. Die Strecke wäre nun 10 Mal <C cont="2.5 x 4 = 10" /> so flächeneffizient wie die Autobahnen. Dies, ohne die Grösse der eingesetzten Züge zu anzutasten. Auf einigen Linien, die diese Strecke befahren, bestünde diesbezüglich durchaus noch Potential.
+Man kann natürlich auch versuchen die gesamte Bahninfrastruktur, mit der gesamten Strasseninfrastruktur zu vergleichen. Da die allermeiste Strassenfläche abseits der Autobahn existiert zieht dies den Schnitt stark runter. In der Gesamtsicht kommt man bei den Strassen auf ca. 150pkm/m2, also rund halb so viel wie das, dass vom Astra für die Bahn angegeben wird. Notabene sind alle zuvor erwähnten Bauten, welche ausschliesslich dem MIV dienen, noch nicht inkludiert.
+

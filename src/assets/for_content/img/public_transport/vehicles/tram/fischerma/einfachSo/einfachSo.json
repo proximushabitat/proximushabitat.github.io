@@ -1,7 +1,7 @@
 {
 	"type": "img",
 	"filetype": "png",
-	"attribute": "strict",
+	"attribute": "dont",
 	"author": "Johann Keller",
 	"year": "2024",
 	"generic_caption": {

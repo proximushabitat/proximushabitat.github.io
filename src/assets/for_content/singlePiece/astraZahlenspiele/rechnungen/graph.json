@@ -1,0 +1,18 @@
+{
+	"type": "file",
+	"filetype": "xlsx",
+	"attribute": "dont",
+	"year": "2024",
+	"generic_caption": {
+	  "de": "Langjährige Entwicklung der Personenkilometer pro 100 m<sup>2</sup> aus Verkehrsentwicklung und Verkehrsfluss 2023",
+	  "fr": "roule",
+	  "en": "drives"
+	},
+	"generic_alt": {
+	  "de": "Langjährige Entwicklung der Personenkilometer pro 100 m<sup>2</sup> aus Verkehrsentwicklung und Verkehrsfluss 2023",
+	  "fr": "roule",
+	  "en": "drives"
+	},
+	"source_name":"ASTRA",
+	"source_url":"https://www.astra.admin.ch/dam/astra/de/dokumente/abteilung_strassennetzeallgemein/verkehrsentwicklung_verfuegbarkeit_nationalstrassen_jahresbericht_2023.pdf.download.pdf/Verkehrsentwicklung_und_Verf%C3%BCgbarkeit_der_Nationalstrassen_Jahresbericht_2023.pdf"
+  }

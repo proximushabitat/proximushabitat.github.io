@@ -10,7 +10,7 @@
 	padding: 5px;
 	border-radius: 4px;
 	/*font-size: 90%;*/
-	max-width: calc(100vw - 22px);
+	max-width: calc(100vw - 28px);
 }
 .toolTipArrow {
 	position: absolute;

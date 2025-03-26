@@ -24,7 +24,7 @@ import { sortBigFirst } from '@snippets/numberGames';
 //import directus from "@lib/directus";
 //import { read_items, read_item, enableTwoFactor } from "@directus/sdk";
 
-const { collection, howMany, component, showDate, sectionTitle } = Astro.props;
+const { collection, howMany, component, showDate, sectionTitle, putUrl } = Astro.props;
 
 //////////////console.log("collection");
 //////////////console.log(collection);
@@ -54,6 +54,6 @@ const sectionData = getOneLang(sectionDataRaw, lang)[0];
 
 ---
 
-{ component == "ArticlesImaged" && <ArticlesImaged items={items} collection={collection} sectionData={sectionData} showDate={showDate} sectionTitle={sectionTitle} ><slot /></ArticlesImaged> }
-{ component == "ArticlesNude" && <ArticlesNude items={items} collection={collection} sectionData={sectionData} showDate={showDate} sectionTitle={sectionTitle} ><slot /></ArticlesNude> }
-{ component == "Numbered" && <Numbered items={items} collection={collection} sectionData={sectionData} showDate={showDate} sectionTitle={sectionTitle} ><slot /></Numbered> }
+{ component == "ArticlesImaged" && <ArticlesImaged items={items} collection={collection} sectionData={sectionData} showDate={showDate} sectionTitle={sectionTitle} putUrl={putUrl} ><slot /></ArticlesImaged> }
+{ component == "ArticlesNude" && <ArticlesNude items={items} collection={collection} sectionData={sectionData} showDate={showDate} sectionTitle={sectionTitle} putUrl={putUrl} ><slot /></ArticlesNude> }
+{ component == "Numbered" && <Numbered items={items} collection={collection} sectionData={sectionData} showDate={showDate} sectionTitle={sectionTitle} putUrl={putUrl} ><slot /></Numbered> }

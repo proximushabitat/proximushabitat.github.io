@@ -27,7 +27,7 @@ import Thumb from '../content/Thumb.astro';
 //////////console.log("fallbackImg");
 //////////console.log(fallbackImg);
 
-const { items: itemsRaw, collection, showDate, sectionTitle, sectionData } = await Astro.props;
+const { items: itemsRaw, collection, showDate, sectionTitle, sectionData, putUrl } = await Astro.props;
 
 var items = itemsRaw.filter(itemRaw => itemRaw.data.is_draft != true)
 
@@ -79,7 +79,8 @@ for(let i = 0; i < items.length; i++){
   <div class="px-8 2xl:max-w-7xl mx-auto py-3">
     <div class="space-y-2">
       <!-- Section Title and Decorative Elements -->
-      {sectionTitle == "true" && <SectionTitle title={sectionData.data.title}  linkUrl={sectionData.data.slug} linkText={sectionData.data.see_all} />}
+      {sectionTitle == "true" && putUrl == "true" && <SectionTitle title={sectionData.data.title} linkUrl={sectionData.data.slug} linkText={sectionData.data.see_all} />}
+      {sectionTitle == "true" && putUrl == "false" && <SectionTitle title={sectionData.data.title} />}
     </div>
     <div>
       <slot />

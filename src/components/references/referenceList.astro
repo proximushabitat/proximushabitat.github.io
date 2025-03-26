@@ -36,7 +36,7 @@ import { aosDuration, aosDelay } from '@/snippets/aosValues';
 	</div>
 </div>
 <div class="hidden flex-row w-full  min-w-6 mb-2"></div>
-<div class="hidden break-normal"></div>
+<div class="hidden break-normal select-none"></div>
 
 
 <script define:vars={{ sourcesColl, tSources, lang }} is:inline>
@@ -75,11 +75,11 @@ import { aosDuration, aosDelay } from '@/snippets/aosValues';
 		var floaty = "";
 		floaty += "<span class='toolTipTool' aria-describedby='toolTip'>";
 		if(thisSourceData[0]){
-			floaty += "<span class='toolTipTip bg-tooltip-bg text-tooltip-text text-tooltip border-1 border-primary'>";
+			floaty += "<span class='toolTipTip bg-tooltip-bg text-tooltip-text text-tooltip border-[0.0px] border-tooltip-border'>";
 			floaty += tSources.tooltip[lang];
 			floaty += ": ";
 			floaty += thisSourceData[0].data.title;
-			floaty += "<span class='toolTipArrow bg-tooltip-bg border-b-1 border-r-1 border-primary'></span>";
+			floaty += "<span class='toolTipArrow bg-tooltip-bg border-b-[0.0px] border-r-[0.0px] border-tooltip-border'></span>";
 			floaty += "</span>";
 		}
 		floaty += "<span class='align-top text-xs ml-0.5'>";

@@ -67,11 +67,11 @@ import { aosDuration, aosDelay } from '@/snippets/aosValues';
 		var floaty = "";
 		floaty += "<span class='toolTipTool' aria-describedby='toolTip'>";
 		
-		floaty += "<span class='toolTipTip bg-tooltip-bg text-tooltip-text text-tooltip text-md border-1 border-primary'>";
+		floaty += "<span class='toolTipTip bg-tooltip-bg text-tooltip-text text-tooltip text-md border-[0.0px] border-tooltip-border'>";
 		floaty += tRem.tooltip[lang];
 		floaty += ": ";
 		floaty += content;
-		floaty += "<span class='toolTipArrow bg-tooltip-bg border-b-1 border-r-1 border-primary'></span>";
+		floaty += "<span class='toolTipArrow bg-tooltip-bg border-b-[0.0px] border-r-[0.0px] border-tooltip-border'></span>";
 		floaty += "</span>";
 		
 		floaty += "<span class='align-top text-xs ml-0.5'>";

@@ -9,11 +9,10 @@ import ToolTip from '@/components/technical/ToolTip.astro';
 
 import BaseLayout from "@layouts/BaseLayout.astro";
 import DesignTop from "@components/general/DesignTop.astro";
-import Intro from "@components/general/Intro.astro";
 import Numbered from "@components/general/Numbered.astro";
 import ArticlesNude from "@components/general/ArticlesNude.astro";
 import ArticlesImaged from "@components/general/ArticlesImaged.astro";
-import BarsBottom3 from "@components/general/BarsBottom3.astro";
+import DesignBottom from "@components/general/DesignBottom.astro";
 import divTitle from "@components/snippets/divTitle.astro";
 import SectionTitle from '@/components/snippets/SectionTitle.astro';
 import TwoThings from '@/components/snippets/TwoThings.astro';
@@ -126,7 +125,7 @@ const keywords = page.data.keywords;
 
 
 <BaseLayout author={authorString} datePub={page.data.date_published} dateUp={page.data.date_updated} keywords={keywords} title={page.data.title} excerpt={page.data.excerpt} >
-  <DesignTop nLines={3} baseRem={0.4} incIncDecimal={0.7} startWith="l" />
+  <DesignTop nLines={3} baseRem={0.2} incIncDecimal={0.5} startWith="l" />
   <article lang={lang} class="bg-primary flex flex-col justify-center place-self-center text-justify break-words break-all hyphens-manual">
     <div class="px-spaceFromEdge 2xl:max-w-7xl mx-auto py-8 w-full">
       <div class="space-y-2 max-w-singleWidth mx-auto">
@@ -134,7 +133,7 @@ const keywords = page.data.keywords;
         <h1 class="text-5xl font-bold italic" data-aos="fade-up" data-aos-duration={aosDuration(1)} set:html={page.data.headline} />
         <h2 class="text-xl font-bold italic"  data-aos="fade-up" data-aos-duration={aosDuration(1.5)} set:html={page.data.drophead} />
       </div>
-      <div class="max-w-singleWidth mx-auto mt-1"  data-aos="fade-up" data-aos-duration={aosDuration(2)} set:html={page.data.headline} />
+      
       <div class="max-w-singleWidth mx-auto">
         {<TwoThings left={dateString} right={authorString}/>}
 
@@ -166,7 +165,7 @@ const keywords = page.data.keywords;
     </div>
   </article>
 
-  <BarsBottom3 />
+  <DesignBottom nLines={3} baseRem={0.2} incIncDecimal={0.5} startWith="s" />
 
   <ToolTip />
 

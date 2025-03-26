@@ -4,6 +4,21 @@
 
 const { title, keywords, author, excerpt } = Astro.props;
 
+var titleWhole = "";
+
+if (title) {
+  titleWhole += "PROX.HAB.";
+  titleWhole += " - ";
+  titleWhole += title;
+}else{
+  titleWhole += "PROXIMUS HABITAT";
+}
+
+import logoQuad from "@assets/for_site/HT02FAV512x512.png";
+import favicon16 from "@assets/for_site/HT02FAV16x16.png";
+import favicon32 from "@assets/for_site/HT02FAV32x32.png";
+import faviconApple from "@assets/for_site/HT02FAVAppleTouch.png";
+
 ---
 
 <meta charset="utf-8" />
@@ -11,27 +26,35 @@ const { title, keywords, author, excerpt } = Astro.props;
 <meta charset="UTF-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 <meta name="author" content={author ||  "proximus habitat"} />
-<meta name="keywords" content="Add ypour keywords here" />
+<meta name="keywords" content="Raumplanung, Verkehr, Mobilität, Wohnen, Siedlungen" />
 <meta name="description" content={excerpt}>
 
-<title>proximus habitat {title && " - "+title}</title>
+<meta
+  property="og:image"
+  content={logoQuad.src} />
+<meta
+  property="og:description"
+  content={excerpt} />
+<meta property="og:title" content={titleWhole}/>
+
+<title>{titleWhole}</title>
 <!-- Favicon guidelines generated with https://favicon.io/ -->
 <link
   rel="apple-touch-icon"
   sizes="180x180"
-  href="/favicons/apple-touch-icon.png"
+  href={faviconApple.src}
 />
 <link
   rel="icon"
   type="image/png"
   sizes="32x32"
-  href="/favicons/favicon-32x32.png"
+  href={favicon32.src}
 />
 <link
   rel="icon"
   type="image/png"
   sizes="16x16"
-  href="/favicons/favicon-16x16.png"
+  href={favicon16.src}
 />
 <link rel="manifest" href="/favicons/site.webmanifest" />
 <link rel="mask-icon" href="/favicons/safari-pinned-tab.svg" color="#0000ff" />

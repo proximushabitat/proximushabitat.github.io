@@ -12,7 +12,7 @@ export default {
   				secondary: '#1E212B', //392759 -> violet //1D2EC3 -> blau besser //24476B -> graublau //23526C -> auch graublau //2F4858 -> kohle
 				complementary: {
 					split: {
-						pink: "#ff00cc",
+						pink: "#F26CA7",//"#ff00cc",
 					},
 					opposite: {
 						yellow: "#FED766",//"#F44E3F",//"#74D3AE",//"#C3E8BD",//"#FE4A49",FED766, 2AB7CA, FE4A49
@@ -24,8 +24,9 @@ export default {
 				},
 				focus: "#ffff00",/*colors.emerald[300],*/
 				tooltip: {
-					bg: '#0000ff',
-					text: '#fafafa',
+					bg: '#B3EDAB',//#7EE8FA',
+					text: '#1E212B',
+					border: '#1E212B'
 				},
 			},
 			gradients: {
@@ -57,7 +58,8 @@ export default {
 				'accentsSpaceBetween': '0.25rem',
 				'designLinesSpaceBetween': '0.15rem',
 				'designLineMenu': '3px',
-				'singleWidth': '48rem'
+				'singleWidth': '48rem',
+				'tooltipBorderWidth': '1rem',
 			},
 			fontSize: {
 				'tooltip': '0.9rem',
@@ -69,7 +71,7 @@ export default {
 			addBase({
 			  'a': { background: theme('gradients.linksNorm'), borderColor: theme('colors.secondary'), borderWidth: '0 0 1px 0', borderStyle: 'dotted' },
 			  'a:hover': { transition: 'all ease-in-out, 0.5s', background: theme('gradients.linksHov'), /*textDecoration: 'underline', */ borderStyle: 'solid', dropShadow: theme('dropShadow.xl') /*config('theme.colors.complementary.opposite.yellow')*/ },
-			  'h1': { fontSize: '2rem', fontStyle: 'italic' },
+			  'h1': { fontSize: '2rem', fontStyle: 'italic', hyphens: 'auto', wordBreak: 'break-word' },
 			  'h2': { fontSize: '1.75rem', fontStyle: 'italic' },
 			  'h3': { fontSize: '1.5rem', fontStyle: 'italic' },
 			  'p': { marginBottom: '0.8rem', hyphens: 'auto', wordBreak: 'break-word' },

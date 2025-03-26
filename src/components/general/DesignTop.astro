@@ -80,7 +80,7 @@ console.log(heightOfLinesPerc);
         class="flex flex-col sm:flex-row gap-3 justify-between items-center"
         data-aos="fade-up"
         data-aos-duration={aosDuration(2)}>
-        <Menu lang={lang}/>
+        <div class="hidden"><Menu lang={lang}/></div>
       </div>
       <div class={"linesContainer transition-all"} style={`height: ${totalHeight};max-height: ${totalHeight};`} data-totalHeight={totalHeight}>
         {heightOfLinesPerc.map((heightOfLine, index) => (

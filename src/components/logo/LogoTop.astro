@@ -6,21 +6,27 @@ import initials from "@assets/for_site/HT02initials.svg?raw"
 
 //aos
 import { aosDuration, aosDelay } from '@/snippets/aosValues';
+
+import { getLangFromUrl, useTranslations } from '@i18n/utils';
+const lang = getLangFromUrl(Astro.url);
+
 ---
 
 <div
     class="px-8 2xl:max-w-7xl mx-auto pt-0"
     data-aos="fade-up"
     data-aos-duration={aosDuration(1.4)}>
+    <a href={"/"+lang+"/"}>
     <div class="h-spaceFromEdge w-full"></div>
     <div class="-my-0.5 overflow-hidden hidden md:flex flex-col bg-secondary">
-      <svg viewBox="0 0 568 45" fill="#fcfcfc" xmlns="http://www.w3.org/2000/svg" stroke="none">
+      <svg viewBox="0 0.3 568 45" fill="#fcfcfc" xmlns="http://www.w3.org/2000/svg" stroke="none">
           <Fragment set:html={full} />
       </svg>
     </div>
     <div class="-my-0.5 overflow-hidden flex md:hidden flex-col bg-secondary">
-      <svg viewBox="0 0 340.2 46" fill="#fcfcfc" xmlns="http://www.w3.org/2000/svg" stroke="none">
+      <svg viewBox="0 0.3 332 45" fill="#fcfcfc" xmlns="http://www.w3.org/2000/svg" stroke="none">
           <Fragment set:html={short} />
       </svg>
     </div>
+    </a>
   </div>

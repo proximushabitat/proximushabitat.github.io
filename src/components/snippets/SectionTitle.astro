@@ -30,7 +30,7 @@ import { aosDuration, aosDelay } from '@/snippets/aosValues';
 		{linkUrl && <span class="grow text-right" data-aos="fade-up" data-aos-duration={aosDuration(2)}><a class="font-bold text-secondary text-right" href={linkUrl}>
 			{linkText} &nbsp; ↗
 		</a></span>}
-		{pageLinks && <div class="text-secondary">
+		{pageLinks && <div class="text-secondary" data-aos="fade-up" data-aos-duration={aosDuration(1)} data-aos-delay={aosDelay(1)}>
 			<Fragment set:html={pageLinks} data-aos="fade-up" data-aos-duration={aosDuration(2)} />
 		</div>}
 	</div>

@@ -80,6 +80,12 @@ const news = defineCollection({
 	schema: contentSchema,
 });
 
+// General stuff
+const general = defineCollection({
+	loader: glob({ pattern: "**/*.{md,mdx}", base: 'src/collections/general' }),
+	schema: contentSchema,
+});
+
 // sections
 const sections = defineCollection({
 	loader: glob({ pattern: "**/*.{md,mdx}", base: 'src/collections/sections' }),
@@ -121,4 +127,4 @@ const articleCategories = defineCollection({
 // quelle
 
 // 4. Export a single `collections` object to register your collection(s)
-export const collections = { test, people, sources, sections, lilBits, overviews, news, bigBits, articleCategories, keyWords, glossary };
+export const collections = { test, people, sources, sections, lilBits, overviews, news, bigBits, articleCategories, keyWords, glossary, general };

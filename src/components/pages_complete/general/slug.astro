@@ -1,0 +1,172 @@
+---
+import { getCollection, getEntry, render } from 'astro:content';
+
+import { getTranslations, getItemLang, getPageUrl } from '@snippets/handleCollections';
+
+import { formatDate } from '@snippets/numberGames';
+
+import ToolTip from '@/components/technical/ToolTip.astro';
+
+import BaseLayout from "@layouts/BaseLayout.astro";
+import DesignTop from "@components/general/DesignTop.astro";
+import Numbered from "@components/general/Numbered.astro";
+import ArticlesNude from "@components/general/ArticlesNude.astro";
+import ArticlesImaged from "@components/general/ArticlesImaged.astro";
+import DesignBottom from "@components/general/DesignBottom.astro";
+import divTitle from "@components/snippets/divTitle.astro";
+import SectionTitle from '@/components/snippets/SectionTitle.astro';
+import TwoThings from '@/components/snippets/TwoThings.astro';
+
+import ReferenceList from '@components/references/referenceList.astro';
+import RemarkList from '@/components/references/remarkList.astro';
+import Glossary from '@/components/references/glossary.astro';
+
+//aos
+import { aosDuration, aosDelay } from '@/snippets/aosValues';
+
+const lB = await getCollection('lilBits');
+
+const tArt = lB.filter(entry => {
+	////console.log("entry");
+	////console.log(entry.id);
+	return entry.id == "article";
+})[0].data;
+
+//////////////console.log("tArt");
+//////////////console.log(tArt);
+
+const { lang, slug, page, pages } = Astro.props;
+
+//////////////////////////console.log("");
+//////////////////////////console.log("TEST:ASTRO");
+//////////////////////////console.log("page");
+//////////////////////////console.log(page);
+//////////////////////////console.log("slug");
+//////////////////////////console.log(slug);
+//////////////////////////console.log("lang");
+//////////////////////////console.log(lang);
+////console.log("pages");
+////console.log(pages);
+
+////////////////////////////console.log("page.filePath");
+////////////////////////////console.log(page.filePath);
+////////////////////////////console.log("");
+
+////////////////////////////console.log("page.filePath?.split('/')[page.filePath?.split('/').length - 1]");
+////////////////////////////console.log(page.filePath?.split('/')[page.filePath?.split('/').length - 1]);
+//const translations = pages.filter(onePage => onePage.filePath?.split('/')[onePage.filePath?.split('/').length - 1] == page.filePath?.split('/')[page.filePath?.split('/').length - 1])
+var translationsAll = getTranslations(page, pages);
+var translations = translationsAll.filter(translation => translation.data.trans_ready == true);
+
+
+////////////////////////////console.log(" ");
+////////////////////////////console.log("pages");
+////////////////////////////console.log(pages);
+////////////////////////////console.log(" ");
+////console.log("translationsAll");
+////console.log(translationsAll);
+////console.log("translations");
+////console.log(translations);
+
+const peops = await getCollection('people');
+const sections = await getCollection('sections');
+
+const noTranslation = await getEntry('lilBits', 'noTranslation');
+////////////////console.log("noTranslation, lang "+lang);
+////////////////console.log(noTranslation.data.excuse.title[lang]);
+////////////////////////////console.log("people");
+////////////////////////////console.log(peops);
+
+////////////////////////////console.log("");
+
+const formattedDate = page.data.date_published.toLocaleString(lang);
+
+////////////////////////console.log("page");
+////////////////////////console.log(page);
+
+const { Content } = await render(page);
+
+//////////////console.log("page.data.author");
+//////////////console.log(page.data.author);
+
+var authorString = "";
+for(let i = 0; i < page.data.author.length; i++){
+  const thisAuth = peops.filter(person => person.id == page.data.author[i].id);
+  //////////////console.log("thisAuth");
+  //////////////console.log(thisAuth[0].data);
+  authorString += thisAuth[0].data.name_first + " " + thisAuth[0].data.name_last;
+  if(i < page.data.author.length - 1){
+    authorString += ", ";
+  }
+}
+//////////////console.log("authorString");
+//////////////console.log(authorString);
+
+var dateString = "";
+
+if(page.data.date_published){
+  dateString += tArt.published[lang];
+  dateString += " ";
+  dateString += formatDate(page.data.date_published);
+  //dateString += page.data.date_published;
+}
+if(page.data.date_updated){
+  dateString += ", "
+  dateString += tArt.updated[lang];
+  dateString += " ";
+  dateString += formatDate(page.data.date_updated);
+}
+
+const keywords = page.data.keywords;
+
+////////////console.log("titleH: "+ page.data.title);
+
+---
+
+
+<BaseLayout author={authorString} datePub={page.data.date_published} dateUp={page.data.date_updated} keywords={keywords} title={page.data.title} excerpt={page.data.excerpt} >
+  <DesignTop nLines={3} baseRem={0.2} incIncDecimal={0.5} startWith="l" />
+  <article lang={lang} class="bg-primary flex flex-col justify-center place-self-center "><!--text-justify break-words break-all hyphens-manual">-->
+    <div class="px-spaceFromEdge 2xl:max-w-7xl mx-auto py-8 w-full">
+      <div class="space-y-2 max-w-singleWidth mx-auto">
+        <!-- div Title and Decorative Elements -->
+        <h1 class="text-5xl font-bold italic" data-aos="fade-up" data-aos-duration={aosDuration(1)} set:html={page.data.headline} />
+        <h2 class="text-xl font-bold italic"  data-aos="fade-up" data-aos-duration={aosDuration(1.5)} set:html={page.data.drophead} />
+      </div>
+      
+      <div class="max-w-singleWidth mx-auto">
+        {<TwoThings left={dateString} right={authorString}/>}
+
+        <div id="content"  data-aos="fade-up" data-aos-duration={aosDuration(3)} data-aos-delay={aosDelay(1)}>
+
+          {page.data.trans_ready && <Content />}
+
+        </div>
+
+        {!page.data.trans_ready && 
+          <h3 data-aos="fade-up" data-aos-duration={aosDuration(1)} set:html={noTranslation.data.excuse.title[lang]} />
+          <p data-aos="fade-up" data-aos-duration={aosDuration(1.5)} set:html={noTranslation.data.excuse.text[lang]} />
+          <h4 data-aos="fade-up" data-aos-duration={aosDuration(2)} set:html={noTranslation.data.excuse.announceOthers[lang]} />
+          <ul  data-aos="fade-up" data-aos-duration={aosDuration(2)} data-aos-delay={aosDelay(1)}>
+            {translations.map((translation, index) => (
+                <li>
+                  <a class="font-bold" href={getPageUrl(translation, sections)}>{getItemLang(translation)['full']}  &nbsp; ↗</a>
+                </li>
+              ))
+            }
+          </ul>
+        }
+
+        <ReferenceList />
+        <RemarkList />
+        <Glossary />
+
+      </div>
+    </div>
+  </article>
+
+  <DesignBottom nLines={3} baseRem={0.2} incIncDecimal={0.5} startWith="s" />
+
+  <ToolTip />
+
+</BaseLayout>

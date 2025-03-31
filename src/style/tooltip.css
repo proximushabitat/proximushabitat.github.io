@@ -11,6 +11,9 @@
 	border-radius: 4px;
 	/*font-size: 90%;*/
 	max-width: calc(100vw - 28px);
+	font-style: normal;
+	word-wrap: break-word;
+	text-align: left;
 }
 .toolTipArrow {
 	position: absolute;

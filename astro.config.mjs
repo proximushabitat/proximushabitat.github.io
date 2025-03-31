@@ -25,7 +25,10 @@ export default defineConfig({
     //format: 'preserve'
     redirects: true,
   },
-  site: 'https://proximushabitat.github.io',
+  site: 'https://proximushabitat.ch',
+  vite: {
+    assetsInclude: ["**/*.xlsx"]
+  }
   /*vite: {
     resolve: {
       alias: {

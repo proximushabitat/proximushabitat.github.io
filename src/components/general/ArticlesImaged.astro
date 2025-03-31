@@ -37,7 +37,7 @@ function calculateAosDuration(index) {
 }
 
 for (let i = 0; i < items.length; i++){
-  const { thumb } = await render(items[i]);
+  const { thumb, thumbHighlight } = await render(items[i]);
   ////////////console.log("thumb"); 
   ////////////console.log(thumb);
 }
@@ -60,6 +60,9 @@ for(let i = 0; i < items.length; i++){
   ////////////console.log(singlePostForThumb[0]);
   if(singlePostForThumb[0].thumb){
     items[i]['thumb'] = singlePostForThumb[0].thumb;
+    if(singlePostForThumb[0].thumbHighlight){
+      items[i]['thumbHighlight'] = singlePostForThumb[0].thumbHighlight;
+    }
   }else{
     items[i]['thumb'] = fallbackImg;
   }
@@ -101,23 +104,34 @@ for(let i = 0; i < items.length; i++){
               <div class="h-full flex flex-col justify-between">
                 <div class="grow">
                   <div class="my-2 grid grid-cols-1 grid-rows-1 canvas">
-                    <div class="h-40 col-start-1 row-start-1 overflow-clip flex items-center img" style={"background: url("+item.thumb.src+");background-size: cover;background-position: center;"}>
+                    <div class="h-40 col-start-1 row-start-1 overflow-clip flex items-center imgBW" style={/*"background: url("+item.thumb.src+");background-size: cover;background-position: center;"*/""}>
                       <Image
                         src={item.thumb}
                         alt={item.data.headline}
-                        class=""
+                        height="444"
+                        class="w-full h-full object-cover"
                       />
                     </div>
+                    {item.thumbHighlight && 
+                      <div class="h-40 col-start-1 row-start-1 overflow-clip flex items-center imgHL" style={/*"background: url("+item.thumb.src+");background-size: cover;background-position: center;"*/""}>
+                        <Image
+                          src={item.thumbHighlight}
+                          alt={item.data.headline}
+                          height="444"
+                          class="w-full h-full object-cover"
+                        />
+                      </div>
+                    }
                     <div class="h-40 col-start-1 row-start-1 z-10 over"></div>
                   </div>
                   <h3 class="italic text-2xl block font-bold">{item.data.headline}</h3>
                   {((item.data.date_published || item.data.author) && showDate == "true") && <div class="text-sm mt-1 font-light italic"><span>{formatDate(item.data.date_published)}</span>  <span>{/*item.author*/}</span></div>} 
-                  <p lang={lang} class="text-base mt-2 mb-1 leading-relaxed justify-between break-words hyphens-auto">
+                  <p lang={lang} class="text-base mt-2 mb-0.5 leading-relaxed justify-between break-words hyphens-auto">
                     {item.data.trans_ready && item.data.excerpt}
                     {!item.data.trans_ready && sectionData.data.no_trans_excerpt}
                   </p>
                 </div>
-                <div class="mt-2">
+                <div class="mb-2 mt-0">
                   <a href={"/"+lang+"/"+sectionData.data.slug+"/"+item.data.slug} class="mt-1 text-base font-semibold">
                     {sectionData.data.read_it} &nbsp; ↗
                   </a>
@@ -145,6 +159,8 @@ for(let i = 0; i < items.length; i++){
   /*--make-color: saturate(100%) invert(7%) sepia(100%) saturate(4848%) hue-rotate(222deg) brightness(95%) contrast(171%);*/
   --make-color: brightness(96%) saturate(100%) invert(11%) sepia(12%) saturate(1118%) hue-rotate(188deg) brightness(95%) contrast(94%);
   /*--make-color: brightness(70%) saturate(100%) invert(0%) sepia(66%) saturate(372%) hue-rotate(350deg) brightness(102%) contrast(99%);*/
+  /*--make-colorHL: brightness(50%) saturate(100%) invert(40%) sepia(69%) saturate(816%) hue-rotate(331deg) brightness(80%) contrast(110%);*/
+  --make-colorHL: brightness(20%) saturate(100%) invert(89%) sepia(11%) saturate(753%) hue-rotate(300deg) brightness(80%) contrast(94%);
 }
 
 .canvas {
@@ -173,7 +189,7 @@ for(let i = 0; i < items.length; i++){
   transform: rotate(20deg);
 }
 
-.canvas .img {
+.canvas .imgBW {
   /*position: absolute;
   top: 0;
   left: 0;
@@ -183,5 +199,16 @@ for(let i = 0; i < items.length; i++){
   object-position: center;
   mix-blend-mode: var(--blend-mode);
   filter: grayscale(1) brightness(var(--photo-brightness)) contrast(var(--photo-contrast)) blur(var(--photo-blur)) var(--make-color);
+}
+.canvas .imgHL {
+  /*position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;*/
+  object-fit: cover;
+  object-position: center;
+  mix-blend-mode: var(--blend-mode);
+  filter: grayscale(1) brightness(var(--photo-brightness)) contrast(var(--photo-contrast)) blur(var(--photo-blur)) var(--make-colorHL);
 }
 </style>

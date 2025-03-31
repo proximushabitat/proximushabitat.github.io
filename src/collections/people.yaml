@@ -17,3 +17,13 @@ beispiel:
     de: "spezifischer gründer"            # specific title
   member: "yes"                           # yes no former guest
   since: ""                               # year of joining
+
+platz-halter:
+  name_first: " "
+  name_last: " "
+  title: ""
+  role:
+    generic: " "                    # generic title, is automatically translated
+    de: " "            # specific title
+  member: " "                           # yes no former guest
+  since: ""                               # year of joining

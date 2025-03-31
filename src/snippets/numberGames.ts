@@ -1,16 +1,16 @@
 export function formatDate(uglyDate: string) {
 	var prettyDate = "";
-	////////////////console.log("uglyDate");
-	////////////////console.log(uglyDate);
+	//////////////console.log.log("uglyDate");
+	//////////////console.log.log(uglyDate);
 	const day = uglyDate.getDate();
 	const month = uglyDate.getMonth()+1;
 	const year = uglyDate.getFullYear();
-	////console.log("day");
-	////console.log(day);
-	////console.log("month");
-	////console.log(month);
-	////console.log("year");
-	////console.log(year);
+	//console.log.log("day");
+	//console.log.log(day);
+	//console.log.log("month");
+	//console.log.log(month);
+	//console.log.log("year");
+	//console.log.log(year);
 
 	if(day < 10){
 		prettyDate += "0";
@@ -41,11 +41,11 @@ export function sortBigFirst(things: object, sorter: string){
 	});
 }
 export function sortSmallFirst(things: object, sorter: string){
-	//////////////////console.log("things");
-	//////////////////console.log(things);
+	////////////////console.log.log("things");
+	////////////////console.log.log(things);
 	return things.sort((a, b) => {
-		//////////////////console.log("a.data[sorter]");
-		//////////////////console.log(a.data[sorter]);
+		////////////////console.log.log("a.data[sorter]");
+		////////////////console.log.log(a.data[sorter]);
 		if (a.data[sorter] < b.data[sorter]) {
 			return -1;
 		}

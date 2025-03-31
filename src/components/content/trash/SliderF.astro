@@ -47,40 +47,40 @@ var items = ["hhh"];
 var navButtons = "";
 var navIndicators = "";
 
-//////////////////////////////console.log("items");
-//////////////////////////////console.log(items);
+////////////////////////////console.log.log("items");
+////////////////////////////console.log.log(items);
 
 async function itemAddData() {
-  //////////////////////////////console.log("itemsWITHIN");
-  //////////////////////////////console.log(items);
+  ////////////////////////////console.log.log("itemsWITHIN");
+  ////////////////////////////console.log.log(items);
   items = itemsOriginal;
-  //////////////////////////////console.log("itemsWITHIN2");
-  //////////////////////////////console.log(items);
+  ////////////////////////////console.log.log("itemsWITHIN2");
+  ////////////////////////////console.log.log(items);
   for(let i=0; i < items.length; i++){
-    //////////////////////////////console.log("i: "+i)
-    //////////////////////////////console.log("item");
-    //////////////////////////////console.log(items[i]);
+    ////////////////////////////console.log.log("i: "+i)
+    ////////////////////////////console.log.log("item");
+    ////////////////////////////console.log.log(items[i]);
     //GET YAML WITH DATA
     //go to folders above
-    //////////////////////////////console.log("path1: "+items[i].path);
+    ////////////////////////////console.log.log("path1: "+items[i].path);
     items[i].pathExt = "../../" + items[i].path;
-    //////////////////////////////console.log("path2: "+items[i].pathExt);
+    ////////////////////////////console.log.log("path2: "+items[i].pathExt);
     //all data files are named data
     const pathData = items[i].pathExt+"data.yaml";
     //generate url
-    //////////////////////////////console.log("yaml path");
-    //////////////////////////////console.log(pathData);
+    ////////////////////////////console.log.log("yaml path");
+    ////////////////////////////console.log.log(pathData);
     const urlData = new URL(pathData, import.meta.url);
     //load yaml file
-    //////////////////////////////console.log("yaml url");
-    //////////////////////////////console.log(urlData);
+    ////////////////////////////console.log.log("yaml url");
+    ////////////////////////////console.log.log(urlData);
     const fileData = await fs.readFile(urlData, 'utf-8');
     //load data from yaml file
     const data = parseYaml(fileData);
     items[i].data = data;
-    //////////////////////////////console.log("data1: "+items[i].pathExt);
-    ////////////////////////////////console.log("image data");
-    ////////////////////////////////console.log(data.generic_alt);
+    ////////////////////////////console.log.log("data1: "+items[i].pathExt);
+    //////////////////////////////console.log.log("image data");
+    //////////////////////////////console.log.log(data.generic_alt);
 
     //GET IMAGE
     //generate path of image
@@ -88,12 +88,12 @@ async function itemAddData() {
     items[i].pathImg = pathImg;
     //generate url of image
     const urlImg = new URL(pathImg, import.meta.url);
-    //////////////////////////////console.log("pathImg: "+items[i].pathImg);
+    ////////////////////////////console.log.log("pathImg: "+items[i].pathImg);
   }
 
   /*items.forEach((item, index) => {
-    //////////////////////////////console.log("item");
-    //////////////////////////////console.log(item);
+    ////////////////////////////console.log.log("item");
+    ////////////////////////////console.log.log(item);
     //GET YAML WITH DATA
     //go to folders above
     item.path = "../../" + item.path;
@@ -105,21 +105,21 @@ async function itemAddData() {
     const fileData = await fs.readFile(urlData, 'utf-8');
     //load data from yaml file
     const data = parseYaml(fileData);
-    ////////////////////////////////console.log("image data");
-    ////////////////////////////////console.log(data.generic_alt);
+    //////////////////////////////console.log.log("image data");
+    //////////////////////////////console.log.log(data.generic_alt);
   });*/
 }
 
 
 const images = import.meta.glob<{ default: ImageMetadata }>("../../assets/for_content/img/**/*.{jpeg,jpg,png,gif,tiff,webp}");
 
-////////////////////////////////console.log("images");
-////////////////////////////////console.log(images);
+//////////////////////////////console.log.log("images");
+//////////////////////////////console.log.log(images);
 
 await itemAddData();
 
-////////////////////////////////console.log("items2");
-////////////////////////////////console.log(items);
+//////////////////////////////console.log.log("items2");
+//////////////////////////////console.log.log(items);
 
 
 ---
@@ -208,7 +208,7 @@ await itemAddData();
   //medium zoom is the zoom library.
   import mediumZoom from 'medium-zoom';
   //const bg = await "#"+document.getElementById("bgcolor").innerHTML;
-  //////////////////////////////////////console.log("bg: "+bg);
+  ////////////////////////////////////console.log.log("bg: "+bg);
   const zoom = await mediumZoom('[medium-zoomable]', {
     margin: 0,
     /*opacity: "0.5",*/
@@ -227,7 +227,7 @@ await itemAddData();
 
   zoom.on('open', event => {
     // track when the image is zoomed
-    ////////////////////////////////////////console.log("open");
+    //////////////////////////////////////console.log.log("open");
     prevButtonsAll.forEach(node => {
       node.classList.add('opacity-0');
       node.classList.add('invisible');
@@ -254,7 +254,7 @@ await itemAddData();
 
   zoom.on('closed', event => {
     // track when the image has finished closing
-    ////////////////////////////////////////console.log("closed");
+    //////////////////////////////////////console.log.log("closed");
     prevButtonsAll.forEach(node => {
       node.classList.remove('opacity-0');
       node.classList.remove('invisible');

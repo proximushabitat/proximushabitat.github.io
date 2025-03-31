@@ -1,5 +1,5 @@
 ---
-//////////////////////////////console.log("SLIDER")
+////////////////////////////console.log.log("SLIDER")
 import { Image } from 'astro:assets';
 import type { ImageMetadata } from 'astro';
 import fs from 'node:fs/promises';
@@ -18,8 +18,8 @@ import { getCollection } from 'astro:content';
 
 const lB = await getCollection('lilBits');
 const tSources = lB.filter(entry => {
-	////////////////////console.log("entry");
-	////////////////////console.log(entry.id);
+	//////////////////console.log.log("entry");
+	//////////////////console.log.log(entry.id);
 	return entry.id == "sources";
 })[0].data;
 
@@ -28,31 +28,31 @@ const { items, interval = 5000, aspect, capAlt, dataFile} = Astro.props;
 //const STRAPI_BASE_URL = import.meta.env.STRAPI_BASE_URL || "http://localhost:1337";
 const sliderId = `slider-${Math.random().toString(36).substr(2, 9)}`;
 
-////////////////////////////console.log("capAlt");
-////////////////////////////console.log(capAlt);
+//////////////////////////console.log.log("capAlt");
+//////////////////////////console.log.log(capAlt);
 
-//////////////////////////////console.log("itemsJustImportant");
-//////////////////////////////console.log(itemsOriginal);
+////////////////////////////console.log.log("itemsJustImportant");
+////////////////////////////console.log.log(itemsOriginal);
 //var items = ["hhh"];
 
 var navButtons = "";
 var navIndicators = "";
 
-////////////////////////console.log("capAlt");
-////////////////////////console.log(capAlt);
+//////////////////////console.log.log("capAlt");
+//////////////////////console.log.log(capAlt);
 
-////////////////////////console.log("items1");
-////////////////////////console.log(items);
+//////////////////////console.log.log("items1");
+//////////////////////console.log.log(items);
 for(let i = 0; i < items.length; i++ ){
   items[i].data = dataFile[i];
 }
-////////////////////////console.log("items2");
-////////////////////////console.log(items);
+//////////////////////console.log.log("items2");
+//////////////////////console.log.log(items);
 for(let i = 0; i < items.length; i++ ){
   items[i].capAlt = capAlt[i];
 }
-////////////////////////console.log("items3");
-////////////////////////console.log(items);
+//////////////////////console.log.log("items3");
+//////////////////////console.log.log(items);
 
 ---
 
@@ -163,21 +163,21 @@ for(let i = 0; i < items.length; i++ ){
 
 <script define:vars={{ interval, sliderId, items }}>
   window.addEventListener("load", (event) => {
-    ////////console.log("page is fully loaded");
+    //////console.log.log("page is fully loaded");
   
 
-  ////////console.log("sliderId: ");
-  ////////console.log(sliderId);
-  ////////console.log("items: ");
-  ////////console.log(items);
-  ////////console.log("interval: ");
-  ////////console.log(interval);
+  //////console.log.log("sliderId: ");
+  //////console.log.log(sliderId);
+  //////console.log.log("items: ");
+  //////console.log.log(items);
+  //////console.log.log("interval: ");
+  //////console.log.log(interval);
   const sliderContainer = document.getElementById(sliderId);
   const sliderLower = document.getElementById("sliderLower"+sliderId);
-  ////////console.log("sliderContainer");
-  ////////console.log(sliderContainer);
+  //////console.log.log("sliderContainer");
+  //////console.log.log(sliderContainer);
   sliderContainer.addEventListener('mouseenter', () => {
-    ////////console.log("click");
+    //////console.log.log("click");
     //prevSlide();
     //startAutoslide();
   });
@@ -189,38 +189,38 @@ for(let i = 0; i < items.length; i++ ){
   const captionOuter = sliderContainer.querySelectorAll('.caption-outer');
   const captionInnerMobile = sliderLower.querySelectorAll('.caption-inner-mobile');
   const captionOuterMobile = sliderLower.querySelectorAll('.caption-outer-mobile');
-  ////////console.log("slides");
-  ////////console.log(slides);
-  ////////console.log("prevButton");
-  ////////console.log(prevButton);
-  ////////console.log("nextButton");
-  ////////console.log(nextButton);
-  ////////console.log("indicators");
-  ////////console.log(indicators);
-  ////////console.log("captionInner");
-  ////////console.log(captionInner);
-  ////////console.log("captionOuter");
-  ////////console.log(captionOuter);
-  ////////console.log("captionInnerMobile");
-  ////////console.log(captionInnerMobile);
-  ////////console.log("captionOuterMobile");
-  ////////console.log(captionOuterMobile);
+  //////console.log.log("slides");
+  //////console.log.log(slides);
+  //////console.log.log("prevButton");
+  //////console.log.log(prevButton);
+  //////console.log.log("nextButton");
+  //////console.log.log(nextButton);
+  //////console.log.log("indicators");
+  //////console.log.log(indicators);
+  //////console.log.log("captionInner");
+  //////console.log.log(captionInner);
+  //////console.log.log("captionOuter");
+  //////console.log.log(captionOuter);
+  //////console.log.log("captionInnerMobile");
+  //////console.log.log(captionInnerMobile);
+  //////console.log.log("captionOuterMobile");
+  //////console.log.log(captionOuterMobile);
 
-  ////////console.log("doing it");
+  //////console.log.log("doing it");
   var currentSlide = 0;
   var intervalId;
 
   function showSlide(index) {
-    //////console.log("showSlide: "+index);
-    //////console.log("removing slide: "+currentSlide);
+    ////console.log.log("showSlide: "+index);
+    ////console.log.log("removing slide: "+currentSlide);
     slides[currentSlide].classList.remove('opacity-100');
     slides[currentSlide].classList.add('opacity-0');
     slides[currentSlide].classList.add('invisible');
     indicators[currentSlide].classList.remove('bg-opacity-100');
     indicators[currentSlide].classList.add('bg-opacity-50');
 
-    //////console.log("captionInner[0]");
-    //////console.log(captionInner[0]);
+    ////console.log.log("captionInner[0]");
+    ////console.log.log(captionInner[0]);
     
     captionInner[0].children[currentSlide].classList.add("invisible");
     //captionInner[0].children[currentSlide].classList.remove("flex");
@@ -241,9 +241,9 @@ for(let i = 0; i < items.length; i++ ){
     captionInnerMobile[0].children[currentSlide].classList.add("max-h-8");
     captionInnerMobile[0].children[currentSlide].classList.remove("py-3");
 
-    //////console.log("finishing slide: "+currentSlide);
+    ////console.log.log("finishing slide: "+currentSlide);
     currentSlide = index;
-    //////console.log("now doing slide: "+currentSlide);
+    ////console.log.log("now doing slide: "+currentSlide);
     
     slides[currentSlide].classList.remove('opacity-0');
     slides[currentSlide].classList.add('opacity-100');
@@ -271,7 +271,7 @@ for(let i = 0; i < items.length; i++ ){
     captionInnerMobile[0].children[currentSlide].classList.remove("max-h-8");
     captionInnerMobile[0].children[currentSlide].classList.add("py-3");
 
-    //////console.log("finishing slide: "+currentSlide);
+    ////console.log.log("finishing slide: "+currentSlide);
 
     items[currentSlide].caption == null && captionInner[0].children[currentSlide].classList.remove("py-3");
     //singleimage[currentSlide].caption == null && captionInnerMobile[0].children[currentSlide].classList.remove("py-3");
@@ -281,7 +281,7 @@ for(let i = 0; i < items.length; i++ ){
     } 
   }
   var xyz = 0;
-  ////////console.log("still doing it --> "+xyz);
+  //////console.log.log("still doing it --> "+xyz);
 
   function hideNavUI(){
     indicators[0].classList.add('hidden');
@@ -290,61 +290,61 @@ for(let i = 0; i < items.length; i++ ){
   }
 
   xyz++;
-  ////////console.log("still doing it --> "+xyz);
+  //////console.log.log("still doing it --> "+xyz);
 
   function nextSlide() {
-    ////////console.log("nextSlide");
+    //////console.log.log("nextSlide");
     showSlide((currentSlide + 1) % slides.length);
   }
 
   xyz++;
-  ////////console.log("still doing it --> "+xyz);
+  //////console.log.log("still doing it --> "+xyz);
 
   function prevSlide() {
-    ////////console.log("prevSlide");
+    //////console.log.log("prevSlide");
     showSlide((currentSlide - 1 + slides.length) % slides.length);
   }
 
   xyz++;
-  ////////console.log("still doing it --> "+xyz);
+  //////console.log.log("still doing it --> "+xyz);
 
   function startAutoslide() {
-    ////////console.log("startAutoslide");
+    //////console.log.log("startAutoslide");
     intervalId = setInterval(nextSlide, interval);
   }
 
   xyz++;
-  ////////console.log("still doing it --> "+xyz);
+  //////console.log.log("still doing it --> "+xyz);
 
   function stopAutoSlide() {
-    ////////console.log("stopAutoSlide");
+    //////console.log.log("stopAutoSlide");
     clearInterval(intervalId);
   }
 
   xyz++;
-  ////////console.log("still doing it --> "+xyz);
+  //////console.log.log("still doing it --> "+xyz);
 
   prevButton.addEventListener('click', () => {
-    ////////console.log("prevButton");
+    //////console.log.log("prevButton");
     prevSlide();
     stopAutoSlide();
     //startAutoslide();
   });
 
   xyz++;
-  ////////console.log("still doing it --> "+xyz);
+  //////console.log.log("still doing it --> "+xyz);
 
-  ////////console.log("nextButton");
-  ////////console.log(nextButton);
+  //////console.log.log("nextButton");
+  //////console.log.log(nextButton);
   nextButton.addEventListener("click", function(){
-    ////////console.log("nextButton");
+    //////console.log.log("nextButton");
     nextSlide();
     stopAutoSlide();
     //startAutoslide();
   });
 
   xyz++;
-  ////////console.log("still doing it --> "+xyz);
+  //////console.log.log("still doing it --> "+xyz);
 
   indicators.forEach((indicator, index) => {
     indicator.addEventListener('click', () => {
@@ -355,17 +355,17 @@ for(let i = 0; i < items.length; i++ ){
   });
 
   xyz++;
-  ////////console.log("still doing it --> "+xyz);
+  //////console.log.log("still doing it --> "+xyz);
 
   sliderContainer.addEventListener('mouseenter', stopAutoSlide);
   //sliderContainer.addEventListener('mouseleave', startAutoslide);
   xyz++;
-  ////////console.log("still doing it --> "+xyz);
+  //////console.log.log("still doing it --> "+xyz);
 
   showSlide(0);
 
   xyz++;
-  ////////console.log("still doing it --> "+xyz+" --> fini");
+  //////console.log.log("still doing it --> "+xyz+" --> fini");
 
   });
 
@@ -401,7 +401,7 @@ for(let i = 0; i < items.length; i++ ){
   //medium zoom is the zoom library.
   import mediumZoom from 'medium-zoom';
   //const bg = await "#"+document.getElementById("bgcolor").innerHTML;
-  ////////////////////////////////////////console.log("bg: "+bg);
+  //////////////////////////////////////console.log.log("bg: "+bg);
   const zoom = await mediumZoom('[medium-zoomable]', {
     margin: 0,
     background: "#fafafaed",
@@ -421,7 +421,7 @@ for(let i = 0; i < items.length; i++ ){
 
   zoom.on('open', event => {
     // track when the image is zoomed
-    ////////////////////////////////////////console.log("open");
+    //////////////////////////////////////console.log.log("open");
     prevButtonsAll.forEach(node => {
       node.classList.add('opacity-0');
       node.classList.add('invisible');
@@ -448,7 +448,7 @@ for(let i = 0; i < items.length; i++ ){
 
   zoom.on('closed', event => {
     // track when the image has finished closing
-    ////////////////////////////////////////console.log("closed");
+    //////////////////////////////////////console.log.log("closed");
     prevButtonsAll.forEach(node => {
       node.classList.remove('opacity-0');
       node.classList.remove('invisible');

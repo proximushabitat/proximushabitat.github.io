@@ -33,15 +33,15 @@ const introContent = await getEntry('bigBits', entry);
 
 const introContent = introContentColl.filter(item => {
     const returnThis = item.id == entry;
-    //////////////console.log("entry: '"+entry+"'     item.id: '"+item.id+"'     returnThis: "+returnThis);
+    ////////////console.log.log("entry: '"+entry+"'     item.id: '"+item.id+"'     returnThis: "+returnThis);
     return returnThis;
   }
 );*/
 
-/*//////////////console.log("introContentColl");
-//////////////console.log(introContentColl);*/
-//////////////console.log("introContent");
-//////////////console.log(introContent);
+/*////////////console.log.log("introContentColl");
+////////////console.log.log(introContentColl);*/
+////////////console.log.log("introContent");
+////////////console.log.log(introContent);
 
 const { Content: Intro } = await render(introContent);
 

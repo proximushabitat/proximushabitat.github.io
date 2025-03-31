@@ -4,8 +4,8 @@ import SectionTitle from "@components/snippets/SectionTitle.astro";
 import { getLangFromUrl } from '@i18n/langFunctions';
 
 const lang = getLangFromUrl(Astro.url);
-//////////console.log("lang");
-//////////console.log(lang);
+////////console.log.log("lang");
+////////console.log.log(lang);
 
 //WEGWEGWEG
 const sourcesColl = await getCollection('sources');
@@ -14,14 +14,14 @@ const alf = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
 
 const lB = await getCollection('lilBits');
 const tRem = lB.filter(entry => {
-	////////////////////console.log("entry");
-	////////////////////console.log(entry.id);
+	//////////////////console.log.log("entry");
+	//////////////////console.log.log(entry.id);
 	return entry.id == "remarks";
 })[0].data;
-//////////console.log("tRem");
-//////////console.log(tRem);
-////////////////////////////console.log("sourcesColl");
-////////////////////////////console.log(sourcesColl);
+////////console.log.log("tRem");
+////////console.log.log(tRem);
+//////////////////////////console.log.log("sourcesColl");
+//////////////////////////console.log.log(sourcesColl);
 
 //aos
 import { aosDuration, aosDelay } from '@/snippets/aosValues';
@@ -41,26 +41,26 @@ import { aosDuration, aosDelay } from '@/snippets/aosValues';
 
 
 <script define:vars={{ sourcesColl, lang, alf, tRem }} is:inline>
-	//////////console.log("script started");
+	////////console.log.log("script started");
 
-	////////////////////////////console.log(sourcesColl);
+	//////////////////////////console.log.log(sourcesColl);
 	const remarks = document.querySelectorAll(".remark");
 	const container = document.querySelector(".remarksContainer");
 	const list = document.querySelector(".remarksList");
-	//////////console.log("remarks");
-	//////////console.log(remarks);
+	////////console.log.log("remarks");
+	////////console.log.log(remarks);
 
 	if(remarks.length > 0){
 		container.classList.remove("hidden")
 	}else{
-		//////////console.log("no remarks");
+		////////console.log.log("no remarks");
 	}
 
 	var allRemarks = [];
 
 	for(let i = 0; i < remarks.length; i++){
-		//////////console.log("remarks[i]");
-		//////////console.log(remarks[i]);
+		////////console.log.log("remarks[i]");
+		////////console.log.log(remarks[i]);
 		remarks[i].classList.remove("hidden");
 		const content = remarks[i].innerHTML;
 		allRemarks.push({i, content});
@@ -81,15 +81,15 @@ import { aosDuration, aosDelay } from '@/snippets/aosValues';
 		remarks[i].innerHTML = floaty;
 	}
 	
-	//////////console.log("allRemarks");
-	//////////console.log(allRemarks);
+	////////console.log.log("allRemarks");
+	////////console.log.log(allRemarks);
 
 	var listContent = "";
 	for(let i = 0; i < allRemarks.length; i++){
-		////////////////////////////console.log("allRemarks[i]");
-		////////////////////////////console.log(allRemarks[i]);
-		////////////////////////////console.log("thisSourceData");
-		////////////////////////////console.log(thisSourceData);
+		//////////////////////////console.log.log("allRemarks[i]");
+		//////////////////////////console.log.log(allRemarks[i]);
+		//////////////////////////console.log.log("thisSourceData");
+		//////////////////////////console.log.log(thisSourceData);
 		var thisSourceContent = "<li class='break-normal'>";
 		thisSourceContent += "<div class='flex flex-row w-full mb-2'>"
 		thisSourceContent += "<div class='min-w-6'>"
@@ -111,8 +111,8 @@ import { aosDuration, aosDelay } from '@/snippets/aosValues';
 		listContent += thisSourceContent;
 	}
 
-	////////////////////////////console.log("listContent");
-	////////////////////////////console.log(listContent);
+	//////////////////////////console.log.log("listContent");
+	//////////////////////////console.log.log(listContent);
 
 	list.innerHTML = listContent;
 

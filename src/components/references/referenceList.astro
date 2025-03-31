@@ -8,19 +8,19 @@ import { formatDate } from '@snippets/numberGames';
 const sourcesColl = await getCollection('sources');
 
 const lang = getLangFromUrl(Astro.url);
-//////////console.log("lang");
-//////////console.log(lang);
+////////////console.log("lang");
+////////////console.log(lang);
 
 const lB = await getCollection('lilBits');
 const tSources = lB.filter(entry => {
-	////////////////////console.log("entry");
-	////////////////////console.log(entry.id);
+	//////////////////////console.log("entry");
+	//////////////////////console.log(entry.id);
 	return entry.id == "sources";
 })[0].data;
-//////////console.log("tSources");
-//////////console.log(tSources.seeSource[lang]);
-////////////////////////////console.log("sourcesColl");
-////////////////////////////console.log(sourcesColl);
+////////////console.log("tSources");
+////////////console.log(tSources.seeSource[lang]);
+//////////////////////////////console.log("sourcesColl");
+//////////////////////////////console.log(sourcesColl);
 
 //aos
 import { aosDuration, aosDelay } from '@/snippets/aosValues';
@@ -40,18 +40,18 @@ import { aosDuration, aosDelay } from '@/snippets/aosValues';
 
 
 <script define:vars={{ sourcesColl, tSources, lang }} is:inline>
-	////////////////////////////console.log("sourcesColl");
-	////////////////////////////console.log(sourcesColl);
+	//////////////////////////////console.log("sourcesColl");
+	//////////////////////////////console.log(sourcesColl);
 	const references = document.querySelectorAll(".reference");
 	const container = document.querySelector(".referenceContainer");
 	const list = document.querySelector(".referenceList");
-	////////////////////////////console.log("references");
-	////////////////////////////console.log(references);
+	//////////////////////////////console.log("references");
+	//////////////////////////////console.log(references);
 
 	if(references.length > 0){
 		container.classList.remove("hidden")
 	}else{
-		////////////////////////////console.log("no references");
+		//////////////////////////////console.log("no references");
 	}
 
 	var sourceIds = [];
@@ -63,15 +63,15 @@ import { aosDuration, aosDelay } from '@/snippets/aosValues';
 		}
 	}
 	
-	//////////console.log("sourceIds");
-	//////////console.log(sourceIds);
+	////////////console.log("sourceIds");
+	////////////console.log(sourceIds);
 
 	for(let i = 0; i < references.length; i++){
 		const idRaw = references[i].attributes['data-ref-id'].nodeValue;
-		//////////console.log("idRaw : "+idRaw);
+		////////////console.log("idRaw : "+idRaw);
 		const thisSourceData = sourcesColl.filter(source => source.id == idRaw);
-		//////////console.log("thisSourceData");
-		//////////console.log(thisSourceData);
+		////////////console.log("thisSourceData");
+		////////////console.log(thisSourceData);
 		var floaty = "";
 		floaty += "<span class='toolTipTool' aria-describedby='toolTip'>";
 		if(thisSourceData[0]){
@@ -91,11 +91,11 @@ import { aosDuration, aosDelay } from '@/snippets/aosValues';
 
 	var listContent = "";
 	for(let i = 0; i < sourceIds.length; i++){
-		////////////////////////////console.log("sourceIds[i]");
-		////////////////////////////console.log(sourceIds[i]);
+		//////////////////////////////console.log("sourceIds[i]");
+		//////////////////////////////console.log(sourceIds[i]);
 		const thisSourceData = sourcesColl.filter(source => source.id == sourceIds[i]);
-		////////////////////////////console.log("thisSourceData");
-		////////////////////////////console.log(thisSourceData);
+		//////////////////////////////console.log("thisSourceData");
+		//////////////////////////////console.log(thisSourceData);
 		var thisSourceContent = "<li class='break-normal'>";
 		thisSourceContent += "<div class='flex flex-row w-full mb-2'>"
 		thisSourceContent += "<div class='min-w-6'>"
@@ -174,17 +174,17 @@ import { aosDuration, aosDelay } from '@/snippets/aosValues';
 		listContent += thisSourceContent;
 	}
 
-	////////////////////////////console.log("listContent");
-	////////////////////////////console.log(listContent);
+	//////////////////////////////console.log("listContent");
+	//////////////////////////////console.log(listContent);
 
 	list.innerHTML = listContent;
 
 	function formatDateLocal(dateString, lang) {
-		//console.log("gotten: "+dateString);
+		////console.log("gotten: "+dateString);
 		numberHyphen = (dateString.match(/-/g) || []).length;
 		var dateFormatted = "";
 		if(numberHyphen == 2){
-			//console.log("2 hyphens");
+			////console.log("2 hyphens");
 			const [year, month, day] = dateString.split('-');
 			dateFormatted += day;
 			dateFormatted += ".";
@@ -193,17 +193,17 @@ import { aosDuration, aosDelay } from '@/snippets/aosValues';
 			dateFormatted += year;
 		}
 		if(numberHyphen == 1){
-			//console.log("1 hyphen");
+			////console.log("1 hyphen");
 			const [year, month] = dateString.split('-');
 			dateFormatted += month;
 			dateFormatted += ".";
 			dateFormatted += year;
 		}
 		if(numberHyphen == 0){
-			//console.log("no hyphen");
+			////console.log("no hyphen");
 			dateFormatted += dateString;
 		}
-		//console.log("returning: "+dateFormatted);
+		////console.log("returning: "+dateFormatted);
 		return dateFormatted;
 	}
 

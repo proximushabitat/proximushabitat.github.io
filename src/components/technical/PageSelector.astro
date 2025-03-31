@@ -11,23 +11,23 @@ if(putAnchor){
 
 var pageLinks = "";
 
-//////////////////////console.log("urls");
-//////////////////////console.log(page);
+////////////////////////console.log("urls");
+////////////////////////console.log(page);
 
 if(page.lastPage != 1){
 	var baseUrl = page.url.first;
-	////////////////////////console.log("baseUrlA: "+baseUrl+"   urlFirst: "+page.url.first+"   urlCurr: "+page.url.current);
+	//////////////////////////console.log("baseUrlA: "+baseUrl+"   urlFirst: "+page.url.first+"   urlCurr: "+page.url.current);
 	if(!baseUrl){
 		baseUrl = page.url.current;
 	}
 	baseUrl += "/";
 
-	//////////////////////console.log("baseUrlB: "+baseUrl+"   urlFirst: "+page.url.first+"   urlCurr: "+page.url.current);
+	////////////////////////console.log("baseUrlB: "+baseUrl+"   urlFirst: "+page.url.first+"   urlCurr: "+page.url.current);
 
 	pageLinks += "<span class='flex flex-row items-center'>";
 	pageLinks += "<a ";
 	if(page.url.prev){
-		//////////////////////console.log("there is previous");
+		////////////////////////console.log("there is previous");
 		pageLinks += "href='"+page.url.prev+partAnchor+"'";
 	}
 	pageLinks += " class='aspect-square w-3 h-3 border-t-2 border-l-2 border-b-0 border-r-0 border-solid border-secondary -rotate-45'>";
@@ -35,7 +35,7 @@ if(page.lastPage != 1){
 	pageLinks += "</a>";
 
 	for(let i = 0; i < page.lastPage; i++){
-		//////////////////////console.log("page: "+(i+1));
+		////////////////////////console.log("page: "+(i+1));
 		var classes = "px-1"
 		if(i+1 == page.currentPage){
 			classes += " border-solid"
@@ -54,7 +54,7 @@ if(page.lastPage != 1){
 
 	pageLinks += "<a ";
 	if(page.url.next){
-		//////////////////////console.log("there is next");
+		////////////////////////console.log("there is next");
 		pageLinks += "href='"+page.url.next+partAnchor+"'";
 	}
 	pageLinks += " class='aspect-square w-3 h-3 border-r-2 border-b-2 border-t-0 border-l-0 border-solid border-secondary -rotate-45'>";

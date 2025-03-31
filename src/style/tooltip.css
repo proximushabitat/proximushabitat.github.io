@@ -13,7 +13,10 @@
 	max-width: calc(100vw - 28px);
 	font-style: normal;
 	word-wrap: break-word;
+	word-break: break-all;
 	text-align: left;
+	word-break: break-word;
+  	hyphens: auto;
 }
 .toolTipArrow {
 	position: absolute;

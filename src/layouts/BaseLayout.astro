@@ -1,6 +1,9 @@
 ---
 import BaseHead from "@components/BaseHead.astro";
 
+import { getLangFromUrl, getSlugNoLangFromUrl, useTranslations, useTranslatedPath } from '@/i18n/langFunctions';
+const lang = getLangFromUrl(Astro.url);
+
 import "aos/dist/aos.css"
 import AOS from 'aos';
 
@@ -10,12 +13,12 @@ const { title, keywords, author, excerpt, datePub, dateUp } = Astro.props;
 var allKeywords = keywords;
 ---
 
-<html lang="de" class="selection:bg-complementary-split-pink selection:text-secondary text-secondary">
+<html lang={lang} class="selection:bg-complementary-split-pink selection:text-secondary text-secondary overflow-x-hidden">
   <head>
     <BaseHead title={title} keywords={allKeywords} author={author} excerpt={excerpt} datePub={datePub} dateUp={dateUp} />
   </head>
 
-  <body class="bg-primary">
+  <body class="bg-primary overflow-hidden">
     <slot />
     <script src="https://unpkg.com/mailgo@0.12.2/dist/mailgo.min.js"></script>
     <script type="text/javascript" src="https://unpkg.com/aos@2.3.1/dist/aos.js"

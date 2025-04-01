@@ -24,7 +24,10 @@ var allKeywords = keywords;
     <script type="text/javascript" src="https://unpkg.com/aos@2.3.1/dist/aos.js"
     ></script>
     <script type="text/javascript">
-      AOS.init({once: true, offset: 0});
+      AOS.init({once: true, offset: 0, disable: function() {
+        var isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
+        return isSafari;
+      }});
     </script>
     
   </body>

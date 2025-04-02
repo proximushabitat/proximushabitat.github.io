@@ -104,6 +104,7 @@ for(let i = 0; i < items.length; i++){
               <div class="h-full flex flex-col justify-between">
                 <div class="grow">
                   <div class="my-2 grid grid-cols-1 grid-rows-1 canvas">
+                    <div class="dotsContain col-start-1 row-start-1 "><div class="dots"></div></div> 
                     <div class="h-60 md:h-40 col-start-1 row-start-1 overflow-clip flex items-center imgBW" style={/*"background: url("+item.thumb.src+");background-size: cover;background-position: center;"*/""}>
                       <Image
                         src={item.thumb}
@@ -178,16 +179,29 @@ for(let i = 0; i < items.length; i++){
   /*backdrop-filter: var(--make-color);*/
 }
 
-.canvas::before {
+.canvas .dotsContain {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.canvas .dotsContain .dots {
   content: '';
-  position: absolute;
-  top: -50%;
+  position: relative;
+  height: 191%;
+  width: 191%;
+  /*top: -50%;
   left: -50%;
   bottom: -50%;
-  right: -50%;
+  right: -50%;*/
   background: radial-gradient(circle at center, var(--line-color), #fff);
   background-size: var(--dot-size) var(--dot-size);
   transform: rotate(20deg);
+
+  top: -20%;
+  left: -20%;
+
+
 }
 
 .canvas .imgBW {

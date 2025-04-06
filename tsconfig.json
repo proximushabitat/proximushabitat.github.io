@@ -9,13 +9,13 @@
     "paths": {
       "@/*": ["src/*"],
       "@components/*": ["src/components/*"],
-      "@assets/*": ["src/assets/*"],
+      "@/assets/*": ["src/assets/*"],
       "@icons/*": ["src/icons/*"],
       "@layouts/*": ["src/layouts/*"],
       "@style/*": ["/src/style/*"],
       "@lib/*": ["/src/lib/*"],
-      "@i18n/*": ["/src/i18n/*"],
-      "@snippets/*": ["/src/snippets/*"]
+      "@/i18n/*": ["/src/i18n/*"],
+      "@/snippets/*": ["/src/snippets/*"]
     },
   },
 }

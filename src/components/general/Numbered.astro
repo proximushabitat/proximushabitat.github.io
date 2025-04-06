@@ -6,12 +6,12 @@ import { Image } from 'astro:assets';
 import SectionTitle from "@components/snippets/SectionTitle.astro";
 
 //i18n
-import { getLangFromUrl, useTranslations, showDate, sectionTitle } from '@i18n/utils';
+import { getLangFromUrl, useTranslations, showDate, sectionTitle } from '@/i18n/utils';
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 
 //small functions
-import { formatDate } from '@snippets/numberGames';
+import { formatDate } from '@/snippets/numberGames';
 
 //collection functions
 import { getSection } from '@/snippets/handleCollections';

@@ -1,9 +1,9 @@
 ---
 import { getCollection, getEntry, render } from 'astro:content';
 import SectionTitle from "@components/snippets/SectionTitle.astro";
-import { getLangFromUrl } from '@i18n/langFunctions';
+import { getLangFromUrl } from '@/i18n/langFunctions';
 
-import { formatDate } from '@snippets/numberGames';
+import { formatDate } from '@/snippets/numberGames';
 
 const sourcesColl = await getCollection('sources');
 

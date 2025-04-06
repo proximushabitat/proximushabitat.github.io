@@ -1,13 +1,13 @@
 ---
 
 import { getCollection, render } from 'astro:content';
-import { getLangFromUrl } from '@i18n/langFunctions';
+import { getLangFromUrl } from '@/i18n/langFunctions';
 import { sortSmallFirst } from '@/snippets/numberGames';
 import { defineConfig } from 'astro/config';
-import { translatePath } from '@i18n/langFunctions';
+import { translatePath } from '@/i18n/langFunctions';
 import { Image } from 'astro/components/Image.astro';
 
-import languageIcon from "@assets/for_site/planetli.svg?raw";
+import languageIcon from "@/assets/for_site/planetli.svg?raw";
 
 //aos
 import { aosDuration, aosDelay } from '@/snippets/aosValues';

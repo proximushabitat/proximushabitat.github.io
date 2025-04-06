@@ -13,12 +13,12 @@ import { getCollection, getEntry } from 'astro:content';
 import { getTranslations, getOneLang, getSection } from "@/snippets/handleCollections";
 
 //i18n
-import { getLangFromUrl, useTranslations } from '@i18n/utils';
+import { getLangFromUrl, useTranslations } from '@/i18n/utils';
 const lang = getLangFromUrl(Astro.url);
 const t = useTranslations(lang);
 
 //snippets
-import { sortBigFirst } from '@snippets/numberGames';
+import { sortBigFirst } from '@/snippets/numberGames';
 
 //directus
 //import directus from "@lib/directus";

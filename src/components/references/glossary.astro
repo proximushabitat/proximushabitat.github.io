@@ -9,8 +9,8 @@ const lang = getLangFromUrl(Astro.url);
 
 const lB = await getCollection('lilBits');
 const tSources = lB.filter(entry => {
-	////////////////////console.log.log("entry");
-	////////////////////console.log.log(entry.id);
+	//////////////////////console.log.log("entry");
+	//////////////////////console.log.log(entry.id);
 	return entry.id == "glossary";
 })[0].data;
 
@@ -18,8 +18,8 @@ const glossary = glossaryAllLang.filter(entry => {
 	return entry.id == lang;
 })[0].data;
 
-//////console.log.log("glossary");
-//////console.log.log(glossary);
+////////console.log.log("glossary");
+////////console.log.log(glossary);
 
 //aos
 import { aosDuration, aosDelay } from '@/snippets/aosValues';
@@ -44,32 +44,38 @@ import { aosDuration, aosDelay } from '@/snippets/aosValues';
 
 	var thisGlossary = {};
 
-	//////console.log.log("articleHTML: ");
-	//////console.log.log(articleHTML);
+	////////console.log.log("articleHTML: ");
+	////////console.log.log(articleHTML);
 
-	//////console.log.log("lang: "+lang);
-	//////console.log.log("glossary: ");
-	//////console.log.log(glossary);
+	////////console.log.log("lang: "+lang);
+	////////console.log.log("glossary: ");
+	////////console.log.log(glossary);
 	for (const [key, value] of Object.entries(glossary)) {
-		//////console.log.log(`${key}: ${value}`);
+		////////console.log.log(`${key}: ${value}`);
 
 		var regex = new RegExp(`${key}`, 'gi'), result, indices = [];
 		while ( (result = regex.exec(articleHTML)) ) {
-			////console.log.log(getLastBracket(articleHTML, result.index));
+			//////console.log.log(getLastBracket(articleHTML, result.index));
 			if(getLastBracket(articleHTML, result.index) == ">"){
-				indices.push(result.index);
+				if(getLastClasses(articleHTML, result.index).indexOf('toolTipTip') === -1){
+					//console.log("TOOLTIPNO");
+					indices.push(result.index);
+				}else{
+					//console.log("TOOLTIPDETECTED");
+				}
+				//indices.push(result.index);
 			}
 		}
 
-		////console.log.log("indices");
-		////console.log.log(indices);
+		//////console.log.log("indices");
+		//////console.log.log(indices);
 
 		for(let i = indices.length; i > 0; i--){
 			const index = indices[i-1];
 			const endIndex = getWordEndIndex(articleHTML, index);
 			const word = articleHTML.substring(index, endIndex+1);//index + key.length);
-			////console.log.log("word");
-			////console.log.log(word);
+			//////console.log.log("word");
+			//////console.log.log(word);
 			var replacement = "";
 			replacement += word;
 			replacement += "<span class='glossaryWord select-none'>";
@@ -80,31 +86,31 @@ import { aosDuration, aosDelay } from '@/snippets/aosValues';
 			replacement += value;
 			replacement += "<span class='toolTipArrow bg-tooltip-bg border-b-[0.0px] border-r-[0.0px] border-tooltip-border'></span>";
 			replacement += "</span>";
-			replacement += "<span class='align-top text-xs ml-0.5' style='display: -webkit-inline-box;'>";
-			replacement += "?";
+			replacement += "<span class='toolTipSymbol align-top text-xs ml-0.5' style='display: -webkit-inline-box;'>";
+			replacement += "✻";
 			replacement += "</span>";
 			replacement += "</span>";
 			replacement += "</span>";
-			//////console.log.log("replacement");
-			//////console.log.log(replacement);
+			////////console.log.log("replacement");
+			////////console.log.log(replacement);
 			articleHTML = articleHTML.substring(0, index) + replacement + articleHTML.substring(endIndex+1);
 		}
-		//////console.log.log("  ");
+		////////console.log.log("  ");
 
 		if(indices.length != 0){
-			//////console.log.log("put "+key+" in glossary");
+			////////console.log.log("put "+key+" in glossary");
 			Object.assign(thisGlossary, {[key]: value});
 		}else{
-			//////console.log.log("don't put "+key+" in glossary");
+			////////console.log.log("don't put "+key+" in glossary");
 		}
 
 	}
 	article.innerHTML = articleHTML;
 
-	//////console.log.log("thisGlossary");
-	//////console.log.log(thisGlossary);
+	////////console.log.log("thisGlossary");
+	////////console.log.log(thisGlossary);
 
-	//////console.log.log("thisGlossary:", JSON.stringify(thisGlossary));
+	////////console.log.log("thisGlossary:", JSON.stringify(thisGlossary));
 
 	// Sorting the object by keys
 	const thisGlossaryOrdered = Object.keys(thisGlossary)
@@ -163,6 +169,37 @@ import { aosDuration, aosDelay } from '@/snippets/aosValues';
 		}
 
 		return lastLessThan > lastGreaterThan ? '<' : '>';
+	}
+
+	function getLastClasses(sentence, charIndex) {
+		//console.log("getLastClasses");
+		if (charIndex < 0 || charIndex >= sentence.length) {
+			return null; // Out of bounds
+		}
+
+		let lastLessThan = sentence.lastIndexOf('<', charIndex);
+		let lastGreaterThan = sentence.lastIndexOf('>', charIndex);
+
+		if (lastLessThan === -1 && lastGreaterThan === -1) {
+			return null; // Neither symbol found
+		}
+
+		//console.log("doing classes");
+		let lastClassOccurence = sentence.lastIndexOf('class', lastGreaterThan);
+		let priorLessThan = sentence.lastIndexOf('<', lastClassOccurence);
+		//console.log("lastClass: " + lastClassOccurence);
+		if(lastClassOccurence !== -1){
+			let classStart = sentence.indexOf('"', lastClassOccurence);
+			let classEnd = sentence.indexOf('"', classStart+1);
+			//console.log("classStart: " + classStart);
+			//console.log("classEnd: " + classEnd);
+			var classText = sentence.substring(classStart+1, classEnd);
+			//console.log("classText: " + classText);
+			var classes = classText.split(" ");
+			//console.log("classes");
+			//console.log(classes);
+			return classes;
+		}
 	}
 
 </script>

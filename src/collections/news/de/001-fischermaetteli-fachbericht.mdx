@@ -25,6 +25,10 @@ AcapAlt:
 - caption: ""
   alt: ""
 
+EcapAlt:
+- caption: ""
+  alt: ""
+
 BcapAlt:
 - caption: ""
   alt: ""
@@ -56,6 +60,11 @@ export const thumbHighlight = thumbyPart
 
 import AAimg from "@/assets/for_content/img/public_transport/vehicles/tram/fischerma/mv/mv.png"
 import AAdata from "@/assets/for_content/img/public_transport/vehicles/tram/fischerma/mv/mv.json"
+
+import EAimg from "@/assets/for_content/img/public_transport/infra/stops/bern/Kocherpark/bypassOestlich/blurred.png"
+import EAdata from "@/assets/for_content/img/public_transport/infra/stops/bern/Kocherpark/bypassOestlich/info.json"
+import EBimg from "@/assets/for_content/img/public_transport/infra/stops/bern/Kocherpark/bypassWestlich/blurred.png"
+import EBdata from "@/assets/for_content/img/public_transport/infra/stops/bern/Kocherpark/bypassWestlich/info.json"
 
 import BAimg from "@/assets/for_content/img/public_transport/infra/stops/basel/volta/wikiA/wikiA.jpg"
 import BAdata from "@/assets/for_content/img/public_transport/infra/stops/basel/volta/wikiA/wikiA.json"
@@ -96,7 +105,7 @@ Naturgemäss entfiele auch hier die direkte Verbindung in die Altstadt. Die Lini
 Dass die Trams, welche ins Fischermätteli fahren, eher überdimensioniert sind, soll nicht bestritten werden. Von der Kapazität her könnte ein Bus durchaus funktionieren. Um das Angebot jedoch attraktiv zu halten, müsste eine Buslösung aber auch ins Gesamtsystem passen. Wie eben gezeigt, ist bei Busbetrieb keine gleichwertige Lösung in Sicht. 
 Wirklich interessant wird es allerdings, wenn man sich die Implikationen fürs anderweitige Tramnetz näher ansieht. Aktuell besteht das Netz aus vier Durchmesserlinien<C cont="Linien 6, 7, 8, 9" /> und einer Radiallinie,<C cont="Linie 3" /> welche westlich des Bahnhofs verkehrt. Mit der Inbetriebnahme des Trams Ostermundigen – man darf auf 2031 hoffen<R id="TramOMWebProjekt" /> – käme ein Linienast im Osten hinzu. Es wäre nun möglich fünf Durchmesserlinien zu betreiben, kein Tram müsste mehr am Bahnhof wenden.
 
-Sollte das 6i Tram entfallen, hätte man für wenige Jahre ein Netz mit gleicher Anzahl Tramstrecken beidseits des Bahnhofs und somit die Möglichkeit vier Durchmesserlinien zu betreiben. Bei Eröffnung des Trams Ostermundigen hätte man nun einen zusätzlichen Streckenast und folglich eine Radiallinie im Osten der Stadt. Dies ist durchaus problematisch, denn das Wenden einer solchen im Bahnhofsbereich birgt mehrere Nachteile. Eine Radiallinie Richtung Osten müsste die Wendeschleife via Wall- und Schwanengasse befahren.
+Sollte das 6i Tram entfallen, hätte man für wenige Jahre ein Netz mit gleicher Anzahl Tramstrecken beidseits des Bahnhofs und somit die Möglichkeit vier Durchmesserlinien zu betreiben. Bei Eröffnung des Trams Ostermundigen hätte man nun einen zusätzlichen Streckenast, es entstünde höchstwahrscheinlich eine Radiallinie im Osten der Stadt. Dies ist durchaus problematisch, denn das Wenden einer solchen im Bahnhofsbereich birgt mehrere Nachteile. Sie müsste die Wendeschleife via Wall- und Schwanengasse befahren.
 
 * Heute wird diese Schleife in Störfällen befahren. Eine zusätzlich fahrplanmässig darüber verkehrende Tramlinie würde diese Funktion beeinträchtigen. Das Berner Tramnetz, das sowieso schon kaum über Ausweichrouten verfügt, wäre noch weniger resilient.
 * Diese Schleife kreuzt die Velohauptroute, sowie die stadteinwärts fahrenden Trams und Busse.<C cont="Inklusive der Buslinie, die ins Fischermätteli fahren würde, ob Radiallinie oder verdichteter 17er"/> Letztere gleich zwei Mal. Es entstünden also mehrere Konfliktpunkte an einem neuralgischen Punkt im Berner ÖV-Netz, das kreuzende Tram wäre auch den Velos im Weg.
@@ -115,8 +124,8 @@ Bei modernen, dem Behindertengleichstellungsgesetz entsprechenden Haltestellen b
 ## Berner sind gebrannte Kinder
 2010 wurde das “Tram Bern West” eröffnet. Auffällig ist, dass die Velos die allermeisten Haltestellen im Gleisbereich passieren müssen. Dies ist beispielsweise auch in der doch sehr breiten Schlossstrasse der Fall. Problemlos hätte eine Führung der Velowege abseits der Fahrbahn realisiert werden können, doch der eigentlich üppig vorhandene Platz wurde stattdessen mit Farbe und Verkehrsinseln geschmückt. Schade, denn dies erweckt den Eindruck, dass Tram- und Veloinfrastruktur grundsätzlich inkompatibel seien. Es ist verständlich, werfen Velofahrer einen kritischen Blick auf ÖV-Projekte.
 ## Beengte Platzverhältnisse
-<Slider items={[AAimg]} capAlt={frontmatter.AcapAlt} dataFile={[AAdata]} aspect="3/2" />
 Busse benötigen keine Gleise, dies ist aus der Perspektive eines Velofahrers ein Vorteil, gerade im Haltestellenbereich. Der Strassenquerschnitt auf der Brunnmatt- und Pestalozzistrasse ist zu schmal, beidseits durchgehende Velostreifen sind nicht umsetzbar, auch eine Umstellung auf Bus brächte keine optimale Lösung. Stadtauswärts, also bergauf, soll das Absenken des Trottoirs auf Strassenniveau Abhilfe schaffen. Velos könnten einfacher auf das Trottoir ausweichen. Was heute bereits erlaubt ist, würde durch bauliche Massnahmen erleichtert.<R id="FMTfachBericht" /> Stadteinwärts, also bergab, fahren Tram und Velo meist ähnlich schnell und kommen sich bedeutend weniger in die Quere.
+<Slider items={[AAimg]} capAlt={frontmatter.AcapAlt} dataFile={[AAdata]} aspect="3/2" />
 Während das Tram den immergleichen Weg nimmt, ist ein Bus unberechenbarer. Er fährt nie genau so, wie er es zuletzt tat, nicht alle Fahrzeugteile nehmen in Kurven den gleichen Weg und er schwenkt stärker aus. Ausserdem sind Busse rund 15cm breiter als Trams.<C cont="Dies ist in Bern der Fall. In Städten ausserhalb der Schweiz und gerade in neuen Netzen können Trams breiter sein." /> Gerade bei der Bergauffahrt kann es zu Begegnungen kommen, welche Velofahrer kaum als angenehm empfänden.
 Heute lässt sich auf der Linie 6 gut beobachten, dass sich Velos durchaus wohl fühlen, wenn sie sich bei der Bergabfahrt unmittelbar neben dem Tram positionieren. Das Tram bietet in engen Strassen also durchaus Vorteile, auch für den Veloverkehr. 
 
@@ -124,17 +133,16 @@ Heute lässt sich auf der Linie 6 gut beobachten, dass sich Velos durchaus wohl 
 # Haltestellengestaltung
 ## Bypass
 Mittlerweile gibt es in Bern gelegentlich einen Bypass einer Haltestelle. Hierbei wird ein getrennter Veloweg hinter der Haltestelle vorbeigeführt. Dazu fehlt auf dem Fischermättelitram leider der Platz. 
+<Slider items={[EAimg]} capAlt={frontmatter.EcapAlt} dataFile={[EAdata]} aspect="3/2" />
 
 ## Befahrbare Haltestellenkaps
-<Slider items={[BAimg]} capAlt={frontmatter.BcapAlt} dataFile={[BAdata]} aspect="3/2" />
 Ein Haltestellenkap ist eine erhöhte Fläche, welche die Distanz zwischen Trottoir und Fahrbahn überbrückt. Ein solches ist für einen barrierefreien Einstieg häufig nötig.
 Haltestellenkaps können auch befahrbar gestaltet werden, ob für Velo oder MIV. Dies erlaubt es bspw. den Velofahrern Velos ggf. die enge Durchfahrt zwischen Bordstein und Schiene zu ersparen und ist gegenüber einem Bypass platzsparender. Nachteilig ist, dass es zu Konfliktsituationen zwischen Passanten, Wartenden und Velos kommen kann.
-
+<Slider items={[BAimg]} capAlt={frontmatter.BcapAlt} dataFile={[BAdata]} aspect="3/2" />
 
 ## Alternative Gleisführungen
-<Slider items={[CAimg, CBimg, CCimg]} capAlt={frontmatter.CcapAlt} dataFile={[CAdata, CBdata, CCdata]} aspect="3/2" />
 Zur kostengünstigen und platzsparenden Erstellung von Tramstrecken, können diese abschnittsweise nur eingleisig ausgeführt werden. Im Mischverkehr kann dies das Zusammenspiel mit dem MIV beeinträchtigen, die Vorteile kommen insbesondere bei Eigentrassee oder im Haltestellenbereich zur Geltung. 
-
+<Slider items={[CAimg, CBimg, CCimg]} capAlt={frontmatter.CcapAlt} dataFile={[CAdata, CBdata, CCdata]} aspect="3/2" />
 
 ## Neue Lösungen
 Behindertengleichstellungsgesetzkonforme Tramhaltestellen in schwierigen Platzverhältnissen velofreundlich zu gestalten ist ein junges Problem und definitiv knifflig. Die schmalen, vorausschaubar verkehrenden Fahrzeuge wären ja eigentlich vorteilhaft einsetzbar. Hier zwei Gedankenspiele, wie velofreundliche Haltestellen auf dem Fischermättelitram aussehen könnten.

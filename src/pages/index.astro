@@ -1,11 +1,52 @@
 ---
-import Welcome from '../components/Welcome.astro';
-import Layout from '../layouts/Layout.astro';
+import BaseLayout from "@layouts/BaseLayout.astro";
+import Hero from "@components/landing/Hero.astro";
+import Projects from "@components/landing/Projects.astro";
+import Testimonials from "@components/landing/Testimonials.astro";
+import Articles from "@components/landing/Articles.astro";
+import FeaturedWork from "@components/landing/FeaturedWork.astro";
+import DesignTop from "@components/general/DesignTop.astro";
+import DesignBottom from "@components/general/DesignBottom.astro";
+import BarsBottom5 from "@components/general/BarsBottom5.astro";
+import FrontSection from "@components/technical/FrontSection.astro";
+import ThinLine from "@/components/snippets/ThinLine.astro";
+import ThickLine from "@/components/snippets/ThickLine.astro";
 
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+import { aosDuration, aosDelay } from '@/snippets/aosValues';
+
+import { getLangFromUrl, useTranslations } from '@/i18n/utils';
+const lang = getLangFromUrl(Astro.url);
+
+import { getCollection, getEntry, render } from 'astro:content';
+
+export function getStaticPaths () {
+ return [
+    {params:{lang: 'en'}},
+    {params:{lang: 'de'}},
+    {params:{lang: 'fr'}},
+  ];
+}
+
+const entry = lang+'/introtext01';
+const introContent = await getEntry('bigBits', entry);
+/*const introContentColl = await getCollection('bigBits');
+
+const introContent = introContentColl.filter(item => {
+    const returnThis = item.id == entry;
+    ////////////console.log.log("entry: '"+entry+"'     item.id: '"+item.id+"'     returnThis: "+returnThis);
+    return returnThis;
+  }
+);*/
+
+/*////////////console.log.log("introContentColl");
+////////////console.log.log(introContentColl);*/
+////////////console.log.log("introContent");
+////////////console.log.log(introContent);
+
+const { Content: Intro } = await render(introContent);
+
 ---
 
-<Layout>
-	<Welcome />
-</Layout>
+<BaseLayout>
+
+</BaseLayout>

@@ -3,7 +3,8 @@ de:
   Radiallinie: "Verbindet einen Ortsteil mit dem Zentrum, ohne dieses zu durchqueren. Auch Halbmesserlinie genannt."
   Durchmesserlinie: "Verbindet Ortsteile miteinander und durchfährt dabei das Zentrum."
   Tangentiallinie: "Verbindet Ortsteile miteinander, ohne das Zentrum zu durchqueren. Sie bleibt in der Peripherie."
-  Gleisverschlingung: "Anordnung von zwei Gleisen gleicher Spurweite, bei denen diese über eine gewisse Strecke so ineinander verschoben sind, dass eine Schiene des einen Gleises zwischen den Schienen des anderen liegt. Meist so gebaut, dass der Platzbedarf für beide Gleise unwesentlich grösser als der für ein Gleis ist."
+  Gleisverschlingung: "Ineinanderschieben zweier Gleise, wobei jeweils eine Schiene jedes Gleises zwischen den Schienen des anderen zu liegen kommt."
+  NONONOGleisverschlingung: "Anordnung von zwei Gleisen gleicher Spurweite, bei denen diese über eine gewisse Strecke so ineinander verschoben sind, dass eine Schiene des einen Gleises zwischen den Schienen des anderen liegt. Meist so gebaut, dass der Platzbedarf für beide Gleise unwesentlich grösser als der für ein Gleis ist."
 fr:
   xxxxxxxxxx: "xxxxx"
 en:

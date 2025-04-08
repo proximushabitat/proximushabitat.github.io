@@ -22,7 +22,7 @@ export default {
 					light: "#F4F1DE",
 					dark: colors.slate[900],
 				},
-				focus: "#ffff00",/*colors.emerald[300],*/
+				focus: "#FED766",/*colors.emerald[300],*/
 				tooltip: {
 					bg: '#B3EDAB',//#7EE8FA',
 					text: '#1E212B',

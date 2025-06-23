@@ -2,6 +2,8 @@
 import LogoTop from '@components/logo/LogoTop.astro'
 import Menu from '@components/navigation/Menu.astro'
 
+import { lineSet } from '@/snippets/design'
+
 const { lang, nLines, baseRem, incIncDecimal, startWith } = Astro.props;
 
 const alf = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
@@ -13,41 +15,10 @@ import { aosDuration, aosDelay } from '@/snippets/aosValues';
 const spacingRem = 0.15; //spacing between, this value is used in calculations, it is not applied to the style
 const spacingTW = "designLinesSpaceBetween"; //spacing between, this is the tw class that will be applied
 
-var totalHeightN = 0; //in rem
-var heightOfLinesRem = [];
+const lines = lineSet(nLines, baseRem, incIncDecimal, startWith, spacingRem);
 
-for(let i = 0; i < nLines; i++){
-  if(i != 0){
-    totalHeightN = totalHeightN + spacingRem;
-  }
-  var heightOfLine: number = +(baseRem * ((1 + incIncDecimal)**i)).toFixed(1);
-  console.log("baseRem: " + baseRem + ", 1 + incIncDecimal: " + (1 + incIncDecimal) + ", height of line n: " + i + ": " + heightOfLine);
-  heightOfLinesRem.push(heightOfLine);
-  totalHeightN = totalHeightN + heightOfLine;
-}
-
-var heightOfLinesRemOrdered = [];
-
-if(startWith == "l"){
-  heightOfLinesRemOrdered = heightOfLinesRem.reverse();
-}else{
-  heightOfLinesRemOrdered = heightOfLinesRem;
-}
-
-var heightOfLinesPerc: Array<string> = [];
-
-heightOfLinesRem.forEach(heightRem => {
-  const perc = (heightRem / totalHeightN * 100).toFixed(1);
-  const percString = perc + "%";
-  heightOfLinesPerc.push(percString);
-});
-
-const totalHeight = totalHeightN + "rem";
-console.log("totalHeight");
-console.log(totalHeight);
-
-console.log("heightOfLinesPerc");
-console.log(heightOfLinesPerc);
+console.log("lines");
+console.log(lines);
 
 ---
 
@@ -74,7 +45,7 @@ console.log(heightOfLinesPerc);
         data-aos-duration={aosDuration(1)}>
     </div>
   </div>
-  <div class="px-spaceFromEdge 2xl:max-w-7xl mx-auto pb-12">
+  <div class="px-spaceFromEdge 2xl:max-w-7xl mx-auto pb-spaceFromEdge">
     <div class="">
       <div
         class="flex flex-col sm:flex-row gap-3 justify-between items-center"
@@ -82,8 +53,8 @@ console.log(heightOfLinesPerc);
         data-aos-duration={aosDuration(2)}>
         <div class="hidden"><Menu lang={lang}/></div>
       </div>
-      <div class={"linesContainer transition-all"} style={`height: ${totalHeight};max-height: ${totalHeight};`} data-totalHeight={totalHeight}>
-        {heightOfLinesPerc.map((heightOfLine, index) => (
+      <div class={"linesContainer transition-all"} style={`height: ${lines.totalHeight};max-height: ${lines.totalHeight};`} data-totalHeight={lines.totalHeight}>
+        {lines.heightOfLinesPerc.map((heightOfLine:number, index:number) => (
           <div class={index && "putLineSpacer mt-designLinesSpaceBetween transition-all" || "noLineSpacer"} style={`height: ${heightOfLine};`}>
             <div 
               data-aos="fade-up"

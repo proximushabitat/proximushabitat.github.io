@@ -1,0 +1,153 @@
+---
+import Image from "astro/components/Image.astro";
+
+import bg from "@/assets/for_content/img/test002.webp"
+
+const { img, imagedText, rawerText } = Astro.props;
+---
+
+<ul class="p-0 w-full flex flex-col md:flex-row md:even:flex-row-reverse mb-12 md:mb-0">
+	<div class="imaged min-w-[55%] flex-grow bg-green-500">
+
+		<div class="min-h-full my-0 grid grid-cols-1 grid-rows-1 canvas">
+			<div class="dotsContain col-start-1 row-start-1 "><div class="dots"></div></div> 
+			<div class="h-60 min-h-full md:min-h-40 col-start-1 row-start-1 overflow-clip flex items-center imgBW" style={/*"background: url("+item.thumb.src+");background-size: cover;background-position: center;"*/""}>
+			  <Image
+				src={bg}
+				alt={imagedText}
+				height="444"
+				class="w-full h-full object-cover"
+			  />
+			</div>
+			<div class="h-40 col-start-1 row-start-1 z-0 over p-1 text-7xl text-slate-700 mix-blend- font-semibold italic text-right">{imagedText}</div>
+		</div>
+
+
+	</div>
+	<div class="rawer min-w-[30%] text-3xl -mt-0.5 leading-6 tracking-tighter text-justify break-words hyphens-auto flex justify-center items-center">
+		<span class="h-fit w-max pb-1.5">
+			{rawerText}
+		</span>
+	</div>
+</ul>
+
+<style>
+
+	:root{
+	  --dot-size: 0.151em;  
+	  --line-color: #333;       
+	  --line-contrast: 123%;    
+	  --photo-brightness: 88%;  
+	  --photo-contrast: 171%;   
+	  --photo-blur: 0.234px;        
+	  --blend-mode: hard-light; 
+	
+	  /*--make-color: saturate(100%) invert(7%) sepia(100%) saturate(4848%) hue-rotate(222deg) brightness(95%) contrast(171%);*/
+	  --make-color: brightness(96%) saturate(100%) invert(11%) sepia(12%) saturate(1118%) hue-rotate(188deg) brightness(95%) contrast(94%);
+	  /*--make-color: brightness(70%) saturate(100%) invert(0%) sepia(66%) saturate(372%) hue-rotate(350deg) brightness(102%) contrast(99%);*/
+	  /*--make-colorHL: brightness(50%) saturate(100%) invert(40%) sepia(69%) saturate(816%) hue-rotate(331deg) brightness(80%) contrast(110%);*/
+	  /*--make-colorHL: brightness(20%) saturate(100%) invert(89%) sepia(11%) saturate(753%) hue-rotate(300deg) brightness(80%) contrast(94%);*/
+	  --make-colorHL: invert(8%) contrast(40%) brightness(222%) sepia(12%) saturate(1333%) hue-rotate(305deg) brightness(115%) contrast(80%);
+	  --make-colorOrange: brightness(86%) saturate(100%) invert(11%) sepia(67%) saturate(986%) hue-rotate(323deg) brightness(99%) contrast(66%);
+	  --make-colorBlue: brightness(95%) saturate(100%) invert(21%) sepia(82%) saturate(1647%) hue-rotate(163deg) brightness(104%) contrast(101%);
+	  --make-colorGreen: brightness(95%) saturate(100%) invert(24%) sepia(8%) saturate(2672%) hue-rotate(128deg) brightness(117%) contrast(108%);
+	}
+	
+	.canvas {
+	  /*position: absolute;
+	  top: 0;
+	  left: 0;
+	  bottom: 0;
+	  right: 0;*/
+	  filter: contrast(var(--line-contrast));
+	  overflow: hidden;
+	}
+	
+	.canvas .over {
+	  /*backdrop-filter: var(--make-color);*/
+	}
+	
+	.canvas .dotsContain {
+	  width: 100%;
+	  height: 100%;
+	  overflow: hidden;
+	}
+	
+	.canvas .dotsContain .dots {
+	  content: '';
+	  position: relative;
+	  height: 191%;
+	  width: 191%;
+	  /*top: -50%;
+	  left: -50%;
+	  bottom: -50%;
+	  right: -50%;*/
+	  background: radial-gradient(circle at center, var(--line-color), #fff);
+	  background-size: var(--dot-size) var(--dot-size);
+	  transform: rotate(20deg);
+	
+	  top: -20%;
+	  left: -20%;
+	
+	
+	}
+	
+	.canvas .imgBW {
+	  /*position: absolute;
+	  top: 0;
+	  left: 0;
+	  width: 100%;
+	  height: 100%;*/
+	  object-fit: cover;
+	  object-position: center;
+	  mix-blend-mode: var(--blend-mode);
+	  filter: grayscale(1) brightness(var(--photo-brightness)) contrast(var(--photo-contrast)) blur(var(--photo-blur)) var(--make-color);
+	}
+	.canvas .imgHL {
+	  /*position: absolute;
+	  top: 0;
+	  left: 0;
+	  width: 100%;
+	  height: 100%;*/
+	  object-fit: cover;
+	  object-position: center;
+	  mix-blend-mode: var(--blend-mode);
+	  filter: grayscale(1) brightness(var(--photo-brightness)) contrast(var(--photo-contrast)) blur(var(--photo-blur)) var(--make-colorHL);
+	}
+
+	.canvas .imgOrange {
+	  /*position: absolute;
+	  top: 0;
+	  left: 0;
+	  width: 100%;
+	  height: 100%;*/
+	  object-fit: cover;
+	  object-position: center;
+	  mix-blend-mode: var(--blend-mode);
+	  filter: grayscale(1) brightness(var(--photo-brightness)) contrast(var(--photo-contrast)) blur(var(--photo-blur)) var(--make-colorOrange);
+	}
+
+	.canvas .imgBlue {
+	  /*position: absolute;
+	  top: 0;
+	  left: 0;
+	  width: 100%;
+	  height: 100%;*/
+	  object-fit: cover;
+	  object-position: center;
+	  mix-blend-mode: var(--blend-mode);
+	  filter: grayscale(1) brightness(var(--photo-brightness)) contrast(var(--photo-contrast)) blur(var(--photo-blur)) var(--make-colorBlue);
+	}
+
+	.canvas .imgGreen {
+	  /*position: absolute;
+	  top: 0;
+	  left: 0;
+	  width: 100%;
+	  height: 100%;*/
+	  object-fit: cover;
+	  object-position: center;
+	  mix-blend-mode: var(--blend-mode);
+	  filter: grayscale(1) brightness(var(--photo-brightness)) contrast(var(--photo-contrast)) blur(var(--photo-blur)) var(--make-colorGreen);
+	}
+	</style>

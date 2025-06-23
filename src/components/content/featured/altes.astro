@@ -1,0 +1,20 @@
+---
+import { Image } from 'astro:assets';
+
+import FeaturedSingle from "@/components/content/featured/single.astro"
+
+import BspAToBeSet from "@/assets/for_content/features/bspA_toBeSet.astro"
+import BspA from "@/assets/for_content/features/bspA3.svg"
+
+const colorBack = "#00916E"; 
+const colorFore = "#E2EF70";
+
+const { doLines, extendBelow } = Astro.props;
+
+---
+
+<FeaturedSingle doLines={doLines} extendBelow={extendBelow} colorBack={colorBack} colorFore={colorFore} imagedText="" rawerText="Die Zentren unserer Städte und Dörfer stammen fast ausschliesslich aus der Vergangenheit. Die unzähligen Siedlungen, die wir im letzten knappen Jahrhundert gebaut haben, mögen sie nicht zu übertreffen. Das alltägliche Leben orientiert sich weiterhin an Orten, die lange vor uns entstanden.">
+	<h2 class="not-italic grid mx-1 align-middle w-full  text-7xl leading-11 tracking-tighter font-black"  style={"color: " + colorFore + ";"}>
+		Altes bleibt <br> unerreicht
+	</h2>
+</FeaturedSingle>

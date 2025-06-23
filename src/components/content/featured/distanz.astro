@@ -1,0 +1,28 @@
+---
+import { Image } from 'astro:assets';
+
+import FeaturedSingle from "@/components/content/featured/single.astro"
+
+import BspAToBeSet from "@/assets/for_content/features/bspA_toBeSet.astro"
+import BspA from "@/assets/for_content/features/bspA3.svg"
+
+const colorBack = "#DB4380"; 
+const colorFore = "#B7E2D0";
+
+/*const colorBack = "#067BC2"; 
+const colorFore = "#EF8354";*/
+
+import Distanz from "@/assets/for_content/features/aufDistanz.svg"
+
+
+const { doLines, extendBelow } = Astro.props;
+
+---
+
+<FeaturedSingle doLines={doLines} extendBelow={extendBelow} colorBack={colorBack} colorFore={colorFore} imagedText="" rawerText="Zahlreiche raumplanerische Vorgaben schränken die Nutzung des verfügbaren Landes stark ein. Es kann weit weniger Wohnraum geschaffen werden als möglich wäre und die Freiheit, seine Umgebung mitzugestalten, ist nicht gegeben. Statt lebendiger, angenehmer Orte schaffen wir Leerraum und Distanz, verschanzen uns hinter Hecken und Mauern.">
+	<h2 class="not-italic grid mx-1 align-middle w-full  text-7xl leading-11 tracking-tighter font-black"  style={"color: " + colorFore + ";"}>
+		<!-- <div style={"box-shadow: 0 0 8px 8px " + colorBack + " inset;position: absolute;pointer-events: none;top: 0;left: 0;width: 100%;height: 100%;"}></div>
+		<img src={Distanz.src} style="min-width:100%;min-height:100%;" width="100%"> -->
+		Auf Distanz
+	</h2>
+</FeaturedSingle>

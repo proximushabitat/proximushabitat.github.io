@@ -28,6 +28,15 @@ export default {
 					text: '#1E212B',
 					border: '#1E212B'
 				},
+				design: {
+					featured: {
+						blueCrayola: "#F038FF",
+						fuchsia: "#3772FF",
+						mindaro: "#E2EF70",
+						electricBlue: "#70E4EF",
+						seaGreen: "#00916E"
+					}
+				}
 			},
 			gradients: {
 				//'linksNorm': 'linear-gradient(0deg, rgba(255, 255, 00, 1) 33%, rgba(0, 0, 0, 0) 33%)',
@@ -64,6 +73,15 @@ export default {
 			fontSize: {
 				'tooltip': '0.9rem',
 			},
+			boxShadow:{
+				'fadeTop': 'inset 0 100px 50px -50px',
+			},
+			zIndex:{
+				'60': '60',
+			},
+			fontFamily: {
+				'jakarta': 'Plus Jakarta Sans',
+			}
 		},
 	},
 	plugins: [

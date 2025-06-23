@@ -13,12 +13,12 @@ const { title, keywords, author, excerpt, datePub, dateUp } = Astro.props;
 var allKeywords = keywords;
 ---
 
-<html lang={lang} class="selection:bg-complementary-split-pink selection:text-secondary text-secondary overflow-x-hidden">
+<html lang={lang} class="selection:bg-complementary-split-pink selection:text-secondary text-secondary overflow-x-hidden font-jakarta">
   <head>
     <BaseHead title={title} keywords={allKeywords} author={author} excerpt={excerpt} datePub={datePub} dateUp={dateUp} />
   </head>
 
-  <body class="bg-primary overflow-hidden">
+  <body class="bg-primary overflow-hidden mx-auto lg:max-w-[84vw]">
     <slot />
     <script src="https://unpkg.com/mailgo@0.12.2/dist/mailgo.min.js"></script>
     <script type="text/javascript" src="https://unpkg.com/aos@2.3.1/dist/aos.js"

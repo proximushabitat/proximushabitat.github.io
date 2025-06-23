@@ -1,0 +1,28 @@
+---
+import { Image } from 'astro:assets';
+
+import FeaturedSingle from "@/components/content/featured/single.astro"
+
+import BspAToBeSet from "@/assets/for_content/features/bspA_toBeSet.astro"
+import BspA from "@/assets/for_content/features/bspA3.svg"
+
+const colorBack = "#00916E"; 
+const colorFore = "#E2EF70";
+
+const { doLines, extendBelow } = Astro.props;
+
+---
+
+<FeaturedSingle doLines={doLines} extendBelow={extendBelow} colorBack={colorBack} colorFore={colorFore} imagedText="" rawerText="rawer_A rawer_A asdf fads gf agsdfsdfads asdfasf dsfsad fafdg dsgds adfs sdafads fd fd fdfdfd fadssdfdsfgaresef fads fadsf gasdfgfgdsfa arfgadff afdg ag faga afdgfdgfdgshafdga">
+	<div class="grid justify-center align-middle w-full">
+		<!--<BspAToBeSet colorBack={colorBack} colorFore={colorFore} class="max-w-full md:max-w-20 xl:max-w-full"/>
+		<img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/91525/rainbow-potofgold.jpeg" width="100%">
+		<Image
+			src={BspA}
+			alt={"fff"}
+			class="w-full"
+			medium-zoomable
+		/>-->
+		<img src={BspA.src} style="width:100%;" width="100%">
+	</div>
+</FeaturedSingle>

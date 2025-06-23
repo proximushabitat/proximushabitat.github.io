@@ -1,0 +1,25 @@
+---
+import backgroundUrl from "@/assets/for_site/noise.svg";
+
+
+console.log("bgurl");
+console.log(backgroundUrl);
+---
+
+
+<div class="featureList list-none pt-[8rem] pb-8 grid 2xl:max-w-7xl mx-auto">
+	<div class="mx-spaceFromEdge noisse col-start-1 row-start-1 w-full h-full -mt-[8rem]">
+
+	</div>
+	<ul class="mx-spaceFromEdge col-start-1 row-start-1 pl-0 list-none">
+		<slot />
+	</ul>
+</div>
+
+<style define:vars={{ backgroundUrl: `url(${backgroundUrl.src})` }}>
+	.noise{
+		background-image: var(--backgroundUrl);
+		z-index: 111;
+  		opacity: 0.4;
+	}
+</style>

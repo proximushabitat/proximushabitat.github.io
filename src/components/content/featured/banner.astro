@@ -1,0 +1,351 @@
+---
+import Image from "astro/components/Image.astro";
+
+import bg from "@/assets/for_content/img/test002.webp"
+
+import GradientGeneric from "@/assets/for_site/gradientGeneric.astro"
+
+import { lineSet } from "@/snippets/design";
+import { aosDuration, aosDelay } from '@/snippets/aosValues';
+
+import backgroundUrl from "@/assets/for_site/noise.svg";
+
+import mainImg from "@/assets/for_content/features/main/aarberg_0.0.5.png";
+
+console.log("bgurl");
+console.log(backgroundUrl);
+
+const nLines = 3;
+const baseRem = 0.2;
+const incIncDecimal = 0.5;
+const startWith = "t";
+const startWith2 = "l";
+const spacingRem = 0.15;
+
+const lines = lineSet(nLines, baseRem, incIncDecimal, startWith, spacingRem);
+const lines2 = lineSet(nLines, baseRem, incIncDecimal, startWith2, spacingRem);
+
+const { img, imagedText, rawerText, rawerTextBreaks, colorBack, colorFore, doLines, extendBelow } = Astro.props;
+
+
+---
+
+<li class={"singleFeature fadeTop shadow-fadeTop shadow-primary p-0 w-full h-[77vh] -mt-[9rem] -mb-48 flex flex-col-reverse"}
+	data-aos="fade-up"
+	data-aos-duration={aosDuration(1)}
+	data-aos-delay={aosDelay(0)}
+>
+	<div class={"linesContainer transition-all mt-[0.15rem]"} style={`height: ${lines.totalHeight};max-height: ${lines.totalHeight};`} data-totalHeight={lines.totalHeight}>
+		{lines2.heightOfLinesPerc.map((heightOfLine:number, index:number) => (
+		<div class={index && "putLineSpacer mt-designLinesSpaceBetween transition-all" || "noLineSpacer"} style={`height: ${heightOfLine};`}>
+			<div class="grid h-full w-full">
+				<div class="fgNoised col-start-1 row-start-1 h-full w-full z-30">
+				</div>
+				<div 
+					class={"col-start-1 row-start-1 h-full w-full bgNoised z-20"} style={"backgroundd: " + colorBack + ";"} >
+				</div>
+			</div>
+		</div>
+		))}
+	</div>
+	{extendBelow == "true" &&
+		/*<div class={"w-full h-[6rem]"} style={"backgroundd: linear-gradient(180deg," + colorBack + " 0%, rgba(253, 187, 45, 0) 100%);"}>
+		</div>*/
+		<div class="h-24 bgNoised" style={"backgroundd: " + colorBack + ";"}>
+			<div class="grid h-full w-full">
+				<div class="fgNoised col-start-1 row-start-1 h-full w-full">
+				</div>
+				<div class="col-start-1 row-start-1">
+				</div>
+			</div>
+		</div>
+		||
+		<div class="h-3 bgNoised" style={"backgroundd: " + colorBack + ";"}>
+			<div class="grid h-full w-full">
+				<div class="fgNoised col-start-1 row-start-1 h-full w-full">
+				</div>
+				<div class="col-start-1 row-start-1">
+				</div>
+			</div>
+		</div>
+	}
+	<div class="slotWrap w-full h-full max-w-full">
+		<div class="grid h-full w-full">
+			<div class="col-start-1 row-start-1 h-full w-full z-30">
+			</div>
+			<div class="col-start-1 row-start-1 h-full w-full z-20 grid">
+				<div class={"imaged flex-grow flex justify-center w-full col-start-1 row-start-1"} style={"backgroundd: " + colorBack + ";"}>
+					<div class="min-h-full w-full lg-w-full my-0 grid grid-cols-1 grid-rows-1 max-w-full ">
+						<div class="imageCont h-full md:max-h-[77vh] overflow-clip max-w-full col-start-1 row-start-1 grid" style={/*"background: url("+item.thumb.src+");background-size: cover;background-position: center;"*/""}>
+							<div class="col-start-1 row-start-1 h-full w-full shadow-fadeTop shadow-primary z-50"></div>
+							<div class="fgNoised col-start-1 row-start-1 h-full w-full z-40"></div>
+							<div class="col-start-1 row-start-1 h-full w-full flex items-center canvas">
+								<Image
+									src={mainImg}
+									alt={"fff"}
+									class="w-full h-full object-cover"
+									medium-zoomable
+								/>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class={" overlayingText z-60 col-start-1 row-start-1 rawer w-full text-5xl md:text-7xl xl:text-8xl text-justify break-words hyphens-auto flex justify-center items-center "} style={""}>
+					<div class={"pb-[9rem] h-full pt-2 w-full mix-blend-color-dodge "} style={"colorr: " + colorFore + ";"}>					
+						<span class="absolute bottom-[14rem] text-right font-black w-full">
+							{/*rawerText*/}
+							<svg style="border: 1px solid transparent;" width="100%" height="100" viewBox="0 0 1562 100" preserveAspectRatio="xMidYMid meet" class="hidden lg:block -mb-12">
+								<text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-size="100" font-family="sans-serif" fill="white">
+									{rawerText}
+								</text>
+							</svg>
+							
+							<svg
+								width="100%"
+								height="100%"
+								viewBox="0 10 1600 800"
+								preserveAspectRatio="xMidYMid meet"
+								style="border: 1px solid transparent;"
+								class="lg:hidden mb-4 sm:mb-2 md:-mb-6"
+								>
+								<text
+									x="100%"
+									y="100%"
+									text-anchor="end"
+									font-size="160"
+									font-family="sans-serif"
+									fill="white"
+								>
+									{(() => {
+									const lines = (rawerTextBreaks || " ").split('\n');
+									const reversed = [...lines].reverse();
+									return reversed.map((line, i) => (
+										<tspan
+										key={i}
+										x="100%"
+										dy={i === 0 ? '0' : '-1.2em'}
+										>
+										{line}
+										</tspan>
+									));
+									})()}
+								</text>
+								</svg>
+							  
+						</span>
+					</div>
+
+				</div>
+			</div>
+		</div>
+		
+	</div>
+	
+  {doLines == "true" &&
+	<div class={"linesContainer transition-all mb-[0.15rem]"} style={`height: ${lines.totalHeight};max-height: ${lines.totalHeight};`} data-totalHeight={lines.totalHeight}>
+        {lines.heightOfLinesPerc.map((heightOfLine:number, index:number) => (
+          <div class={index && "putLineSpacer mt-designLinesSpaceBetween transition-all" || "noLineSpacer"} style={`height: ${heightOfLine};`}>
+            <div class="grid h-full w-full"
+				data-aos="fade-up"
+				data-aos-duration={aosDuration(2)}
+				data-aos-delay={aosDelay(index)}
+			>
+				<div class="fgNoised col-start-1 row-start-1 h-full w-full z-50">
+				</div>
+				<div 
+					class={"col-start-1 row-start-1 h-full w-full bgNoised z-40"} style={"backgroundd: " + colorBack + ";"} >
+				</div>
+			</div>
+          </div>
+        ))}
+    </div>
+  }
+	
+</li>
+
+<!--
+
+<div class="grid h-full w-full">
+	<div class="fgNoised col-start-1 row-start-1 h-full w-full">
+	</div>
+	<div class="col-start-1 row-start-1">
+	</div>
+</div>
+
+-->
+
+<style define:vars={{ mainImg: `url(${mainImg.src})`, backgroundUrl: `url(${backgroundUrl.src})`, backgroundColor: colorBack }}>
+
+	.bgMache{
+		/*background-image: var(--mainImg);
+		background-size: cover;
+		background-color: aquamarine;*/
+	}
+
+	.bgNoised{
+		background: var(--backgroundColor);
+		/*background-image: var(--backgroundUrl);
+		background-repeat: repeat;
+		background-size: 555px 555px;
+		background-blend-mode: soft-light;*/
+	}
+
+	.fgNoised{
+		background-image: var(--backgroundUrl);
+		background-repeat: repeat;
+		background-size: 555px 555px;
+		background-blend-mode: soft-light;
+		opacity: 0.3;
+	}
+
+	.overlayingText {
+		/*mask-image: var(--backgroundUrl);*/
+		/*background: var(--mainImg);*/
+		mix-blend-mode: difference;
+		color: rgb(255, 255, 255);
+	}
+
+	.bgNoisedGradient{
+		background: linear-gradient(180deg,var(--backgroundColor) 0%, rgba(253, 187, 45, 0) 100%);
+		/*background-image: var(--backgroundUrl);
+		z-index: 111;
+  		opacity: 0.4;*/
+	}
+
+	.singleFeature .slotWrap div .slotFlex {
+		display: flex;
+	}
+	.singleFeature .slotWrap div .slotFlex {
+		flex-direction: column;;
+	}
+	@media screen and (min-width: 48rem) {
+		.singleFeature:nth-of-type(even) .slotWrap div .slotFlex {
+			flex-direction: row;
+		}
+		.singleFeature:nth-of-type(odd) .slotWrap div .slotFlex {
+			flex-direction: row-reverse;
+		}
+	}
+
+</style>
+
+<style>
+
+	:root{
+	  --dot-size: 0.151em;  
+	  --line-color: #333;       
+	  --line-contrast: 123%;    
+	  --photo-brightness: 88%;  
+	  --photo-contrast: 171%;   
+	  --photo-blur: 0.234px;        
+	  --blend-mode: hard-light; 
+	
+	  /*--make-color: saturate(100%) invert(7%) sepia(100%) saturate(4848%) hue-rotate(222deg) brightness(95%) contrast(171%);*/
+	  --make-color: brightness(96%) saturate(100%) invert(11%) sepia(12%) saturate(1118%) hue-rotate(188deg) brightness(95%) contrast(94%);
+	  /*--make-color: brightness(70%) saturate(100%) invert(0%) sepia(66%) saturate(372%) hue-rotate(350deg) brightness(102%) contrast(99%);*/
+	  /*--make-colorHL: brightness(50%) saturate(100%) invert(40%) sepia(69%) saturate(816%) hue-rotate(331deg) brightness(80%) contrast(110%);*/
+	  /*--make-colorHL: brightness(20%) saturate(100%) invert(89%) sepia(11%) saturate(753%) hue-rotate(300deg) brightness(80%) contrast(94%);*/
+	  --make-colorHL: invert(8%) contrast(40%) brightness(222%) sepia(12%) saturate(1333%) hue-rotate(305deg) brightness(115%) contrast(80%);
+	  --make-colorOrange: brightness(86%) saturate(100%) invert(11%) sepia(67%) saturate(986%) hue-rotate(323deg) brightness(99%) contrast(66%);
+	  --make-colorBlue: brightness(95%) saturate(100%) invert(21%) sepia(82%) saturate(1647%) hue-rotate(163deg) brightness(104%) contrast(101%);
+	  --make-colorGreen: brightness(95%) saturate(100%) invert(24%) sepia(8%) saturate(2672%) hue-rotate(128deg) brightness(117%) contrast(108%);
+	}
+	
+	.canvas {
+	  /*position: absolute;
+	  top: 0;
+	  left: 0;
+	  bottom: 0;
+	  right: 0;*/
+	  filter: contrast(var(--line-contrast));
+	  overflow: hidden;
+	}
+	
+	.canvas .over {
+	  /*backdrop-filter: var(--make-color);*/
+	}
+	
+	.canvas .dotsContain {
+	  width: 100%;
+	  height: 100%;
+	  overflow: hidden;
+	}
+	
+	.canvas .dotsContain .dots {
+	  content: '';
+	  position: relative;
+	  height: 191%;
+	  width: 191%;
+	  /*top: -50%;
+	  left: -50%;
+	  bottom: -50%;
+	  right: -50%;*/
+	  background: radial-gradient(circle at center, var(--line-color), #fff);
+	  background-size: var(--dot-size) var(--dot-size);
+	  transform: rotate(20deg);
+	
+	  top: -20%;
+	  left: -20%;
+	
+	
+	}
+	
+	.canvas .imgBW {
+	  /*position: absolute;
+	  top: 0;
+	  left: 0;
+	  width: 100%;
+	  height: 100%;*/
+	  object-fit: cover;
+	  object-position: center;
+	  mix-blend-mode: var(--blend-mode);
+	  filter: grayscale(1) brightness(var(--photo-brightness)) contrast(var(--photo-contrast)) blur(var(--photo-blur)) var(--make-color);
+	}
+	.canvas .imgHL {
+	  /*position: absolute;
+	  top: 0;
+	  left: 0;
+	  width: 100%;
+	  height: 100%;*/
+	  object-fit: cover;
+	  object-position: center;
+	  mix-blend-mode: var(--blend-mode);
+	  filter: grayscale(1) brightness(var(--photo-brightness)) contrast(var(--photo-contrast)) blur(var(--photo-blur)) var(--make-colorHL);
+	}
+
+	.canvas .imgOrange {
+	  /*position: absolute;
+	  top: 0;
+	  left: 0;
+	  width: 100%;
+	  height: 100%;*/
+	  object-fit: cover;
+	  object-position: center;
+	  mix-blend-mode: var(--blend-mode);
+	  filter: grayscale(1) brightness(var(--photo-brightness)) contrast(var(--photo-contrast)) blur(var(--photo-blur)) var(--make-colorOrange);
+	}
+
+	.canvas .imgBlue {
+	  /*position: absolute;
+	  top: 0;
+	  left: 0;
+	  width: 100%;
+	  height: 100%;*/
+	  object-fit: cover;
+	  object-position: center;
+	  mix-blend-mode: var(--blend-mode);
+	  filter: grayscale(1) brightness(var(--photo-brightness)) contrast(var(--photo-contrast)) blur(var(--photo-blur)) var(--make-colorBlue);
+	}
+
+	.canvas .imgGreen {
+	  /*position: absolute;
+	  top: 0;
+	  left: 0;
+	  width: 100%;
+	  height: 100%;*/
+	  object-fit: cover;
+	  object-position: center;
+	  mix-blend-mode: var(--blend-mode);
+	  filter: grayscale(1) brightness(var(--photo-brightness)) contrast(var(--photo-contrast)) blur(var(--photo-blur)) var(--make-colorGreen);
+	}
+	</style>

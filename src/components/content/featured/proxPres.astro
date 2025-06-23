@@ -1,0 +1,90 @@
+---
+import { Image } from 'astro:assets';
+
+
+import FeaturedSingleFNN from "@/components/content/featured/singleFreeNoNoise.astro"
+
+import BspAToBeSet from "@/assets/for_content/features/bspA_toBeSet.astro"
+import BspA from "@/assets/for_content/features/bspA3.svg"
+
+
+
+
+const colorBack = "#1E212B"; 
+const colorFore = "#fcfcfc";
+
+//primary: '#fcfcfc', //fafafa -> og
+//  				secondary: '#1E212B'
+
+
+const { doLines, extendBelow } = Astro.props;
+
+---
+
+<FeaturedSingleFNN doLines={doLines} extendBelow={extendBelow} colorBack={colorBack} colorFore={colorFore} imagedText="" rawerText="Neue Siedlungen zeichnen sich vorrangig durch die Nähe zu bereits etablierten Ortschaften oder der Natur aus. Der öffentliche Raum ist auf Durch- und Wegfahrt ausgelegt, nicht auf Aufenthalt. Er bleibt unbelebt, identitätslos, keinen Besuch wert.">
+	<div class=" w-full"  style={"color: " + colorFore + "; background: " + colorBack + ";"}>
+		<h2 class="mt-12 mb-4 not-italic grid align-middle text-7xl leading-11 tracking-tighter font-black">
+			Was tun?
+		</h2>
+		  
+		<div class="flex flex-col md:flex-row items-stretch gap-0 p-2">
+			<!-- Box 1 -->
+			<div class="flex-1 p-6 shadow ">
+			  	<h3 class="not-italic text-4xl mb-2 font-black">Lücken füllen</h3>
+				<div class="text-justify break-words hyphens-auto">
+					<p>
+						Der Bevökerung soll, wo sie es sich wünscht, die Freiheit der Gestaltung ihrer gebauten Umgebung und Wohnorte zurückgegeben werden. Das angenehm lebendige alter Siedlungen soll wieder baubar sein und um moderne Bequemlichkeiten erweitert werden können.
+					</p><p>
+						Die geschlossene Bauweise, bei der Gebäude aneinandergereiht werden, prägt ökonomische und kulturelle Zentren. Nicht nur in Städten, häufig auch in Dörfern. Ausgerechnet sie ist heutzutage kaum zu bauen. Vorgaben wie Ausnützungsziffer, Gebäude- und Grenzabstand sind Hindernisse. Sie führen zu schlechter Ausnutzung des Raumes und schaffen Distanz. 
+					</p><p>
+						Die geschlossene Bauweise soll ermöglicht, erleichtert und gefördert werden. Die Möglichkeit, ein Gebäude zu gestalten, begrenzt sich aktuell weitestgehend auf suburbane Einfamilienhäuser. Die Freiheit dazu soll auch im Kontext dichterer Siedlungsbilder gegeben sein.
+					</p>
+				</div>
+			</div>
+		  
+			<!-- Separator -->
+			<div class="h-[2px] w-full md:h-auto md:w-[2px] flex items-center justify-center">
+				<div
+				class="h-full w-[80%] md:w-full md:h-[60%]"
+				style={`background: ${colorFore ?? '#999'}`}  
+				></div>
+			</div>
+		  
+			<!-- Box 2 -->
+			<div class="flex-1 p-6 shadow">
+				<h3 class="not-italic text-4xl mb-2 font-black">Platz machen</h3>
+				<div class="text-justify break-words hyphens-auto">
+					<p>
+						Die heute vorherrschende Ortsgestaltung wird vom Auto dominiert. Öffentlicher Raum besteht aus Parkplatz- und Verkehrsfläche. Privater Grund muss mit Parkplätzen ausgestattet werden, egal ob die Besitzer dies wollen oder nicht.
+					<p></p>
+						Gefährlich und laut, beeinträchtigen Autos die Aufenthaltsqualität jedes Ortes, den sie durchqueren. Die Auslastung ist schlecht, der Flächenverbrauch enorm. Sie verunmöglichen eine anderweitige Nutzung des öffentlichen Raumes und behindern alle sonstigen Fortbewegungsformen - sich selbst stehen sie auch im Weg. 
+					<p></p>
+						Je autoorientierter ein Ort, desto menschenfeindlicher wird er. Wer - verständlicherweise - an einem Ort wohnen möchte, wo Autos die Ausnahme darstellen, soll dies nicht nur dürfen, sondern auch bauen und mitgestalten können.
+					</p>
+				</div>
+			</div>
+		</div>
+
+		<!-- Separator -->
+		<div class="h-[2px] w-full md:h-auto md:w-[2px] flex items-center justify-center">
+			<div
+			class="md:hidden h-full w-[80%]"
+			style={`background: ${colorFore ?? '#999'}`}  
+			></div>
+		</div>
+	  
+		<!-- Sub -->
+
+		<h4 class="text-center mb-2 text-xl font-bold p-6 pb-1">
+			Unter dem Namen Proximus Habitat wird die Gründung eines Vereins vorbereitet, der sich mit Raumplanung befassen soll. 
+		</h4>
+		<div class="text-center text-lg p-6 pt-1">
+			<span>
+				Bei Interesse oder Fragen bitte <a href="mailto:info@proximushabitat.ch" class="underline break-normal whitespace-nowrap">info@proximushabitat.ch</a> kontaktieren.
+			</span>
+			
+		</div>
+		<div class="h-2"></div>
+		  
+	</div>
+</FeaturedSingleFNN>

@@ -12,6 +12,20 @@ import FrontSection from "@components/technical/FrontSection.astro";
 import ThinLine from "@/components/snippets/ThinLine.astro";
 import ThickLine from "@/components/snippets/ThickLine.astro";
 
+import ClassGen from "@/components/technical/ClassGen.astro";
+
+import FeaturedContainer from "@/components/content/featured/container.astro"
+import FeaturedSingle from "@/components/content/featured/single.astro"
+import FeatureCardTestA from "@/components/content/featured/cards/testA.astro"
+import Banner from "@/components/content/featured/banner.astro"
+
+import BspAWhole from "@/components/content/featured/bspA_whole.astro";
+import FeaturedAltes from "@/components/content/featured/altes.astro";
+import FeaturedVerlassen from "@/components/content/featured/verlassen.astro";
+import FeaturedVerkehr from "@/components/content/featured/verkehr.astro";
+import FeaturedDistanz from "@/components/content/featured/distanz.astro";
+import FeaturedProxPres from "@/components/content/featured/proxPres.astro";
+
 import { aosDuration, aosDelay } from '@/snippets/aosValues';
 
 import { getLangFromUrl, useTranslations } from '@/i18n/utils';
@@ -49,13 +63,17 @@ const { Content: Intro } = await render(introContent);
 
 <BaseLayout>
   <DesignTop nLines={5} baseRem={0.2} incIncDecimal={0.5} startWith="l" />
-  <div class="px-8 mx-auto max-w-singleWidth text-justify break-words break-all hyphens-manual pb-20 overflow-hidden" lang={lang} 
-    data-aos="fade-up"
-    data-aos-duration={aosDuration(1)}
-    data-aos-delay={aosDelay(1)}>
-    <Intro />
-  </div>
+  <FeaturedContainer>
+    <Banner rawerText="LASST UNS GUTE ORTE BAUEN" rawerTextBreaks="LASST UNS \nGUTE ORTE BAUEN" />
+    <FeaturedAltes extendBelow="true" doLines="true" />
+    <FeaturedVerlassen extendBelow="true" doLines="true" />
+    <FeaturedVerkehr extendBelow="true" doLines="true" />
+    <FeaturedDistanz extendBelow="true" doLines="true" />
+    <FeaturedProxPres extendBelow="false" doLines="true" />
+  </FeaturedContainer>
   <FrontSection collection="news" howMany="8" component="ArticlesImaged" showDate="true" sectionTitle="true" putUrl="false" >
   </FrontSection>
   <DesignBottom nLines={5} baseRem={0.2} incIncDecimal={0.5} startWith="s" />
+  <ClassGen/>
 </BaseLayout>
+

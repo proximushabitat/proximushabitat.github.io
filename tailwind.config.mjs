@@ -61,6 +61,7 @@ export default {
 			},
 			spacing: {
 				'spaceFromEdge': '2rem',
+				'spaceFromEdgeMobile': '1.5rem',
 				'infoContainer': '4rem',
 				'accentLineThick': '0.375rem',
 				'accentLineThin': '0.125rem',

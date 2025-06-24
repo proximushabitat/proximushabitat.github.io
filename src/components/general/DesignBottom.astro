@@ -36,7 +36,7 @@ console.log(lines);
 <div class="hidden mt-0"></div>
 
 <section class="bg-primary" id="designBottom">
-  <div class="px-spaceFromEdge 2xl:max-w-7xl mx-auto mt-16 pb-spaceFromEdge">
+  <div class="px-spaceFromEdgeMobile sm:px-spaceFromEdge 2xl:max-w-7xl mx-auto mt-16 pb-spaceFromEdgeMobile sm:pb-spaceFromEdge">
       <div class={"linesContainer transition-all"} style={`height: ${lines.totalHeight};max-height: ${lines.totalHeight};`} data-totalHeight={lines.totalHeight}>
         {lines.heightOfLinesPerc.map((heightOfLine:number, index:number) => (
           <div class={index && "putLineSpacer mt-designLinesSpaceBetween transition-all" || "noLineSpacer"} style={`height: ${heightOfLine};`}>

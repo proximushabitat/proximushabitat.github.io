@@ -12,6 +12,8 @@ import backgroundUrl from "@/assets/for_site/noise.svg";
 
 import mainImg from "@/assets/for_content/features/main/aarberg_0.0.5.png";
 
+const colorFont = "#FFF1EB"//"#FFD5C2"//"#ECE9D4";/*"#E1F4F4""#FFF1EB"*/
+
 console.log("bgurl");
 console.log(backgroundUrl);
 
@@ -25,7 +27,7 @@ const spacingRem = 0.15;
 const lines = lineSet(nLines, baseRem, incIncDecimal, startWith, spacingRem);
 const lines2 = lineSet(nLines, baseRem, incIncDecimal, startWith2, spacingRem);
 
-const { img, imagedText, rawerText, rawerTextBreaks, colorBack, colorFore, doLines, extendBelow } = Astro.props;
+const { img, imagedText, rawerText, rawerTextBreaks, rawerTextBreaks2, colorBack, colorFore, doLines, extendBelow } = Astro.props;
 
 
 ---
@@ -95,11 +97,11 @@ const { img, imagedText, rawerText, rawerTextBreaks, colorBack, colorFore, doLin
 						<span class="absolute bottom-[14rem] text-right font-black w-full">
 							{/*rawerText*/}
 							<svg style="border: 1px solid transparent;" width="100%" height="100" viewBox="0 0 1562 100" preserveAspectRatio="xMidYMid meet" class="hidden lg:block -mb-12">
-								<text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-size="100" font-family="sans-serif" fill="white">
+								<text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-size="100" font-family="sans-serif" fill={colorFont}>
 									{rawerText}
 								</text>
 							</svg>
-							
+							<!-- 
 							<svg
 								width="100%"
 								height="100%"
@@ -117,12 +119,12 @@ const { img, imagedText, rawerText, rawerTextBreaks, colorBack, colorFore, doLin
 									fill="white"
 								>
 									{(() => {
-									const lines = (rawerTextBreaks || " ").split('\n');
+									const lines = (rawerTextBreaks || "").split('\n');
 									const reversed = [...lines].reverse();
 									return reversed.map((line, i) => (
 										<tspan
 										key={i}
-										x="100%"
+										x="1600"
 										dy={i === 0 ? '0' : '-1.2em'}
 										>
 										{line}
@@ -130,7 +132,72 @@ const { img, imagedText, rawerText, rawerTextBreaks, colorBack, colorFore, doLin
 									));
 									})()}
 								</text>
-								</svg>
+							</svg>-->
+
+							<svg
+								width="100%"
+								height="100%"
+								viewBox="0 10 1600 800"
+								preserveAspectRatio="xMidYMid meet"
+								style="border: 1px solid transparent;"
+								class="hidden sm:flex lg:hidden mb-4 sm:mb-2 md:-mb-6"
+								>
+								<text
+									x="100%"
+									y="800"
+									text-anchor="end"
+									font-size="160"
+									font-family="sans-serif"
+									fill={colorFont/*"#E1F4F4""#FFF1EB"*/}
+								>
+									{
+									rawerTextBreaks
+										?.split('\n')
+										.reverse()
+										.map((line, i) => (
+										<tspan
+											x="100%"
+											dy={i === 0 ? "0" : "-1.2em"}
+										>
+											{line}
+										</tspan>
+										))
+									}
+								</text>
+							</svg>
+
+							<svg
+								width="100%"
+								height="100%"
+								viewBox="0 10 1600 800"
+								preserveAspectRatio="xMidYMid meet"
+								style="border: 1px solid transparent;"
+								class="sm:hidden mb-4 sm:mb-2 md:-mb-6"
+								>
+								<text
+									x="100%"
+									y="800"
+									text-anchor="end"
+									font-size="222"
+									font-family="sans-serif"
+									fill={colorFont}
+								>
+									{
+									rawerTextBreaks2
+										?.split('\n')
+										.reverse()
+										.map((line, i) => (
+										<tspan
+											x="100%"
+											dy={i === 0 ? "0" : "-1.2em"}
+										>
+											{line}
+										</tspan>
+										))
+									}
+								</text>
+							</svg>
+
 							  
 						</span>
 					</div>

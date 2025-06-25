@@ -1,8 +1,8 @@
 ---
 import { Image } from 'astro:assets';
 
-////////////////////////////////////console.log.log("uiWidthUL");
-////////////////////////////////////console.log.log(uiWidthUL);
+//////////////////////////////////////console.log.log("uiWidthUL");
+//////////////////////////////////////console.log.log(uiWidthUL);
 
 
 interface ImageData {
@@ -38,17 +38,17 @@ const sliderId = `slider-${Math.random().toString(36).substr(2, 9)}`;
 
 
 const indexArray = Array.from(Array(parseInt(index)).keys());
-////////////////////////////console.log.log("indexArray");
-////////////////////////////console.log.log(indexArray);
+//////////////////////////////console.log.log("indexArray");
+//////////////////////////////console.log.log(indexArray);
 
-////////////////////////////////////console.log.log("bgcolor");
-////////////////////////////////////console.log.log(bgcolor);
+//////////////////////////////////////console.log.log("bgcolor");
+//////////////////////////////////////console.log.log(bgcolor);
 
 
-//////////////////////////////////////console.log.log("singleimage");
-//////////////////////////////////////console.log.log(singleimage);
-//////////////////////////////////////console.log.log("singleimage-l");
-//////////////////////////////////////console.log.log(singleimage.length);
+////////////////////////////////////////console.log.log("singleimage");
+////////////////////////////////////////console.log.log(singleimage);
+////////////////////////////////////////console.log.log("singleimage-l");
+////////////////////////////////////////console.log.log(singleimage.length);
 
 //navigation only when there are more than 1 image
 var navButtons = "";
@@ -122,7 +122,7 @@ var navIndicators = "";
   //medium zoom is the zoom library.
   import mediumZoom from 'medium-zoom';
   //const bg = await "#"+document.getElementById("bgcolor").innerHTML;
-  ////////////////////////////////////console.log.log("bg: "+bg);
+  //////////////////////////////////////console.log.log("bg: "+bg);
   const zoom = await mediumZoom('.medium-zoomable', {
     margin: 0,
     /*opacity: "0.5",*/
@@ -141,7 +141,7 @@ var navIndicators = "";
 
   zoom.on('open', event => {
     // track when the image is zoomed
-    //////////////////////////////////////console.log.log("open");
+    ////////////////////////////////////////console.log.log("open");
     prevButtonsAll.forEach(node => {
       node.classList.add('opacity-0');
       node.classList.add('invisible');
@@ -168,7 +168,7 @@ var navIndicators = "";
 
   zoom.on('closed', event => {
     // track when the image has finished closing
-    //////////////////////////////////////console.log.log("closed");
+    ////////////////////////////////////////console.log.log("closed");
     prevButtonsAll.forEach(node => {
       node.classList.remove('opacity-0');
       node.classList.remove('invisible');

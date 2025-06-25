@@ -1,4 +1,56 @@
-key1:
-  de: "Schiene"
-  fr: "rail"
-  en: "rail"
+rail:
+  de: 
+    - "Schiene"
+    - "Eisenbahn"
+    - "Bahn"
+  fr: 
+    - "rail"
+  en: 
+    - "rail"
+mobility:
+  de:
+    - "Verkehr"
+    - "Mobilität"
+    - "Transport"
+publicTransit:
+  de:
+    - "ÖV"
+    - "ÖPNV"
+    - "öffentlicher Verkehr"
+tram:
+  de:
+    - "Tram"
+    - "Strassenbahn"
+    - "Stadtbahn"
+planning:
+  de:
+    - "Raumplanung"
+    - "Stadtplanung"
+    - "Regionalplanung"
+    - "Siedlungsplanug"
+architecture:
+  de:
+    - "Architektur"
+verein:
+  de:
+    - "Verein"
+    - "politischer Verein"
+general:
+  de:
+    - "Habitat"
+    - "Lebensraum"
+    - "Raumplanung"
+    - "Stadtplanung"
+    - "Wohnen"
+    - "Bauen"
+    - "Stadt"
+    - "Dorf"
+    - "Siedlungen"
+    - "Mobilität"
+bern:
+  de:
+    - "Bern"
+    - "Schweiz"
+switzerland:
+  de:
+    - "Schweiz"

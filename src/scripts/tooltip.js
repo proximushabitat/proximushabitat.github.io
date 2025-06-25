@@ -10,17 +10,17 @@ const toolTipTool = document.querySelectorAll('.toolTipTool');
 const toolTipTip = document.querySelectorAll('.toolTipTip');
 const arrowElement = document.querySelectorAll('.toolTipArrow');
 
-//////////console.log.log("toolTipTool");
-//////////console.log.log(toolTipTool);
-//////////console.log.log("toolTipTool[0]");
-//////////console.log.log(toolTipTool[0]);
-//////////console.log.log("toolTipTool.length");
-//////////console.log.log(toolTipTool.length);
+////////////console.log.log("toolTipTool");
+////////////console.log.log(toolTipTool);
+////////////console.log.log("toolTipTool[0]");
+////////////console.log.log(toolTipTool[0]);
+////////////console.log.log("toolTipTool.length");
+////////////console.log.log(toolTipTool.length);
 
 
 for(let i = 0; i < toolTipTool.length; i++){
-	//////////console.log.log("i");
-	//////////console.log.log(i);
+	////////////console.log.log("i");
+	////////////console.log.log(i);
 	function update() {
 		computePosition(toolTipTool[i], toolTipTip[i], {
 			placement: 'top',
@@ -31,10 +31,10 @@ for(let i = 0; i < toolTipTool.length; i++){
 				arrow({element: arrowElement[i]}),
 			],
 		}).then(({x, y, placement, middlewareData}) => {
-			//////////console.log.log("placement");
-			//////////console.log.log(placement);
-			//////////console.log.log("placement");
-			//////////console.log.log(placement);
+			////////////console.log.log("placement");
+			////////////console.log.log(placement);
+			////////////console.log.log("placement");
+			////////////console.log.log(placement);
 
 			Object.assign(toolTipTip[i].style, {
 				left: `${x}px`,
@@ -51,8 +51,8 @@ for(let i = 0; i < toolTipTool.length; i++){
 				left: 'right',
 			}[placement.split('-')];
 
-			//////////console.log.log("staticSide");
-			//////////console.log.log(staticSide);
+			////////////console.log.log("staticSide");
+			////////////console.log.log(staticSide);
 			
 			Object.assign(arrowElement[i].style, {
 				left: arrowX != null ? `${arrowX}px` : '',

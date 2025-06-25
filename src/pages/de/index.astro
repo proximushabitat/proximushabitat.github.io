@@ -47,28 +47,42 @@ const introContent = await getEntry('bigBits', entry);
 
 const introContent = introContentColl.filter(item => {
     const returnThis = item.id == entry;
-    ////////////console.log.log("entry: '"+entry+"'     item.id: '"+item.id+"'     returnThis: "+returnThis);
+    //////////////console.log.log("entry: '"+entry+"'     item.id: '"+item.id+"'     returnThis: "+returnThis);
     return returnThis;
   }
 );*/
 
-/*////////////console.log.log("introContentColl");
-////////////console.log.log(introContentColl);*/
-////////////console.log.log("introContent");
-////////////console.log.log(introContent);
+/*//////////////console.log.log("introContentColl");
+//////////////console.log.log(introContentColl);*/
+//////////////console.log.log("introContent");
+//////////////console.log.log(introContent);
 
 const { Content: Intro } = await render(introContent);
 
+const keywords = [
+  "rail",
+  "mobility",
+  "publicTransit",
+  "tram",
+  "planning",
+  "architecture",
+  "verein",
+  "general"
+];
+
+const excerpt = "Für die Freiheit, Orte zu schaffen, die etwas bedeuten. Proximus Habitat fördert eine Baukultur, die verbindet, belebt und besteht.";
+
 ---
 
-<BaseLayout>
+<BaseLayout keywords={keywords} excerpt={excerpt}>
   <DesignTop nLines={5} baseRem={0.2} incIncDecimal={0.5} startWith="l" />
   <FeaturedContainer>
     <Banner rawerText="LASST UNS GUTE ORTE BAUEN" rawerTextBreaks="LASST UNS&nbsp;\nGUTE ORTE BAUEN" rawerTextBreaks2="LASST UNS&nbsp;\nGUTE ORTE\nBAUEN" />
     <FeaturedAltes extendBelow="true" doLines="true" />
     <FeaturedVerlassen extendBelow="true" doLines="true" />
-    <FeaturedVerkehr extendBelow="true" doLines="true" />
     <FeaturedDistanz extendBelow="true" doLines="true" />
+    <FeaturedVerkehr extendBelow="true" doLines="true" />
+    
     <FeaturedProxPres extendBelow="false" doLines="true" />
   </FeaturedContainer>
   <FrontSection collection="news" howMany="8" component="ArticlesImaged" showDate="true" sectionTitle="true" putUrl="false" >

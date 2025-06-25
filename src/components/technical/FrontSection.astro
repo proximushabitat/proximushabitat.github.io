@@ -26,29 +26,29 @@ import { sortBigFirst } from '@/snippets/numberGames';
 
 const { collection, howMany, component, showDate, sectionTitle, putUrl } = Astro.props;
 
-//////////////console.log.log("collection");
-//////////////console.log.log(collection);
+////////////////console.log.log("collection");
+////////////////console.log.log(collection);
 
 const itemsAllLang = await getCollection(collection);
-////////////////////////////console.log.log("itemsAllLang");
-////////////////////////////console.log.log(itemsAllLang);
+//////////////////////////////console.log.log("itemsAllLang");
+//////////////////////////////console.log.log(itemsAllLang);
 
 const itemsUnorderly = getOneLang(itemsAllLang, lang);
-////////////////////////////console.log.log("items");
-////////////////////////////console.log.log(items);
+//////////////////////////////console.log.log("items");
+//////////////////////////////console.log.log(items);
 
 const items = sortBigFirst(itemsUnorderly, "date_published")
 
-//////////////////////////////console.log.log("newsAI");
-//////////////////////////////console.log.log(items);
-//////////////////////////////console.log.log("newsAI.trans");
-//////////////////////////////console.log.log(items[0].translations[0].block);
+////////////////////////////////console.log.log("newsAI");
+////////////////////////////////console.log.log(items);
+////////////////////////////////console.log.log("newsAI.trans");
+////////////////////////////////console.log.log(items[0].translations[0].block);
 const sectionDataRaw = await getSection(collection);
-//////////////////////////console.log.log("sectionDataRaw");
-//////////////////////////console.log.log(sectionDataRaw);
+////////////////////////////console.log.log("sectionDataRaw");
+////////////////////////////console.log.log(sectionDataRaw);
 const sectionData = getOneLang(sectionDataRaw, lang)[0];
-//////////////////////////console.log.log("sectionData1");
-//////////////////////////console.log.log(sectionData);
+////////////////////////////console.log.log("sectionData1");
+////////////////////////////console.log.log(sectionData);
 
 
 

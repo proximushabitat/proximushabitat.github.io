@@ -7,11 +7,11 @@ import defineConfig from  'astro.config.mjs';
 import { getCollection, getEntry, render } from 'astro:content';
 
 export function getLangFromUrl(url: URL) {
-  //////////////////console.log.log("url");
-  //////////////////console.log.log(url);
+  ////////////////////console.log.log("url");
+  ////////////////////console.log.log(url);
   const [, lang] = url.pathname.split('/');
-  //////////////////console.log.log("lang");
-  //////////////////console.log.log(lang);
+  ////////////////////console.log.log("lang");
+  ////////////////////console.log.log(lang);
 
   if (lang in languages) return lang as keyof typeof dict;
   return defaultLang;
@@ -27,18 +27,18 @@ export function useTranslations(lang: keyof typeof dict) {
   return function t( cat: string | number, key: string) {
     const maybeArray = dict[cat][lang][key] || dict[cat][defaultLang][key];
     var justAWord;
-    ////////////////////////////////console.log.log("");
-    ////////////////////////////////console.log.log("cat, key");
-    ////////////////////////////////console.log.log(cat+", "+key);
-    ////////////////////////////////console.log.log("maybeArray");
-    ////////////////////////////////console.log.log(maybeArray);
+    //////////////////////////////////console.log.log("");
+    //////////////////////////////////console.log.log("cat, key");
+    //////////////////////////////////console.log.log(cat+", "+key);
+    //////////////////////////////////console.log.log("maybeArray");
+    //////////////////////////////////console.log.log(maybeArray);
     if(Array.isArray(maybeArray)){
       justAWord = maybeArray[Math.floor(Math.random() * maybeArray.length)];
     } else {
       justAWord = maybeArray;
     }
-    ////////////////////////////////console.log.log("justAWord");
-    ////////////////////////////////console.log.log(justAWord);
+    //////////////////////////////////console.log.log("justAWord");
+    //////////////////////////////////console.log.log(justAWord);
     return justAWord;
   }
 }
@@ -61,7 +61,7 @@ export async function translatePath(url: object){
   const locales = defineConfig.i18n.locales;
 
   //get parts of path
-  ////////////console.log.log(url.pathname);
+  //////////////console.log.log(url.pathname);
   const pathSplitRaw = url.pathname.split('/');
   const pathSplit = pathSplitRaw.filter(path => path !== "");
 
@@ -70,23 +70,23 @@ export async function translatePath(url: object){
   const sectionRaw = pathSplit[1];
   const contentRaw = pathSplit[2];
 
-  //////////////console.log.log("pathSplit");
-  //////////////console.log.log(pathSplit);
-  //////////////console.log.log("locale: "+locale);
-  ////////////console.log.log("sectionRaw: "+sectionRaw);
-  ////////////console.log.log("contentRaw: "+contentRaw);
+  ////////////////console.log.log("pathSplit");
+  ////////////////console.log.log(pathSplit);
+  ////////////////console.log.log("locale: "+locale);
+  //////////////console.log.log("sectionRaw: "+sectionRaw);
+  //////////////console.log.log("contentRaw: "+contentRaw);
 
 
   //get the section
   const sections = await getCollection('sections');
   const sectionObject = sections.filter(section => {
-    ////////////console.log.log("section");
-    ////////////console.log.log(section);
+    //////////////console.log.log("section");
+    //////////////console.log.log(section);
     return section.id === sectionRaw;
   })[0];
 
-  ////////////console.log.log("sectionObject");
-  ////////////console.log.log(sectionObject);
+  //////////////console.log.log("sectionObject");
+  //////////////console.log.log(sectionObject);
 
   var sectionName = "";
   var sectionAllLangs = [];
@@ -105,14 +105,14 @@ export async function translatePath(url: object){
   }
 
   if(pathSplit.length > 2){
-    ////////////console.log.log('doing 2+')
+    //////////////console.log.log('doing 2+')
     //get the collection by name taken from section
     collection = await getCollection(sectionName);
     contentObject = collection.filter(content => {
       return content.id === contentRaw;
     })[0];
-    ////////////console.log.log("contentObject");
-    ////////////console.log.log(contentObject);
+    //////////////console.log.log("contentObject");
+    //////////////console.log.log(contentObject);
     if(contentObject){
       contentName = contentObject.filePath.split('/')[contentObject.filePath.split('/').length-1].split('.')[0];
       contentAllLangs = collection.filter(content => {
@@ -122,8 +122,8 @@ export async function translatePath(url: object){
   }
   
   for(let i = 0; i < locales.length; i++){
-    ////////////////console.log.log(" ");
-    ////////////////console.log.log("now doing: "+locales[i]);
+    //////////////////console.log.log(" ");
+    //////////////////console.log.log("now doing: "+locales[i]);
     var path = "";
     path += locales[i];
 
@@ -151,12 +151,12 @@ export async function translatePath(url: object){
         path += contentRaw;
       }
     }
-    ////////////////console.log.log("path: "+path);
+    //////////////////console.log.log("path: "+path);
     path += "/";
     const thisLocale = locales[i];
     paths[i] = { locale: thisLocale, path: path };
   }
-  //////////////console.log.log("paths");
-  //////////////console.log.log(paths);
+  ////////////////console.log.log("paths");
+  ////////////////console.log.log(paths);
   return paths;
 }

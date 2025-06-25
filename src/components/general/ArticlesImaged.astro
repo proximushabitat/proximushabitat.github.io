@@ -27,11 +27,11 @@ import Thumb from '../content/Thumb.astro';
 //noise
 import backgroundUrl from "@/assets/for_site/noise.svg";
 
-console.log("bgurl");
-console.log(backgroundUrl);
+//console.log("bgurl");
+//console.log(backgroundUrl);
 
-//////////console.log.log("fallbackImg");
-//////////console.log.log(fallbackImg);
+////////////console.log.log("fallbackImg");
+////////////console.log.log(fallbackImg);
 
 const { items: itemsRaw, collection, showDate, sectionTitle, sectionData, putUrl } = await Astro.props;
 
@@ -44,26 +44,26 @@ function calculateAosDuration(index) {
 
 for (let i = 0; i < items.length; i++){
   const { thumb, thumbHighlight } = await render(items[i]);
-  ////////////console.log.log("thumb"); 
-  ////////////console.log.log(thumb);
+  //////////////console.log.log("thumb"); 
+  //////////////console.log.log(thumb);
 }
 const matches1 = import.meta.glob('../../../**/*.mdx', { eager: true });
 const posts1 = Object.values(matches1);
 for(let i = 0; i < posts1.length; i++){
-  //////////console.log.log("posts1[i].thumb");
-  //////////console.log.log(posts1[i].thumb);
+  ////////////console.log.log("posts1[i].thumb");
+  ////////////console.log.log(posts1[i].thumb);
 }
 
 for(let i = 0; i < items.length; i++){
   const singlePostForThumb = posts1.filter(post => 
     {
       const returnSmth = post.frontmatter.slug == items[i].data.slug;
-      //////////////////////////console.log.log("post1: "+post.frontmatter.slug+" itemI: "+items[i].data.slug+" return: "+returnSmth);
+      ////////////////////////////console.log.log("post1: "+post.frontmatter.slug+" itemI: "+items[i].data.slug+" return: "+returnSmth);
       return post.frontmatter.slug == items[i].data.slug;
     }
   );
-  ////////////console.log.log("singlePostForThumb");
-  ////////////console.log.log(singlePostForThumb[0]);
+  //////////////console.log.log("singlePostForThumb");
+  //////////////console.log.log(singlePostForThumb[0]);
   if(singlePostForThumb[0].thumb){
     items[i]['thumb'] = singlePostForThumb[0].thumb;
     if(singlePostForThumb[0].thumbHighlight){
@@ -74,11 +74,11 @@ for(let i = 0; i < items.length; i++){
   }
 }
 
-////////////////////console.log.log("sectionData.data");
-////////////////////console.log.log(sectionData.data.no_trans_excerpt);
+//////////////////////console.log.log("sectionData.data");
+//////////////////////console.log.log(sectionData.data.no_trans_excerpt);
 
-////////////console.log.log("items");
-////////////console.log.log(items);
+//////////////console.log.log("items");
+//////////////console.log.log(items);
 
 
 

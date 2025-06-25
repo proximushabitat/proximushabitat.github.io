@@ -2,7 +2,26 @@
 
 //import "@/style/tooltip.css"
 
-const { title, keywords, author, excerpt } = Astro.props;
+import logoQuad from "@/assets/for_site/HT02FAV512x512.png";
+import favicon16 from "@/assets/for_site/HT02FAV16x16.png";
+import favicon32 from "@/assets/for_site/HT02FAV32x32.png";
+import faviconApple from "@/assets/for_site/HT02FAVAppleTouch.png";
+
+import { getCollection, getEntry, render } from 'astro:content';
+
+const keywordsColl = await getCollection('keyWords');
+
+const { lang, title, keywords, author, excerpt } = Astro.props;
+
+console.log("keywords", keywords);
+console.log("keywordsColl", keywordsColl);
+
+const keywordsResolved = collectTranslations(keywordsColl, keywords, lang);
+
+const keywordsString = keywordsResolved.join(', ');
+
+console.log("keywordsResolved", keywordsResolved);
+console.log("keywordsString", keywordsString);
 
 var titleWhole = "";
 
@@ -14,10 +33,43 @@ if (title) {
   titleWhole += "PROXIMUS HABITAT";
 }
 
-import logoQuad from "@/assets/for_site/HT02FAV512x512.png";
-import favicon16 from "@/assets/for_site/HT02FAV16x16.png";
-import favicon32 from "@/assets/for_site/HT02FAV32x32.png";
-import faviconApple from "@/assets/for_site/HT02FAVAppleTouch.png";
+
+function collectTranslations(entries, selectedIds, lang) {
+  const translations = new Set();
+  const matchedIds = new Set();
+
+  for (const entry of entries ?? []) {
+    if (
+      entry &&
+      typeof entry.id === 'string' &&
+      selectedIds?.includes(entry.id) &&
+      entry.data &&
+      typeof entry.data === 'object' &&
+      Array.isArray(entry.data[lang])
+    ) {
+      matchedIds.add(entry.id);
+
+      for (const word of entry.data[lang]) {
+        if (typeof word === 'string' && word.trim()) {
+          translations.add(word.trim());
+        }
+      }
+    }
+  }
+
+  // Add unmatched selectedIds directly
+  for (const id of selectedIds ?? []) {
+    if (!matchedIds.has(id)) {
+      translations.add(id);
+    }
+  }
+
+  return Array.from(translations);
+}
+
+
+
+
 
 ---
 
@@ -26,7 +78,7 @@ import faviconApple from "@/assets/for_site/HT02FAVAppleTouch.png";
 <meta charset="UTF-8" />
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 <meta name="author" content={author ||  "proximus habitat"} />
-<meta name="keywords" content="Raumplanung, Verkehr, Mobilität, Wohnen, Siedlungen" />
+<meta name="keywords" content={keywordsString} />
 <meta name="description" content={excerpt}>
 
 <meta

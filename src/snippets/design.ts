@@ -7,7 +7,7 @@ export function lineSet( nLines: number, baseRem: number, incIncDecimal:number, 
 		totalHeightN = totalHeightN + spacingRem;
 	}
 	var heightOfLine: number = +(baseRem * ((1 + incIncDecimal)**i)).toFixed(1);
-	console.log("baseRem: " + baseRem + ", 1 + incIncDecimal: " + (1 + incIncDecimal) + ", height of line n: " + i + ": " + heightOfLine);
+	//console.log("baseRem: " + baseRem + ", 1 + incIncDecimal: " + (1 + incIncDecimal) + ", height of line n: " + i + ": " + heightOfLine);
 	heightOfLinesRem.push(heightOfLine);
 	totalHeightN = totalHeightN + heightOfLine;
 	}

@@ -18,14 +18,14 @@ import { aosDuration, aosDelay } from '@/snippets/aosValues';
 	}
 	
 	<div class="flex flex-row space-between">
-		<h3
+		<h2
 		class="text-secondary text-base font-medium"
 		data-aos="fade-up"
 		data-aos-duration={aosDuration(2)}
 		>
 		<span class="">{title}</span><span>&nbsp;</span>
 		<!-- <span class="font-bold">{thick}</span> -->
-		</h3>
+		</h2>
 		{tagLine && <span class="italic hidden md:flex flex-grow" data-aos="fade-up" data-aos-duration={aosDuration(2)}>&nbsp;-&nbsp;{tagLine}</span>}
 		{linkUrl && <span class="grow text-right" data-aos="fade-up" data-aos-duration={aosDuration(2)}><a class="font-bold text-secondary text-right" href={linkUrl}>
 			{linkText} &nbsp; ↗
